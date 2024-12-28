@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://dhjrc28o432pk"]
+[gd_scene load_steps=5 format=3 uid="uid://dhjrc28o432pk"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_cbo13"]
-[ext_resource type="PackedScene" uid="uid://b8yywteuugt1s" path="res://Scenes/rifle.tscn" id="2_mlw46"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oi0i1"]
 
@@ -21,9 +20,6 @@ shape = SubResource("CapsuleShape3D_bceq4")
 
 [node name="CameraPivot" type="Node3D" parent="."]
 unique_name_in_owner = true
-
-[node name="Rifle" parent="CameraPivot" instance=ExtResource("2_mlw46")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.978119, -0.0620506, -0.135245)
 
 [node name="Camera3D" type="Camera3D" parent="CameraPivot"]
 unique_name_in_owner = true

@@ -19,8 +19,6 @@ var SPRINT_SPEED = 8.0
 var WALK_SPEED = 5.0
 var stamina = 100
 
-var bullet = load("res://Scenes/bullet.tscn")
-var instance 
 const char_FREQ = 2.0
 const char_AMP = 0.08
 var t_char = 0.0
@@ -35,13 +33,12 @@ func _input(event: InputEvent) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 			
-	var is_camera_motion := (
-		event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED
-	)
+	var is_camera_motion := (event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED)
 	if is_camera_motion:
 		camera_input_direction = event.screen_relative * mouse_sensitivity
 		
 func _physics_process(delta: float) -> void:
+
 	# Handle sprint 
 	if Input.is_action_pressed("sprint") and stamina >= 75:
 		move_speed = SPRINT_SPEED
@@ -50,12 +47,6 @@ func _physics_process(delta: float) -> void:
 		move_speed = WALK_SPEED
 		stamina += 2.0 * delta
 		stamina = clamp(stamina, 0, 100)
-	if Input.is_action_just_pressed("left_click") and not anim_player.is_playing():
-		anim_player.play("Fire")
-		instance = bullet.instantiate()
-		instance.position = gun_barrel.global_position
-		instance.transform.basis = gun_barrel.global_transform.basis
-		get_parent().add_child(instance)
 
 
 	camera_pivot.rotation.x -= camera_input_direction.y * delta
@@ -82,7 +73,7 @@ func _process(delta: float) -> void:
 	# Gravity
 	if not is_on_floor():
 		velocity += get_gravity() * delta * 5
-		# Head char 
+	# Head char 
 	t_char += delta * velocity.length() * float(is_on_floor())
 	camera_3d.transform.origin = _headchar(t_char)
 	move_and_slide()
@@ -91,4 +82,3 @@ func _headchar(time) -> Vector3:
 	pos.y = sin(time * char_FREQ) * char_AMP
 	pos.x = cos(time * char_FREQ / 2) * char_AMP
 	return pos
-	
