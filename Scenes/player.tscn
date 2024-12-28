@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://dhjrc28o432pk"]
+
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_cbo13"]
+[ext_resource type="PackedScene" uid="uid://b8yywteuugt1s" path="res://Scenes/rifle.tscn" id="2_mlw46"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oi0i1"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_tpeil"]
+material = SubResource("StandardMaterial3D_oi0i1")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bceq4"]
+
+[node name="player" type="CharacterBody3D"]
+script = ExtResource("1_cbo13")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_tpeil")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_bceq4")
+
+[node name="CameraPivot" type="Node3D" parent="."]
+unique_name_in_owner = true
+
+[node name="Rifle" parent="CameraPivot" instance=ExtResource("2_mlw46")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.978119, -0.0620506, -0.135245)
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.643932, 0)
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+
+[node name="Label" type="Label" parent="Sprite3D"]
+offset_left = 926.0
+offset_top = 504.0
+offset_right = 966.0
+offset_bottom = 527.0
+scale = Vector2(1.81845, 1.73049)
+text = "+"
+horizontal_alignment = 1
+vertical_alignment = 1
