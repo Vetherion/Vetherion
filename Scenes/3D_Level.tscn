@@ -40,4 +40,4 @@ mesh = SubResource("PlaneMesh_ahkfr")
 shape = SubResource("ConvexPolygonShape3D_t22s1")
 
 [node name="player" parent="." instance=ExtResource("1_m4hl5")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.204, 0.951694, -1.222)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.204, 1.53867, -1.222)
