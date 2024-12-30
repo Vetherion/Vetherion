@@ -23,7 +23,7 @@ func _process(delta) -> void:
 			is_inv_open = false	
 
 func is_eligible() -> MeshInstance3D:
-	var mousePos = get_viewport().get_mouse_position()
+	var mousePos = get_viewport().get_size()/2
 	var camera3d = %Camera3D
 	var from = camera3d.project_ray_origin(mousePos)
 	var to = from + camera3d.project_ray_normal(mousePos) * RAY_LENGTH
