@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dhjrc28o432pk"]
+[gd_scene load_steps=7 format=3 uid="uid://dhjrc28o432pk"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_cbo13"]
 [ext_resource type="Script" path="res://Scripts/reticle.gd" id="2_77glr"]
+[ext_resource type="Script" path="res://Scripts/inventory.gd" id="3_eet5f"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oi0i1"]
 
@@ -28,6 +29,7 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.643932, 0)
 
 [node name="UserInterface" type="Control" parent="."]
+unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -65,3 +67,21 @@ width = 2.0
 [node name="Left" type="Line2D" parent="UserInterface/Reticle"]
 points = PackedVector2Array(-5, 0, -15, 0)
 width = 2.0
+
+[node name="Label" type="Label" parent="UserInterface"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.401
+anchor_top = 0.633
+anchor_right = 0.62
+anchor_bottom = 0.697
+offset_left = -0.920044
+offset_top = 0.359985
+offset_right = -0.400024
+offset_bottom = 0.23999
+theme_override_font_sizes/font_size = 50
+text = "Press E to pick up"
+
+[node name="Inventory" type="Node" parent="."]
+script = ExtResource("3_eet5f")

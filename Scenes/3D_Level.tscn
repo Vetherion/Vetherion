@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://beqn6i68wci2n"]
+[gd_scene load_steps=10 format=3 uid="uid://beqn6i68wci2n"]
 
 [ext_resource type="PackedScene" uid="uid://dhjrc28o432pk" path="res://Scenes/player.tscn" id="1_m4hl5"]
+[ext_resource type="Script" path="res://Scripts/item.gd" id="2_8jfy3"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vp2qy"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -20,6 +21,11 @@ size = Vector2(100, 100)
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_t22s1"]
 points = PackedVector3Array(50.7837, 0.793495, 50.7837, -50.7837, -0.793495, -50.7837, -50.7837, 0.793495, -50.7837, 50.7837, -0.793495, -50.7837, -50.7837, -0.793495, 50.7837, -50.7837, 0.793495, 50.7837, 50.7837, 0.793495, -50.7837, 50.7837, -0.793495, 50.7837)
+
+[sub_resource type="BoxMesh" id="BoxMesh_17wg4"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ev31u"]
+points = PackedVector3Array(-0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5)
 
 [node name="3D_Level" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.453897, 0)
@@ -41,3 +47,63 @@ shape = SubResource("ConvexPolygonShape3D_t22s1")
 
 [node name="player" parent="." instance=ExtResource("1_m4hl5")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.204, 1.53867, -1.222)
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="." groups=["gun0", "inv_item"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.91317, 1.49334, 2.3369)
+mesh = SubResource("BoxMesh_17wg4")
+skeleton = NodePath("../MeshInstance3D2")
+script = ExtResource("2_8jfy3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D3/StaticBody3D"]
+transform = Transform3D(1.57364, 0, 0, 0, 1.57364, 0, 0, 0, 1.57364, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_ev31u")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." groups=["gun0", "inv_item"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.34234, 2.83027)
+mesh = SubResource("BoxMesh_17wg4")
+script = ExtResource("2_8jfy3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D2/StaticBody3D"]
+transform = Transform3D(1.57364, 0, 0, 0, 1.57364, 0, 0, 0, 1.57364, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_ev31u")
+
+[node name="Control" type="Control" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 3
+anchor_right = 0.264
+anchor_bottom = 0.468
+offset_right = -0.880005
+offset_bottom = -0.440033
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Control"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.012
+anchor_bottom = 1.014
+offset_right = -0.0720215
+offset_bottom = -0.0700073
+
+[node name="SubViewport" type="SubViewport" parent="Control/SubViewportContainer"]
+handle_input_locally = false
+render_target_update_mode = 0
+
+[node name="ItemList" type="ItemList" parent="Control/SubViewportContainer/SubViewport"]
+custom_minimum_size = Vector2(500, 500)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+max_text_lines = 2

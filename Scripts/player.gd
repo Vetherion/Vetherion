@@ -21,8 +21,13 @@ const char_FREQ = 2.0
 const char_AMP = 0.08
 var t_char = 0.0
 
+
+@onready var inventory_script = get_node("Inventory")
+
+
 func _ready() -> void: #Start the game by capturing the mouse
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED 
+	
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("six"):
@@ -68,6 +73,33 @@ func _physics_process(delta: float) -> void:
 	
 	velocity = velocity.move_toward(move_direction * move_speed, acceleration * delta)
 	  
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	## inventory
+	if inventory_script.is_eligible() != null:
+		%Label.visible = 1;
+		if Input.is_action_just_pressed("E"):
+			var item = inventory_script.is_eligible()
+			if "gun0" in item.get_groups():
+				inventory_script.add_to_inv("gun0")
+			item.queue_free()
+		else:
+			pass
+	else:
+		%Label.visible = 0;
 func _process(delta: float) -> void:
 	# Gravity
 	if not is_on_floor():
