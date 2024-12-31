@@ -14,11 +14,11 @@ func _ready() -> void:
 func _process(delta) -> void:
 	if Input.is_action_just_pressed("TAB"):
 		if is_inv_open == false:
-			get_node("../../Control").visible = 1
+			get_node("../../Inventory").visible = 1
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 			is_inv_open = true
 		else:
-			get_node("../../Control").visible = 0
+			get_node("../../Inventory").visible = 0
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 			is_inv_open = false	
 
@@ -39,4 +39,4 @@ func is_eligible() -> MeshInstance3D:
 func add_to_inv(item_type) -> void:
 	inventory[item_count + 1] = item_type
 	item_count += 1
-	get_node("../../Control/SubViewportContainer/SubViewport/ItemList").add_item(item_type)
+	get_node("../../Inventory/SubViewportContainer/SubViewport/ItemList").add_item(item_type)

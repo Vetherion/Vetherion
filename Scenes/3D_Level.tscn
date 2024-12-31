@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://beqn6i68wci2n"]
+[gd_scene load_steps=11 format=3 uid="uid://beqn6i68wci2n"]
 
 [ext_resource type="PackedScene" uid="uid://dhjrc28o432pk" path="res://Scenes/player.tscn" id="1_m4hl5"]
 [ext_resource type="Script" path="res://Scripts/item.gd" id="2_8jfy3"]
+[ext_resource type="Script" path="res://Scripts/dialogue.gd" id="3_axax1"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vp2qy"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -71,7 +72,7 @@ script = ExtResource("2_8jfy3")
 transform = Transform3D(1.57364, 0, 0, 0, 1.57364, 0, 0, 0, 1.57364, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_ev31u")
 
-[node name="Control" type="Control" parent="."]
+[node name="Inventory" type="Control" parent="."]
 unique_name_in_owner = true
 visible = false
 layout_mode = 3
@@ -80,7 +81,7 @@ anchor_bottom = 0.468
 offset_right = -0.880005
 offset_bottom = -0.440033
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="Control"]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Inventory"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
@@ -89,11 +90,11 @@ anchor_bottom = 1.014
 offset_right = -0.0720215
 offset_bottom = -0.0700073
 
-[node name="SubViewport" type="SubViewport" parent="Control/SubViewportContainer"]
+[node name="SubViewport" type="SubViewport" parent="Inventory/SubViewportContainer"]
 handle_input_locally = false
 render_target_update_mode = 0
 
-[node name="ItemList" type="ItemList" parent="Control/SubViewportContainer/SubViewport"]
+[node name="ItemList" type="ItemList" parent="Inventory/SubViewportContainer/SubViewport"]
 custom_minimum_size = Vector2(500, 500)
 anchors_preset = 8
 anchor_left = 0.5
@@ -107,3 +108,65 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 max_text_lines = 2
+
+[node name="Dialogue" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchor_left = 0.373
+anchor_top = 0.474
+anchor_right = 0.64
+anchor_bottom = 0.754
+offset_left = -0.160034
+offset_top = 0.0799561
+offset_right = 0.199951
+offset_bottom = -0.320007
+script = ExtResource("3_axax1")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Dialogue"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.373
+anchor_top = 0.523
+anchor_right = 0.64
+anchor_bottom = 0.997
+offset_left = -191.349
+offset_top = 153.054
+offset_right = 183.68
+offset_bottom = 521.906
+
+[node name="SubViewport" type="SubViewport" parent="Dialogue/SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 4
+
+[node name="Label" type="Label" parent="Dialogue/SubViewportContainer/SubViewport"]
+unique_name_in_owner = true
+modulate = Color(0.226521, 0.424234, 0.89448, 1)
+custom_minimum_size = Vector2(0, 50)
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -24.5
+offset_bottom = 24.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ItemList" type="ItemList" parent="Dialogue/SubViewportContainer/SubViewport"]
+unique_name_in_owner = true
+modulate = Color(0, 0, 0, 1)
+clip_contents = false
+custom_minimum_size = Vector2(750, 250)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -256.0
+offset_top = -512.0
+offset_right = 494.0
+offset_bottom = -262.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[connection signal="item_activated" from="Dialogue/SubViewportContainer/SubViewport/ItemList" to="Dialogue" method="_on_item_list_item_activated"]

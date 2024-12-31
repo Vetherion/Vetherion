@@ -114,3 +114,7 @@ func _headchar(time) -> Vector3:
 	pos.y = sin(time * char_FREQ) * char_AMP
 	pos.x = cos(time * char_FREQ / 2) * char_AMP
 	return pos
+
+
+func _on_item_list_item_selected(index: int) -> void:
+	pass
