@@ -1,19 +1,19 @@
 {
-    "start_text": "lorem ipsum dolor?",
-    "option_tree": {
-        "Yes!": "OK, then!",
-        "No!": "sit amet",
-        "I need to think.": {
-            "start_text": "I am waiting...",
-            "option_tree": {
-                "I want it.": {
-                    "start_text": "good",
-                    "option_tree": {
-                        "goood" : "END"
-                    }
-                },
-                "Goodbye": "OK"
-            }
-        }
-    }
+	"start_text": "lorem ipsum dolor?",
+	"option_tree": {
+		"Yes!": "OK, then!END",
+		"No!": "sit ametEND",
+		"I need to think.": {
+			"start_text": "I am waiting...",
+			"option_tree": {
+				"I want it.": {
+					"start_text": "good",
+					"option_tree": {
+						"goood" : "END"
+					}
+				},
+				"Goodbye": "OKEND"
+			}
+		}
+	}
 }
