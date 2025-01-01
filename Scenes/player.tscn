@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://dhjrc28o432pk"]
+[gd_scene load_steps=8 format=3 uid="uid://dhjrc28o432pk"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_cbo13"]
 [ext_resource type="Script" path="res://Scripts/reticle.gd" id="2_77glr"]
+[ext_resource type="PackedScene" uid="uid://d1qutjnqj2f2u" path="res://Scenes/weapon.tscn" id="2_u040e"]
 [ext_resource type="Script" path="res://Scripts/inventory.gd" id="3_eet5f"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oi0i1"]
@@ -23,10 +24,18 @@ shape = SubResource("CapsuleShape3D_bceq4")
 
 [node name="CameraPivot" type="Node3D" parent="."]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.601927, 0)
 
-[node name="Camera3D" type="Camera3D" parent="CameraPivot"]
+[node name="Recoil" type="Node3D" parent="CameraPivot"]
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot/Recoil"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.643932, 0)
+
+[node name="Weapon" parent="CameraPivot/Recoil/Camera3D" instance=ExtResource("2_u040e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.528232, -0.271322, -1.31582)
+
+[node name="RayCast3D" type="RayCast3D" parent="CameraPivot/Recoil/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 
 [node name="UserInterface" type="Control" parent="."]
 unique_name_in_owner = true
@@ -85,3 +94,9 @@ text = "Press E to pick up"
 
 [node name="Inventory" type="Node" parent="."]
 script = ExtResource("3_eet5f")
+
+[node name="Firerate" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.12
+
+[connection signal="timeout" from="Firerate" to="." method="_on_firerate_timeout"]

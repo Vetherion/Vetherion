@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://beqn6i68wci2n"]
+[gd_scene load_steps=12 format=3 uid="uid://beqn6i68wci2n"]
 
 [ext_resource type="PackedScene" uid="uid://dhjrc28o432pk" path="res://Scenes/player.tscn" id="1_m4hl5"]
 [ext_resource type="Script" path="res://Scripts/item.gd" id="2_8jfy3"]
 [ext_resource type="Script" path="res://Scripts/dialogue.gd" id="3_axax1"]
+[ext_resource type="Script" path="res://Scripts/enemy.gd" id="4_qhv1j"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vp2qy"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -17,16 +18,14 @@ sky = SubResource("Sky_gnomw")
 tonemap_mode = 2
 glow_enabled = true
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_ahkfr"]
-size = Vector2(100, 100)
-
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_t22s1"]
-points = PackedVector3Array(50.7837, 0.793495, 50.7837, -50.7837, -0.793495, -50.7837, -50.7837, 0.793495, -50.7837, 50.7837, -0.793495, -50.7837, -50.7837, -0.793495, 50.7837, -50.7837, 0.793495, 50.7837, 50.7837, 0.793495, -50.7837, 50.7837, -0.793495, 50.7837)
-
 [sub_resource type="BoxMesh" id="BoxMesh_17wg4"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ev31u"]
 points = PackedVector3Array(-0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_mey7e"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_510kb"]
 
 [node name="3D_Level" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.453897, 0)
@@ -38,16 +37,12 @@ environment = SubResource("Environment_yomnb")
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
 shadow_enabled = true
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("PlaneMesh_ahkfr")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
-shape = SubResource("ConvexPolygonShape3D_t22s1")
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+use_collision = true
+size = Vector3(100, 0.002, 100)
 
 [node name="player" parent="." instance=ExtResource("1_m4hl5")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.204, 1.53867, -1.222)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.204, 1.03697, -1.222)
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="." groups=["gun0", "inv_item"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.91317, 1.49334, 2.3369)
@@ -58,7 +53,6 @@ script = ExtResource("2_8jfy3")
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D3"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D3/StaticBody3D"]
-transform = Transform3D(1.57364, 0, 0, 0, 1.57364, 0, 0, 0, 1.57364, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_ev31u")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="." groups=["gun0", "inv_item"]]
@@ -69,7 +63,6 @@ script = ExtResource("2_8jfy3")
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D2"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D2/StaticBody3D"]
-transform = Transform3D(1.57364, 0, 0, 0, 1.57364, 0, 0, 0, 1.57364, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_ev31u")
 
 [node name="Inventory" type="Control" parent="."]
@@ -111,6 +104,7 @@ max_text_lines = 2
 
 [node name="Dialogue" type="Control" parent="."]
 unique_name_in_owner = true
+visible = false
 layout_mode = 3
 anchor_left = 0.373
 anchor_top = 0.474
@@ -137,7 +131,7 @@ offset_bottom = 521.906
 [node name="SubViewport" type="SubViewport" parent="Dialogue/SubViewportContainer"]
 transparent_bg = true
 handle_input_locally = false
-render_target_update_mode = 4
+render_target_update_mode = 0
 
 [node name="Label" type="Label" parent="Dialogue/SubViewportContainer/SubViewport"]
 unique_name_in_owner = true
@@ -168,5 +162,17 @@ offset_right = 494.0
 offset_bottom = -262.0
 grow_horizontal = 2
 grow_vertical = 0
+
+[node name="Enemys" type="Node3D" parent="."]
+
+[node name="Enemy" type="CharacterBody3D" parent="Enemys" groups=["Enemy"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.2552, 0.995435, 0.280393)
+script = ExtResource("4_qhv1j")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Enemys/Enemy"]
+mesh = SubResource("CapsuleMesh_mey7e")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enemys/Enemy"]
+shape = SubResource("CapsuleShape3D_510kb")
 
 [connection signal="item_activated" from="Dialogue/SubViewportContainer/SubViewport/ItemList" to="Dialogue" method="_on_item_list_item_activated"]

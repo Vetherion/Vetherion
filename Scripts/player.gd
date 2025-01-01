@@ -1,4 +1,7 @@
 extends CharacterBody3D
+var RAY_LENGTH = 100.0
+
+@onready var recoil: Node3D = $CameraPivot/Recoil
 
 @export_group("Camera")
 @export_range(0.0, 1.0) var mouse_sensitivity := 0.1
@@ -12,10 +15,15 @@ var camera_input_direction := Vector2.ZERO
 @onready var camera_pivot: Node3D = %CameraPivot
 @onready var camera_3d: Camera3D = %Camera3D
 
+@onready var ray_cast_3d: RayCast3D = $CameraPivot/Recoil/Camera3D/RayCast3D
+
+var canshoot = true
+
 #stamina variables
 var SPRINT_SPEED = 8.0
 var WALK_SPEED = 5.0
 var stamina = 100
+
 #head movement variables
 const char_FREQ = 2.0
 const char_AMP = 0.08
@@ -27,7 +35,6 @@ var t_char = 0.0
 
 func _ready() -> void: #Start the game by capturing the mouse
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED 
-	
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("six"):
@@ -42,6 +49,28 @@ func _unhandled_input(event: InputEvent) -> void:
 		camera_input_direction = event.screen_relative * mouse_sensitivity
 		
 func _physics_process(delta: float) -> void:
+	#Handle Fire
+	if !Input.is_action_pressed("left_click") and canshoot: #recoil
+		recoil.rotation = Vector3(0, 0, 0)                  #sıfırlandı
+	if  Input.is_action_pressed("left_click") and canshoot:
+		#Timer
+		canshoot = false
+		%Firerate.start()
+		#recoil
+		recoil.rotation.x = lerp(recoil.rotation.x, recoil.rotation.x + 0.3, delta)
+		recoil.rotation.y = lerp(recoil.rotation.y, recoil.rotation.y + 0.1, delta)
+		#Raycast
+		var mousePos = get_viewport().get_size()/2
+		var camera3d = %Camera3D
+		var from = camera3d.project_ray_origin(mousePos)
+		var to = from + camera3d.project_ray_normal(mousePos) * RAY_LENGTH
+		
+		var new_intersection = PhysicsRayQueryParameters3D.create(from, to)
+		var intersection = camera3d.get_world_3d().direct_space_state.intersect_ray(new_intersection)
+		
+		if intersection and intersection.collider.is_in_group("Enemy") and intersection.collider.has_method("damage"):
+			intersection.collider.damage(5)
+
 	# Handle sprint 
 	if Input.is_action_pressed("sprint") and stamina >= 75:
 		move_speed = SPRINT_SPEED
@@ -57,10 +86,8 @@ func _physics_process(delta: float) -> void:
 	
 	camera_input_direction = Vector2.ZERO 
 	
-	if Input.is_action_just_pressed("left_click"):
-		pass
 	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 	# Handle movement
 	var raw_input := Input.get_vector("move_left", "move_right", "move_forward", "move_back")
@@ -90,7 +117,7 @@ func _physics_process(delta: float) -> void:
 	
 	## inventory
 	if inventory_script.is_eligible() != null:
-		%Label.visible = 1;
+		%Label.visible = 1
 		if Input.is_action_just_pressed("E"):
 			var item = inventory_script.is_eligible()
 			if "gun0" in item.get_groups():
@@ -99,7 +126,8 @@ func _physics_process(delta: float) -> void:
 		else:
 			pass
 	else:
-		%Label.visible = 0;
+		%Label.visible = 0
+		
 func _process(delta: float) -> void:
 	# Gravity
 	if not is_on_floor():
@@ -109,6 +137,7 @@ func _process(delta: float) -> void:
 	camera_3d.transform.origin = _headchar(t_char)
 
 	move_and_slide()
+	
 func _headchar(time) -> Vector3:
 	var pos = Vector3.ZERO
 	pos.y = sin(time * char_FREQ) * char_AMP
@@ -116,5 +145,5 @@ func _headchar(time) -> Vector3:
 	return pos
 
 
-func _on_item_list_item_selected(index: int) -> void:
-	pass
+func _on_firerate_timeout() -> void:
+	canshoot = true
