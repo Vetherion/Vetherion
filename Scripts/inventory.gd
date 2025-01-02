@@ -1,7 +1,6 @@
 extends Node
 const RAY_LENGTH = 1.8
 
-
 var inventory = {
 	0: "void"
 }
@@ -20,7 +19,7 @@ func _process(delta) -> void:
 		else:
 			get_node("../../Inventory").visible = 0
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-			is_inv_open = false	
+			is_inv_open = false
 
 func is_eligible() -> MeshInstance3D:
 	var mousePos = get_viewport().get_size()/2
@@ -31,8 +30,8 @@ func is_eligible() -> MeshInstance3D:
 	var new_intersection = PhysicsRayQueryParameters3D.create(from, to)
 	var intersection = camera3d.get_world_3d().direct_space_state.intersect_ray(new_intersection)	
 	
-	if not intersection.is_empty() and instance_from_id(intersection.collider_id).get_parent().is_in_group("inv_item"):
-		return instance_from_id(intersection.collider_id).get_parent()
+	if intersection and intersection.collider.get_parent().is_in_group("inv_item"):
+		return intersection.collider.get_parent()
 	else:
 		return null
 

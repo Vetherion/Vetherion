@@ -1,5 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://beqn6i68wci2n"]
+[gd_scene load_steps=14 format=3 uid="uid://beqn6i68wci2n"]
 
+[ext_resource type="PackedScene" uid="uid://calmk1j3qpgc7" path="res://Scenes/Car.tscn" id="1_jhp0p"]
 [ext_resource type="PackedScene" uid="uid://dhjrc28o432pk" path="res://Scenes/player.tscn" id="1_m4hl5"]
 [ext_resource type="Script" path="res://Scripts/item.gd" id="2_8jfy3"]
 [ext_resource type="Script" path="res://Scripts/dialogue.gd" id="3_axax1"]
@@ -18,17 +19,22 @@ sky = SubResource("Sky_gnomw")
 tonemap_mode = 2
 glow_enabled = true
 
-[sub_resource type="BoxMesh" id="BoxMesh_17wg4"]
-
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ev31u"]
-points = PackedVector3Array(-0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5)
-
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_mey7e"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_510kb"]
 
+[sub_resource type="BoxMesh" id="BoxMesh_17wg4"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2im4t"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_v40fl"]
+
 [node name="3D_Level" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.453897, 0)
+
+[node name="Car" parent="." instance=ExtResource("1_jhp0p")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.753, -11.021)
+mass = 10.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_yomnb")
@@ -43,27 +49,6 @@ size = Vector3(100, 0.002, 100)
 
 [node name="player" parent="." instance=ExtResource("1_m4hl5")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.204, 1.03697, -1.222)
-
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="." groups=["gun0", "inv_item"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.91317, 1.49334, 2.3369)
-mesh = SubResource("BoxMesh_17wg4")
-skeleton = NodePath("../MeshInstance3D2")
-script = ExtResource("2_8jfy3")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D3"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D3/StaticBody3D"]
-shape = SubResource("ConvexPolygonShape3D_ev31u")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="." groups=["gun0", "inv_item"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.34234, 2.83027)
-mesh = SubResource("BoxMesh_17wg4")
-script = ExtResource("2_8jfy3")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D2"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D2/StaticBody3D"]
-shape = SubResource("ConvexPolygonShape3D_ev31u")
 
 [node name="Inventory" type="Control" parent="."]
 unique_name_in_owner = true
@@ -174,5 +159,29 @@ mesh = SubResource("CapsuleMesh_mey7e")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Enemys/Enemy"]
 shape = SubResource("CapsuleShape3D_510kb")
+
+[node name="Items" type="Node3D" parent="."]
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Items" groups=["gun0", "inv_item"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.13949, 1.49334, 2.3369)
+mesh = SubResource("BoxMesh_17wg4")
+skeleton = NodePath("../MeshInstance3D2")
+script = ExtResource("2_8jfy3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Items/MeshInstance3D3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Items/MeshInstance3D3/StaticBody3D"]
+shape = SubResource("BoxShape3D_2im4t")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Items" groups=["gun0", "inv_item"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.23904, 2.34234, 2.83027)
+mesh = SubResource("BoxMesh_17wg4")
+skeleton = NodePath("../..")
+script = ExtResource("2_8jfy3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Items/MeshInstance3D2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Items/MeshInstance3D2/StaticBody3D"]
+shape = SubResource("BoxShape3D_v40fl")
 
 [connection signal="item_activated" from="Dialogue/SubViewportContainer/SubViewport/ItemList" to="Dialogue" method="_on_item_list_item_activated"]

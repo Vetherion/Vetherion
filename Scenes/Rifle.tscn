@@ -3,7 +3,7 @@
 [sub_resource type="BoxMesh" id="BoxMesh_dr22j"]
 size = Vector3(0.1, 0.1, 0.6)
 
-[node name="Weapon" type="Node3D"]
+[node name="Rifle" type="Node3D"]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_dr22j")

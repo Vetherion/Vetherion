@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bdw2t4mgvcg0c"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_15pev"]
+size = Vector3(0.15, 0.15, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_kn836"]
+size = Vector3(0.15, 0.15, 0.15)
+
+[node name="Sniper" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_15pev")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.137981, -0.42525)
+mesh = SubResource("BoxMesh_kn836")
