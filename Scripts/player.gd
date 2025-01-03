@@ -1,6 +1,7 @@
 extends CharacterBody3D
 var RAY_LENGTH = 100.0
-
+var can_ray_car = false
+@onready var player: CharacterBody3D = $"."
 #weapons
 @onready var rifle: Node3D = $CameraPivot/Recoil/Camera3D/Rifle
 @onready var sniper: Node3D = $CameraPivot/Recoil/Camera3D/Sniper
@@ -17,10 +18,9 @@ var damage : float = 20.0
 var camera_input_direction := Vector2.ZERO
 
 @onready var camera_pivot: Node3D = %CameraPivot
-@onready var camera_3d: Camera3D = %Camera3D
+@onready var camera3d: Camera3D = %Camera3D
 
 @onready var ray_cast_3d: RayCast3D = $CameraPivot/Recoil/Camera3D/RayCast3D
-@onready var in_col = 0 
 var canshoot = true
 
 #stamina variables
@@ -84,7 +84,6 @@ func _physics_process(delta: float) -> void:
 		%Firerate.start()
 		#Raycast
 		var mousePos = get_viewport().get_size()/2
-		var camera3d = %Camera3D
 		var from = camera3d.project_ray_origin(mousePos)
 		var to = from + camera3d.project_ray_normal(mousePos) * RAY_LENGTH
 		
@@ -112,8 +111,8 @@ func _physics_process(delta: float) -> void:
 	# Handle movement
 	if %Dialogue.visible == false:
 		var raw_input := Input.get_vector("move_left", "move_right", "move_forward", "move_back")
-		var forward := camera_3d.global_basis.z
-		var right := camera_3d.global_basis.x
+		var forward := camera3d.global_basis.z
+		var right := camera3d.global_basis.x
 		
 		var move_direction := forward * raw_input.y + right * raw_input.x
 		move_direction.y = 0.0
@@ -149,14 +148,28 @@ func _physics_process(delta: float) -> void:
 			pass
 	else:
 		%Label.visible = 0
+	# car
+	if can_ray_car == true:
+		var mousePos = get_viewport().get_size()/2
+		var from = camera3d.project_ray_origin(mousePos)
+		var to = from + camera3d.project_ray_normal(mousePos) * 18
 		
+		var new_intersection = PhysicsRayQueryParameters3D.create(from, to)
+		var intersection = camera3d.get_world_3d().direct_space_state.intersect_ray(new_intersection)
+		
+		if intersection and intersection.collider.is_in_group("Car"):
+			if Input.is_action_just_pressed("E"):
+				print("a")
+				#Player position degisecek
+				#player camera position, rotation degisecek 
+
 func _process(delta: float) -> void:
 	# Gravity
 	if not is_on_floor():
 		velocity += get_gravity() * delta * 5
 	# Head char 
 	t_char += delta * velocity.length() * float(is_on_floor())
-	camera_3d.transform.origin = _headchar(t_char)
+	camera3d.transform.origin = _headchar(t_char)
 
 	move_and_slide()
 	
@@ -169,3 +182,11 @@ func _headchar(time) -> Vector3:
 
 func _on_firerate_timeout() -> void:
 	canshoot = true
+
+
+func _on_area_3d_2_body_entered(colliding_body) -> void:
+	can_ray_car = true
+
+
+func _on_area_3d_2_body_exited(body: Node3D) -> void:
+	can_ray_car = false

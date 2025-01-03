@@ -25,6 +25,7 @@ window/size/viewport_height=1080
 inv_item=""
 gun0=""
 Enemy=""
+Car=""
 
 [input]
 

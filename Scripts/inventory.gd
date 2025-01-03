@@ -28,7 +28,7 @@ func is_eligible() -> MeshInstance3D:
 	var to = from + camera3d.project_ray_normal(mousePos) * RAY_LENGTH
 	
 	var new_intersection = PhysicsRayQueryParameters3D.create(from, to)
-	var intersection = camera3d.get_world_3d().direct_space_state.intersect_ray(new_intersection)	
+	var intersection = camera3d.get_world_3d().direct_space_state.intersect_ray(new_intersection)
 	
 	if intersection and intersection.collider.get_parent().is_in_group("inv_item"):
 		return intersection.collider.get_parent()
