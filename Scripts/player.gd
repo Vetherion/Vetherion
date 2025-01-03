@@ -1,7 +1,9 @@
 extends CharacterBody3D
+
+#ray varialbes
 var RAY_LENGTH = 100.0
 var can_ray_car = false
-@onready var player: CharacterBody3D = $"."
+
 #weapons
 @onready var rifle: Node3D = $CameraPivot/Recoil/Camera3D/Rifle
 @onready var sniper: Node3D = $CameraPivot/Recoil/Camera3D/Sniper
@@ -37,7 +39,7 @@ var t_char = 0.0
 
 func _ready() -> void: #Start the game by capturing the mouse
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED 
-
+	
 func _input(event: InputEvent) -> void:
 	
 	# Handle jump.
@@ -119,8 +121,9 @@ func _physics_process(delta: float) -> void:
 		move_direction = move_direction.normalized()
 		
 		velocity = velocity.move_toward(move_direction * move_speed, acceleration * delta)
-
+	
 	  
+	
 	
 	
 	
@@ -149,7 +152,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		%Label.visible = 0
 	# car
-	if can_ray_car == true:
+	if can_ray_car == true: #Arabanın yakınındaysan ray gondermeye basla
 		var mousePos = get_viewport().get_size()/2
 		var from = camera3d.project_ray_origin(mousePos)
 		var to = from + camera3d.project_ray_normal(mousePos) * 18
@@ -161,8 +164,8 @@ func _physics_process(delta: float) -> void:
 			if Input.is_action_just_pressed("E"):
 				print("a")
 				#Player position degisecek
-				#player camera position, rotation degisecek 
-
+				#player camera position, rotation degisecek
+	
 func _process(delta: float) -> void:
 	# Gravity
 	if not is_on_floor():
@@ -170,7 +173,7 @@ func _process(delta: float) -> void:
 	# Head char 
 	t_char += delta * velocity.length() * float(is_on_floor())
 	camera3d.transform.origin = _headchar(t_char)
-
+	
 	move_and_slide()
 	
 func _headchar(time) -> Vector3:
@@ -178,15 +181,14 @@ func _headchar(time) -> Vector3:
 	pos.y = sin(time * char_FREQ) * char_AMP
 	pos.x = cos(time * char_FREQ / 2) * char_AMP
 	return pos
-
-
+	
+	
 func _on_firerate_timeout() -> void:
 	canshoot = true
-
-
-func _on_area_3d_2_body_entered(colliding_body) -> void:
+	
+	
+func _on_CarArea_body_entered(body: Node3D) -> void:
 	can_ray_car = true
-
-
-func _on_area_3d_2_body_exited(body: Node3D) -> void:
+func _on_CarArea_body_exited(body: Node3D) -> void:
 	can_ray_car = false
+	
