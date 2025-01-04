@@ -86,4 +86,3 @@ top_level = true
 
 [node name="Camera3D" type="Camera3D" parent="CameraPivot"]
 transform = Transform3D(-1, 0, -8.74228e-08, -2.22374e-08, 0.967108, 0.254366, 8.45473e-08, 0.254366, -0.967108, 0, 1.986, -4.8)
-current = true

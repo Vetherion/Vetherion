@@ -3,6 +3,7 @@ extends CharacterBody3D
 #ray varialbes
 var RAY_LENGTH = 100.0
 var can_ray_car = false
+var can_ray_item = false
 
 #weapons
 @onready var rifle: Node3D = $CameraPivot/Recoil/Camera3D/Rifle
@@ -140,15 +141,18 @@ func _physics_process(delta: float) -> void:
 	
 	
 	## inventory
-	if inventory_script.is_eligible() != null:
-		%Label.visible = 1
-		if Input.is_action_just_pressed("E"):
-			var item = inventory_script.is_eligible()
-			if "gun0" in item.get_groups():
-				inventory_script.add_to_inv("gun0")
-			item.queue_free()
+	if can_ray_item == true: 
+		if inventory_script.is_eligible() != null:
+			%Label.visible = 1
+			if Input.is_action_just_pressed("E"):
+				var item = inventory_script.is_eligible()
+				if "gun0" in item.get_groups():
+					inventory_script.add_to_inv("gun0")
+				item.queue_free()
+			else:
+				pass
 		else:
-			pass
+			%Label.visible = 0
 	else:
 		%Label.visible = 0
 	# car
@@ -192,3 +196,9 @@ func _on_CarArea_body_entered(body: Node3D) -> void:
 func _on_CarArea_body_exited(body: Node3D) -> void:
 	can_ray_car = false
 	
+
+
+func _on_item_area_body_entered(body: Node3D) -> void:
+	can_ray_item = true
+func _on_item_area_body_exited(body: Node3D) -> void:
+	can_ray_item = false

@@ -31,6 +31,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.601927, 0)
 
 [node name="Camera3D" type="Camera3D" parent="CameraPivot/Recoil"]
 unique_name_in_owner = true
+current = true
 
 [node name="Rifle" parent="CameraPivot/Recoil/Camera3D" instance=ExtResource("2_u040e")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.528232, -0.271322, -1.31582)

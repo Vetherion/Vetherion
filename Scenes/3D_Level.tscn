@@ -1,13 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://beqn6i68wci2n"]
+[gd_scene load_steps=17 format=3 uid="uid://beqn6i68wci2n"]
 
 [ext_resource type="PackedScene" uid="uid://wemrgl8r41lg" path="res://Scenes/car.tscn" id="1_lvekw"]
 [ext_resource type="PackedScene" uid="uid://dhjrc28o432pk" path="res://Scenes/player.tscn" id="1_m4hl5"]
 [ext_resource type="Script" path="res://Scripts/item.gd" id="2_8jfy3"]
 [ext_resource type="Script" path="res://Scripts/dialogue.gd" id="3_axax1"]
 [ext_resource type="Script" path="res://Scripts/enemy.gd" id="4_qhv1j"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_1oho3"]
-size = Vector3(7.5, 7.5, 7.5)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vp2qy"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -30,20 +27,19 @@ glow_enabled = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2im4t"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_bqocu"]
+size = Vector3(3, 3, 3)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_v40fl"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4prak"]
+size = Vector3(3, 3, 3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1oho3"]
+size = Vector3(7.5, 7.5, 7.5)
 
 [node name="3D_Level" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.453897, 0)
-
-[node name="Car" parent="." groups=["Car"] instance=ExtResource("1_lvekw")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.377, 0.753, -11.023)
-
-[node name="CarArea" type="Area3D" parent="Car"]
-collision_layer = 0
-collision_mask = 2
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Car/CarArea"]
-shape = SubResource("BoxShape3D_1oho3")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_yomnb")
@@ -98,7 +94,6 @@ max_text_lines = 2
 
 [node name="Dialogue" type="Control" parent="."]
 unique_name_in_owner = true
-visible = false
 layout_mode = 3
 anchor_left = 0.373
 anchor_top = 0.474
@@ -125,7 +120,7 @@ offset_bottom = 521.906
 [node name="SubViewport" type="SubViewport" parent="Dialogue/SubViewportContainer"]
 transparent_bg = true
 handle_input_locally = false
-render_target_update_mode = 0
+render_target_update_mode = 4
 
 [node name="Label" type="Label" parent="Dialogue/SubViewportContainer/SubViewport"]
 unique_name_in_owner = true
@@ -182,6 +177,11 @@ script = ExtResource("2_8jfy3")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Items/MeshInstance3D3/StaticBody3D"]
 shape = SubResource("BoxShape3D_2im4t")
 
+[node name="ItemArea" type="Area3D" parent="Items/MeshInstance3D3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Items/MeshInstance3D3/ItemArea"]
+shape = SubResource("BoxShape3D_bqocu")
+
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Items" groups=["gun0", "inv_item"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.23904, 2.34234, 2.83027)
 mesh = SubResource("BoxMesh_17wg4")
@@ -193,6 +193,25 @@ script = ExtResource("2_8jfy3")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Items/MeshInstance3D2/StaticBody3D"]
 shape = SubResource("BoxShape3D_v40fl")
 
+[node name="ItemArea" type="Area3D" parent="Items/MeshInstance3D2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Items/MeshInstance3D2/ItemArea"]
+shape = SubResource("BoxShape3D_4prak")
+
+[node name="Car" parent="." groups=["Car"] instance=ExtResource("1_lvekw")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.377, 0.753, -11.023)
+
+[node name="CarArea" type="Area3D" parent="Car"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Car/CarArea"]
+shape = SubResource("BoxShape3D_1oho3")
+
+[connection signal="item_activated" from="Dialogue/SubViewportContainer/SubViewport/ItemList" to="Dialogue" method="_on_item_list_item_activated"]
+[connection signal="body_entered" from="Items/MeshInstance3D3/ItemArea" to="player" method="_on_item_area_body_entered"]
+[connection signal="body_exited" from="Items/MeshInstance3D3/ItemArea" to="player" method="_on_item_area_body_exited"]
+[connection signal="body_entered" from="Items/MeshInstance3D2/ItemArea" to="player" method="_on_item_area_body_entered"]
+[connection signal="body_exited" from="Items/MeshInstance3D2/ItemArea" to="player" method="_on_item_area_body_exited"]
 [connection signal="body_entered" from="Car/CarArea" to="player" method="_on_CarArea_body_entered"]
 [connection signal="body_exited" from="Car/CarArea" to="player" method="_on_CarArea_body_exited"]
-[connection signal="item_activated" from="Dialogue/SubViewportContainer/SubViewport/ItemList" to="Dialogue" method="_on_item_list_item_activated"]
