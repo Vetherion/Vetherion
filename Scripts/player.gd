@@ -5,6 +5,8 @@ var RAY_LENGTH = 100.0
 var can_ray_car = false
 var can_ray_item = false
 
+@onready var player: CharacterBody3D = $"."
+
 #weapons
 @onready var rifle: Node3D = $CameraPivot/Recoil/Camera3D/Rifle
 @onready var sniper: Node3D = $CameraPivot/Recoil/Camera3D/Sniper
@@ -53,7 +55,13 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE #now you cant use your mouse
 	
-	# Weapon select DEGISECEK
+	#WEAPON SELECT DEGISECEK
+	if Input.is_action_just_pressed("Punch"):
+		rifle.visible = false
+		sniper.visible = false
+		damage = 10.0
+		firerate.wait_time = 0.5
+		RAY_LENGTH = 2.0
 	if Input.is_action_just_pressed("Rifle"):
 		rifle.visible = true
 		sniper.visible = false
@@ -66,13 +74,7 @@ func _input(event: InputEvent) -> void:
 		damage = 100.0
 		firerate.wait_time = 1.25
 		RAY_LENGTH = 1000.0
-	if Input.is_action_just_pressed("Punch"):
-		rifle.visible = false
-		sniper.visible = false
-		damage = 10.0
-		firerate.wait_time = 0.5
-		RAY_LENGTH = 2.0
-	
+		
 func _unhandled_input(event: InputEvent) -> void:
 	# Set camera_input_direction
 	var is_camera_motion := (event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED)
@@ -166,9 +168,7 @@ func _physics_process(delta: float) -> void:
 		
 		if intersection and intersection.collider.is_in_group("Car"):
 			if Input.is_action_just_pressed("E"):
-				print("a")
-				#Player position degisecek
-				#player camera position, rotation degisecek
+				player.queue_free()
 	
 func _process(delta: float) -> void:
 	# Gravity

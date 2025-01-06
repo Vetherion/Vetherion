@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_cbo13"]
 [ext_resource type="Script" path="res://Scripts/reticle.gd" id="2_77glr"]
-[ext_resource type="PackedScene" uid="uid://d1qutjnqj2f2u" path="res://Scenes/Rifle.tscn" id="2_u040e"]
+[ext_resource type="PackedScene" uid="uid://bb6lbab00x0me" path="res://Scenes/Rifle.tscn" id="2_u040e"]
 [ext_resource type="Script" path="res://Scripts/inventory.gd" id="3_eet5f"]
 [ext_resource type="PackedScene" uid="uid://bdw2t4mgvcg0c" path="res://Scenes/sniper.tscn" id="3_uifge"]
 
