@@ -1,6 +1,24 @@
-[gd_scene load_steps=2 format=3 uid="uid://bb6lbab00x0me"]
+[gd_scene load_steps=4 format=3 uid="uid://bb6lbab00x0me"]
+
+[ext_resource type="Shader" path="res://Shader/Rifle.gdshader" id="1_21b3a"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nws5j"]
+render_priority = 0
+shader = ExtResource("1_21b3a")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/fov = 77.0
 
 [sub_resource type="BoxMesh" id="BoxMesh_dr22j"]
+material = SubResource("ShaderMaterial_nws5j")
 size = Vector3(0.1, 0.1, 0.6)
 
 [node name="Rifle" type="Node3D"]
