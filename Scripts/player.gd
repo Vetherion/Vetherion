@@ -1,5 +1,11 @@
 extends CharacterBody3D
 
+enum States { DIALOGUE, MOVING }
+var state = States.MOVING
+
+@export var damagedistance : Curve 
+var distance 
+
 #ray varialbes
 var RAY_LENGTH = 100.0
 var can_ray_car = false
@@ -10,7 +16,7 @@ var can_ray_item = false
 #weapons
 @onready var rifle: Node3D = $CameraPivot/Recoil/Camera3D/Rifle
 @onready var sniper: Node3D = $CameraPivot/Recoil/Camera3D/Sniper
-var damage : float = 20.0
+var damage : float = 1.0
 @onready var firerate: Timer = %Firerate
 
 @export_group("Camera")
@@ -59,19 +65,19 @@ func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("Punch"):
 		rifle.visible = false
 		sniper.visible = false
-		damage = 10.0
+		damage = 0.5
 		firerate.wait_time = 0.5
 		RAY_LENGTH = 2.0
 	if Input.is_action_just_pressed("Rifle"):
 		rifle.visible = true
 		sniper.visible = false
-		damage = 20.0
+		damage = 1.0
 		firerate.wait_time = 0.12
 		RAY_LENGTH = 100.0
 	if Input.is_action_just_pressed("Sniper"):
 		rifle.visible = false
 		sniper.visible = true
-		damage = 100.0
+		damage = 5.0
 		firerate.wait_time = 1.25
 		RAY_LENGTH = 1000.0
 		
@@ -94,16 +100,19 @@ func _physics_process(delta: float) -> void:
 		
 		var new_intersection = PhysicsRayQueryParameters3D.create(from, to)
 		var intersection = camera3d.get_world_3d().direct_space_state.intersect_ray(new_intersection)
-		
+
 		if intersection and intersection.collider.is_in_group("Enemy"):
-			intersection.collider.damage(damage)
-	
+			distance = abs(player.global_position.distance_to(intersection.collider.global_position)) * 0.01
+			intersection.collider.damage(damage * round(damagedistance.sample_baked(distance)))
+		
+		camera_pivot.rotation.x += 0.05
+		
 	# Handle sprint 
 	if Input.is_action_pressed("sprint") and stamina >= 75:
 		move_speed = SPRINT_SPEED
 		stamina -= 10.0 * delta
 	else:
-		move_speed = WALK_SPEED
+		move_speed = WALK_SPEED 
 		stamina += 2.0 * delta
 		stamina = clamp(stamina, 0, 100)
 	# Set camera angle by using camera_input_direction
@@ -114,16 +123,16 @@ func _physics_process(delta: float) -> void:
 	camera_input_direction = Vector2.ZERO 
 	
 	# Handle movement
-	if %Dialogue.visible == false:
-		var raw_input := Input.get_vector("move_left", "move_right", "move_forward", "move_back")
-		var forward := camera3d.global_basis.z
-		var right := camera3d.global_basis.x
-		
-		var move_direction := forward * raw_input.y + right * raw_input.x
-		move_direction.y = 0.0
-		move_direction = move_direction.normalized()
-		
-		velocity = velocity.move_toward(move_direction * move_speed, acceleration * delta)
+	
+	var raw_input := Input.get_vector("move_left", "move_right", "move_forward", "move_back")
+	var forward := camera3d.global_basis.z
+	var right := camera3d.global_basis.x
+	
+	var move_direction := forward * raw_input.y + right * raw_input.x
+	move_direction.y = 0.0
+	move_direction = move_direction.normalized()
+	
+	velocity = velocity.move_toward(move_direction * move_speed, acceleration * delta)
 	
 	  
 	

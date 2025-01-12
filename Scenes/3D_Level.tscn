@@ -1,6 +1,6 @@
-[gd_scene load_steps=17 format=3 uid="uid://beqn6i68wci2n"]
+[gd_scene load_steps=19 format=3 uid="uid://beqn6i68wci2n"]
 
-[ext_resource type="PackedScene" uid="uid://wemrgl8r41lg" path="res://Scenes/car.tscn" id="1_lvekw"]
+[ext_resource type="PackedScene" uid="uid://bb34e6irwt0ia" path="res://Scenes/car.tscn" id="1_lvekw"]
 [ext_resource type="PackedScene" uid="uid://dhjrc28o432pk" path="res://Scenes/player.tscn" id="1_m4hl5"]
 [ext_resource type="Script" path="res://Scripts/item.gd" id="2_8jfy3"]
 [ext_resource type="Script" path="res://Scripts/dialogue.gd" id="3_axax1"]
@@ -37,6 +37,12 @@ size = Vector3(3, 3, 3)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1oho3"]
 size = Vector3(7.5, 7.5, 7.5)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_hhvtk"]
+size = Vector2(5, 100)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_83pwm"]
+points = PackedVector3Array(-2.73364, 0.233645, -50.2336, 2.87383, 0.233645, 50.2336, 2.87383, 0.233645, -50.2336, -2.73364, 0.233645, 50.2336)
 
 [node name="3D_Level" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.453897, 0)
@@ -199,7 +205,7 @@ shape = SubResource("BoxShape3D_v40fl")
 shape = SubResource("BoxShape3D_4prak")
 
 [node name="Car" parent="." groups=["Car"] instance=ExtResource("1_lvekw")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.377, 0.753, -11.023)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00435877, 0.848271, -11.4523)
 
 [node name="CarArea" type="Area3D" parent="Car"]
 collision_layer = 0
@@ -207,6 +213,15 @@ collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Car/CarArea"]
 shape = SubResource("BoxShape3D_1oho3")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.981969, 0.189044, 0, -0.189044, 0.981969, 0, 8.35892, 62.6766)
+mesh = SubResource("PlaneMesh_hhvtk")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_83pwm")
 
 [connection signal="item_activated" from="Dialogue/SubViewportContainer/SubViewport/ItemList" to="Dialogue" method="_on_item_list_item_activated"]
 [connection signal="body_entered" from="Items/MeshInstance3D3/ItemArea" to="player" method="_on_item_area_body_entered"]

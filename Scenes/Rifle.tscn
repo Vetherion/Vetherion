@@ -1,6 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://bb6lbab00x0me"]
+[gd_scene load_steps=6 format=3 uid="uid://bb6lbab00x0me"]
 
-[ext_resource type="Shader" path="res://Shader/Rifle.gdshader" id="1_21b3a"]
+[ext_resource type="Shader" path="res://Shader/Weapon.gdshader" id="1_21b3a"]
+
+[sub_resource type="GDScript" id="GDScript_yuhx2"]
+script/source = "extends Node3D
+
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nws5j"]
 render_priority = 0
@@ -21,7 +33,17 @@ shader_parameter/fov = 77.0
 material = SubResource("ShaderMaterial_nws5j")
 size = Vector3(0.1, 0.1, 0.6)
 
+[sub_resource type="BoxMesh" id="BoxMesh_7fbbn"]
+size = Vector3(0.1, 0.1, 0.6)
+
 [node name="Rifle" type="Node3D"]
+script = SubResource("GDScript_yuhx2")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+cast_shadow = 0
 mesh = SubResource("BoxMesh_dr22j")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+cast_shadow = 3
+mesh = SubResource("BoxMesh_7fbbn")
+skeleton = NodePath("../MeshInstance3D")

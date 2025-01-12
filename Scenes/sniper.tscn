@@ -1,16 +1,68 @@
-[gd_scene load_steps=3 format=3 uid="uid://bdw2t4mgvcg0c"]
+[gd_scene load_steps=8 format=3 uid="uid://bdw2t4mgvcg0c"]
+
+[ext_resource type="Shader" path="res://Shader/Weapon.gdshader" id="1_7mc2g"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ldvg4"]
+render_priority = 0
+shader = ExtResource("1_7mc2g")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/fov = 77.0
 
 [sub_resource type="BoxMesh" id="BoxMesh_15pev"]
+material = SubResource("ShaderMaterial_ldvg4")
 size = Vector3(0.15, 0.15, 1)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v7m3g"]
+render_priority = 0
+shader = ExtResource("1_7mc2g")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/fov = 77.0
+
 [sub_resource type="BoxMesh" id="BoxMesh_kn836"]
+material = SubResource("ShaderMaterial_v7m3g")
+size = Vector3(0.15, 0.15, 0.15)
+
+[sub_resource type="BoxMesh" id="BoxMesh_p87hy"]
+size = Vector3(0.15, 0.15, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_t1kox"]
 size = Vector3(0.15, 0.15, 0.15)
 
 [node name="Sniper" type="Node3D"]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+cast_shadow = 0
 mesh = SubResource("BoxMesh_15pev")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshInstance3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.137981, -0.42525)
+cast_shadow = 0
 mesh = SubResource("BoxMesh_kn836")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+cast_shadow = 3
+mesh = SubResource("BoxMesh_p87hy")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="MeshInstance3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.139, -0.425)
+cast_shadow = 3
+mesh = SubResource("BoxMesh_t1kox")

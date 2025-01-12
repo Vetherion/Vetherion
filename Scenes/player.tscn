@@ -1,10 +1,17 @@
-[gd_scene load_steps=8 format=3 uid="uid://dhjrc28o432pk"]
+[gd_scene load_steps=9 format=3 uid="uid://dhjrc28o432pk"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_cbo13"]
 [ext_resource type="Script" path="res://Scripts/reticle.gd" id="2_77glr"]
 [ext_resource type="PackedScene" uid="uid://bb6lbab00x0me" path="res://Scenes/Rifle.tscn" id="2_u040e"]
 [ext_resource type="Script" path="res://Scripts/inventory.gd" id="3_eet5f"]
 [ext_resource type="PackedScene" uid="uid://bdw2t4mgvcg0c" path="res://Scenes/sniper.tscn" id="3_uifge"]
+
+[sub_resource type="Curve" id="Curve_j43bm"]
+max_value = 20.0
+_data = [Vector2(0, 20), 0.0, 0.0, 0, 1, Vector2(0.25, 20), 0.0, -40.0, 1, 1, Vector2(0.5, 10), -40.0, 0.0, 1, 0]
+point_count = 3
+metadata/_snap_count = 100
+metadata/_snap_enabled = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_cbere"]
 size = Vector3(1, 2, 1)
@@ -13,9 +20,9 @@ size = Vector3(1, 2, 1)
 size = Vector3(1, 2, 1)
 
 [node name="player" type="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.54555, 0)
 collision_layer = 3
 script = ExtResource("1_cbo13")
+damagedistance = SubResource("Curve_j43bm")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_cbere")
