@@ -2,9 +2,11 @@
 
 [ext_resource type="Shader" path="res://Shader/Weapon.gdshader" id="1_21b3a"]
 
-[sub_resource type="GDScript" id="GDScript_yuhx2"]
+[sub_resource type="GDScript" id="GDScript_h8d4h"]
 script/source = "extends Node3D
 
+
+# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
 
@@ -37,7 +39,7 @@ size = Vector3(0.1, 0.1, 0.6)
 size = Vector3(0.1, 0.1, 0.6)
 
 [node name="Rifle" type="Node3D"]
-script = SubResource("GDScript_yuhx2")
+script = SubResource("GDScript_h8d4h")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 cast_shadow = 0

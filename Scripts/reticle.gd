@@ -8,17 +8,17 @@ extends CenterContainer
 func _ready() -> void:
 	queue_redraw()
 	
-func _process(delta):
+func _process(delta : float) -> void:
 	adjust_rectile_lines()
 
-func _draw():
+func _draw() -> void:
 	draw_circle(Vector2(0,0),1.0,Color.WHITE)
 	
-func adjust_rectile_lines():
-	var vel = PLAYER_CONTROLLER.get_real_velocity()
-	var origin = Vector3(0,0,0)
-	var pos = Vector2(0,0)
-	var speed = origin.distance_to(vel)
+func adjust_rectile_lines() -> void:
+	var vel : Vector3 = PLAYER_CONTROLLER.get_real_velocity()
+	var origin : Vector3 = Vector3(0,0,0)
+	var pos : Vector2 = Vector2(0,0)
+	var speed : float = origin.distance_to(vel)
 
 #Adjust Reticle Line Position CHANGE
 	RETICLE_LINES[0].position = lerp(RETICLE_LINES[0].position, pos + Vector2(0, -speed * RETICLE_DISTANCE), RETICLE_SPEED)

@@ -1,12 +1,12 @@
 extends VehicleBody3D
 
-const MAX_STEER = 0.5
-const ENGINE_POWER = 200
+const MAX_STEER : float = 0.5
+const ENGINE_POWER : int = 200
 
 @onready var camera_pivot: Node3D = $CameraPivot
 @onready var camera_3d: Camera3D = $CameraPivot/Camera3D
 
-var look_at
+var look_at : Vector3
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)

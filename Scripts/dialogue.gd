@@ -11,7 +11,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-func start_partial_dialogue(dialogue_path):
+func start_partial_dialogue(dialogue_path) -> void:
 	%Dialogue.visible = 1
 	%ItemList.visible = 0
 	var text = FileAccess.get_file_as_string(dialogue_path)

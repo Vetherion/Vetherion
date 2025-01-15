@@ -1,15 +1,12 @@
 extends CharacterBody3D
 
-enum States { DIALOGUE, MOVING }
-var state = States.MOVING
-
 @export var damagedistance : Curve 
-var distance 
+var distance : float
 
 #ray varialbes
-var RAY_LENGTH = 100.0
-var can_ray_car = false
-var can_ray_item = false
+var RAY_LENGTH : float = 100.0
+var can_ray_car : bool = false
+var can_ray_item : bool = false
 
 @onready var player: CharacterBody3D = $"."
 
@@ -20,37 +17,38 @@ var damage : float = 1.0
 @onready var firerate: Timer = %Firerate
 
 @export_group("Camera")
-@export_range(0.0, 1.0) var mouse_sensitivity := 0.1
+@export_range(0.0, 1.0) var mouse_sensitivity : float = 0.1
 
 @export_group("Movement")
-@export var move_speed := 5.0
-@export var acceleration := 20.0
-@export var JUMP_VELOCITY = 15.0
-var camera_input_direction := Vector2.ZERO
+@export var move_speed : float = 5.0
+@export var acceleration : float = 20.0
+@export var JUMP_VELOCITY : float = 15.0
+var camera_input_direction : Vector2 = Vector2.ZERO
 
 @onready var camera_pivot: Node3D = %CameraPivot
 @onready var camera3d: Camera3D = %Camera3D
 
 @onready var ray_cast_3d: RayCast3D = $CameraPivot/Recoil/Camera3D/RayCast3D
-var canshoot = true
+var canshoot : bool = true
 
 #stamina variables
-var SPRINT_SPEED = 8.0
-var WALK_SPEED = 5.0
-var stamina = 100
+var SPRINT_SPEED : float = 8.0
+var WALK_SPEED : float = 5.0
+var stamina : int = 100
 
 #head movement variables
-const char_FREQ = 2.0
-const char_AMP = 0.08
-var t_char = 0.0
+const char_FREQ : float = 2.0
+const char_AMP : float = 0.08
+var t_char : float = 0.0
 
-@onready var inventory_script = get_node("Inventory")
+@onready var inventory_script : Node = get_node("Inventory")
 
 func _ready() -> void: #Start the game by capturing the mouse
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED 
 	
 func _input(event: InputEvent) -> void:
-	
+	if Input.is_action_just_pressed("Bend"):
+		print(Engine.get_frames_per_second())
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
@@ -77,13 +75,13 @@ func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("Sniper"):
 		rifle.visible = false
 		sniper.visible = true
-		damage = 5.0
+		damage = 7.5
 		firerate.wait_time = 1.25
 		RAY_LENGTH = 1000.0
 		
 func _unhandled_input(event: InputEvent) -> void:
 	# Set camera_input_direction
-	var is_camera_motion := (event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED)
+	var is_camera_motion : bool = (event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED)
 	if is_camera_motion:
 		camera_input_direction = event.screen_relative * mouse_sensitivity
 		
@@ -94,12 +92,12 @@ func _physics_process(delta: float) -> void:
 		canshoot = false
 		%Firerate.start()
 		#Raycast
-		var mousePos = get_viewport().get_size()/2
-		var from = camera3d.project_ray_origin(mousePos)
-		var to = from + camera3d.project_ray_normal(mousePos) * RAY_LENGTH
+		var mousePos : Vector2 = get_viewport().get_size()/2
+		var from : Vector3 = camera3d.project_ray_origin(mousePos)
+		var to : Vector3 = from + camera3d.project_ray_normal(mousePos) * RAY_LENGTH
 		
-		var new_intersection = PhysicsRayQueryParameters3D.create(from, to)
-		var intersection = camera3d.get_world_3d().direct_space_state.intersect_ray(new_intersection)
+		var new_intersection : PhysicsRayQueryParameters3D = PhysicsRayQueryParameters3D.create(from, to)
+		var intersection : Dictionary = camera3d.get_world_3d().direct_space_state.intersect_ray(new_intersection)
 
 		if intersection and intersection.collider.is_in_group("Enemy"):
 			distance = abs(player.global_position.distance_to(intersection.collider.global_position)) * 0.01
@@ -124,11 +122,11 @@ func _physics_process(delta: float) -> void:
 	
 	# Handle movement
 	
-	var raw_input := Input.get_vector("move_left", "move_right", "move_forward", "move_back")
-	var forward := camera3d.global_basis.z
-	var right := camera3d.global_basis.x
+	var raw_input : Vector2 = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
+	var forward : Vector3 = camera3d.global_basis.z
+	var right : Vector3 = camera3d.global_basis.x
 	
-	var move_direction := forward * raw_input.y + right * raw_input.x
+	var move_direction : Vector3 = forward * raw_input.y + right * raw_input.x
 	move_direction.y = 0.0
 	move_direction = move_direction.normalized()
 	
@@ -156,7 +154,7 @@ func _physics_process(delta: float) -> void:
 		if inventory_script.is_eligible() != null:
 			%Label.visible = 1
 			if Input.is_action_just_pressed("E"):
-				var item = inventory_script.is_eligible()
+				var item : MeshInstance3D = inventory_script.is_eligible()
 				if "gun0" in item.get_groups():
 					inventory_script.add_to_inv("gun0")
 				item.queue_free()
@@ -168,12 +166,12 @@ func _physics_process(delta: float) -> void:
 		%Label.visible = 0
 	# car
 	if can_ray_car == true: #Arabanın yakınındaysan ray gondermeye basla
-		var mousePos = get_viewport().get_size()/2
-		var from = camera3d.project_ray_origin(mousePos)
-		var to = from + camera3d.project_ray_normal(mousePos) * 18
+		var mousePos : Vector2 = get_viewport().get_size()/2
+		var from : Vector3 = camera3d.project_ray_origin(mousePos)
+		var to : Vector3 = from + camera3d.project_ray_normal(mousePos) * 18
 		
-		var new_intersection = PhysicsRayQueryParameters3D.create(from, to)
-		var intersection = camera3d.get_world_3d().direct_space_state.intersect_ray(new_intersection)
+		var new_intersection : PhysicsRayQueryParameters3D = PhysicsRayQueryParameters3D.create(from, to)
+		var intersection : Dictionary = camera3d.get_world_3d().direct_space_state.intersect_ray(new_intersection)
 		
 		if intersection and intersection.collider.is_in_group("Car"):
 			if Input.is_action_just_pressed("E"):
@@ -189,8 +187,8 @@ func _process(delta: float) -> void:
 	
 	move_and_slide()
 	
-func _headchar(time) -> Vector3:
-	var pos = Vector3.ZERO
+func _headchar(time : float) -> Vector3:
+	var pos : Vector3 = Vector3.ZERO
 	pos.y = sin(time * char_FREQ) * char_AMP
 	pos.x = cos(time * char_FREQ / 2) * char_AMP
 	return pos
