@@ -47,8 +47,6 @@ func _ready() -> void: #Start the game by capturing the mouse
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED 
 	
 func _input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("Bend"):
-		print(Engine.get_frames_per_second())
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
@@ -58,27 +56,7 @@ func _input(event: InputEvent) -> void:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED #now you can use your mouse 
 	if event.is_action_pressed("ui_cancel"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE #now you cant use your mouse
-	
-	#WEAPON SELECT DEGISECEK
-	if Input.is_action_just_pressed("Punch"):
-		rifle.visible = false
-		sniper.visible = false
-		damage = 0.5
-		firerate.wait_time = 0.5
-		RAY_LENGTH = 2.0
-	if Input.is_action_just_pressed("Rifle"):
-		rifle.visible = true
-		sniper.visible = false
-		damage = 1.0
-		firerate.wait_time = 0.12
-		RAY_LENGTH = 100.0
-	if Input.is_action_just_pressed("Sniper"):
-		rifle.visible = false
-		sniper.visible = true
-		damage = 7.5
-		firerate.wait_time = 1.25
-		RAY_LENGTH = 1000.0
-		
+
 func _unhandled_input(event: InputEvent) -> void:
 	# Set camera_input_direction
 	var is_camera_motion : bool = (event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED)
@@ -86,7 +64,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		camera_input_direction = event.screen_relative * mouse_sensitivity
 		
 func _physics_process(delta: float) -> void:
-		#Handle Fire
+			#Handle Fire
 	if  Input.is_action_pressed("left_click") and canshoot:
 		#Timer
 		canshoot = false
@@ -104,7 +82,7 @@ func _physics_process(delta: float) -> void:
 			intersection.collider.damage(damage * round(damagedistance.sample_baked(distance)))
 		
 		camera_pivot.rotation.x += 0.05
-		
+	
 	# Handle sprint 
 	if Input.is_action_pressed("sprint") and stamina >= 75:
 		move_speed = SPRINT_SPEED

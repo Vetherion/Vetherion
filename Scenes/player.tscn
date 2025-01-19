@@ -1,10 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://dhjrc28o432pk"]
+[gd_scene load_steps=8 format=3 uid="uid://dhjrc28o432pk"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_cbo13"]
 [ext_resource type="Script" path="res://Scripts/reticle.gd" id="2_77glr"]
-[ext_resource type="PackedScene" uid="uid://bb6lbab00x0me" path="res://Scenes/Rifle.tscn" id="2_u040e"]
 [ext_resource type="Script" path="res://Scripts/inventory.gd" id="3_eet5f"]
-[ext_resource type="PackedScene" uid="uid://bdw2t4mgvcg0c" path="res://Scenes/sniper.tscn" id="3_uifge"]
+[ext_resource type="Script" path="res://Scripts/weapons.gd" id="6_qdqrk"]
 
 [sub_resource type="Curve" id="Curve_j43bm"]
 max_value = 20.0
@@ -39,13 +38,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.601927, 0)
 [node name="Camera3D" type="Camera3D" parent="CameraPivot/Recoil"]
 unique_name_in_owner = true
 current = true
-
-[node name="Rifle" parent="CameraPivot/Recoil/Camera3D" instance=ExtResource("2_u040e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.528232, -0.271322, -1.31582)
-
-[node name="Sniper" parent="CameraPivot/Recoil/Camera3D" instance=ExtResource("3_uifge")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.528, -0.271, -1.316)
-visible = false
+script = ExtResource("6_qdqrk")
 
 [node name="RayCast3D" type="RayCast3D" parent="CameraPivot/Recoil/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)

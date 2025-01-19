@@ -1,20 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://bb6lbab00x0me"]
 
+[ext_resource type="Script" path="res://Scripts/rifle.gd" id="1_4ckwo"]
 [ext_resource type="Shader" path="res://Shader/Weapon.gdshader" id="1_21b3a"]
-
-[sub_resource type="GDScript" id="GDScript_h8d4h"]
-script/source = "extends Node3D
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nws5j"]
 render_priority = 0
@@ -39,7 +26,7 @@ size = Vector3(0.1, 0.1, 0.6)
 size = Vector3(0.1, 0.1, 0.6)
 
 [node name="Rifle" type="Node3D"]
-script = SubResource("GDScript_h8d4h")
+script = ExtResource("1_4ckwo")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 cast_shadow = 0
@@ -49,3 +36,9 @@ mesh = SubResource("BoxMesh_dr22j")
 cast_shadow = 3
 mesh = SubResource("BoxMesh_7fbbn")
 skeleton = NodePath("../MeshInstance3D")
+
+[node name="Timer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.12
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

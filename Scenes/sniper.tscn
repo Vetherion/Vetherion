@@ -1,20 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://bdw2t4mgvcg0c"]
 
 [ext_resource type="Shader" path="res://Shader/Weapon.gdshader" id="1_7mc2g"]
-
-[sub_resource type="GDScript" id="GDScript_g1j0t"]
-script/source = "extends Node3D
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-"
+[ext_resource type="Script" path="res://Scripts/sniper.gd" id="1_vq1d3"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ldvg4"]
 render_priority = 0
@@ -61,7 +48,7 @@ size = Vector3(0.15, 0.15, 1)
 size = Vector3(0.15, 0.15, 0.15)
 
 [node name="Sniper" type="Node3D"]
-script = SubResource("GDScript_g1j0t")
+script = ExtResource("1_vq1d3")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 cast_shadow = 0
@@ -81,3 +68,8 @@ mesh = SubResource("BoxMesh_p87hy")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.139, -0.425)
 cast_shadow = 3
 mesh = SubResource("BoxMesh_t1kox")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.25
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
