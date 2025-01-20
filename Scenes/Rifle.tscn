@@ -1,7 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://bb6lbab00x0me"]
+[gd_scene load_steps=7 format=3 uid="uid://bb6lbab00x0me"]
 
 [ext_resource type="Script" path="res://Scripts/rifle.gd" id="1_4ckwo"]
 [ext_resource type="Shader" path="res://Shader/Weapon.gdshader" id="1_21b3a"]
+
+[sub_resource type="Curve" id="Curve_cu53u"]
+_data = [Vector2(0.0148515, 1), 0.0, 0.0, 0, 0, Vector2(0.232673, 1), 0.0, 0.0, 0, 0, Vector2(0.490099, 0.472527), 0.0, 0.0, 0, 0, Vector2(1, 0.43956), 0.0, 0.0, 0, 0]
+point_count = 4
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nws5j"]
 render_priority = 0
@@ -27,6 +31,7 @@ size = Vector3(0.1, 0.1, 0.6)
 
 [node name="Rifle" type="Node3D"]
 script = ExtResource("1_4ckwo")
+damagedistance = SubResource("Curve_cu53u")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 cast_shadow = 0
@@ -37,8 +42,8 @@ cast_shadow = 3
 mesh = SubResource("BoxMesh_7fbbn")
 skeleton = NodePath("../MeshInstance3D")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="rifle_fire_rate" type="Timer" parent="."]
 unique_name_in_owner = true
 wait_time = 0.12
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="rifle_fire_rate" to="." method="_on_rifle_fire_rate_timeout"]

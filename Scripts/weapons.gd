@@ -4,19 +4,21 @@ class_name WeaponClass
 @onready var rifle: Node3D = $"."
 @onready var sniper: Node3D = $"."
 
-var canshoot 
+var canshoot : bool = true
 var current_weapon: Node3D = null
+
+var distance : float
+
 
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("Punch"):
-		if current_weapon:
-			current_weapon.queue_free()
-		current_weapon = null
+		var punch_scene : PackedScene = preload("res://Scenes/punch.tscn")
+		spawn_weapon(punch_scene)
 	if Input.is_action_just_pressed("Rifle"):
-		var rifle_scene = preload("res://Scenes/Rifle.tscn")
+		var rifle_scene : PackedScene = preload("res://Scenes/Rifle.tscn")
 		spawn_weapon(rifle_scene)
 	if Input.is_action_just_pressed("Sniper"):
-		var sniper_scene = preload("res://Scenes/sniper.tscn")
+		var sniper_scene : PackedScene = preload("res://Scenes/sniper.tscn")
 		spawn_weapon(sniper_scene)
 		
 func spawn_weapon(weapon_scene: PackedScene) -> void:

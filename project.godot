@@ -15,6 +15,11 @@ run/main_scene="res://Scenes/3D_Level.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
+[debug]
+
+gdscript/warnings/untyped_declaration=1
+gdscript/warnings/inferred_declaration=1
+
 [display]
 
 window/size/viewport_width=1920

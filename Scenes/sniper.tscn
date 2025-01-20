@@ -1,7 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://bdw2t4mgvcg0c"]
+[gd_scene load_steps=10 format=3 uid="uid://bdw2t4mgvcg0c"]
 
 [ext_resource type="Shader" path="res://Shader/Weapon.gdshader" id="1_7mc2g"]
 [ext_resource type="Script" path="res://Scripts/sniper.gd" id="1_vq1d3"]
+
+[sub_resource type="Curve" id="Curve_kyy6y"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.262376, 1), 0.0, 0.0, 0, 0, Vector2(0.519802, 0.538462), 0.0, 0.0, 0, 0, Vector2(1, 0.516483), 0.0, 0.0, 0, 0]
+point_count = 4
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ldvg4"]
 render_priority = 0
@@ -49,6 +53,7 @@ size = Vector3(0.15, 0.15, 0.15)
 
 [node name="Sniper" type="Node3D"]
 script = ExtResource("1_vq1d3")
+damagedistance = SubResource("Curve_kyy6y")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 cast_shadow = 0
@@ -69,7 +74,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.139, -0.425)
 cast_shadow = 3
 mesh = SubResource("BoxMesh_t1kox")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="sniper_fire_rate" type="Timer" parent="."]
+unique_name_in_owner = true
 wait_time = 1.25
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="sniper_fire_rate" to="." method="_on_sniper_fire_rate_timeout"]

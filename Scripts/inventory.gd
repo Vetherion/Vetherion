@@ -1,16 +1,16 @@
 extends Node
-const RAY_LENGTH = 1.8
+const RAY_LENGTH : float = 1.8
 
 var inventory = {
 	0: "void"
 }
-var item_count = 0
-var is_inv_open = false
+var item_count : int = 0
+var is_inv_open : bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
 
-func _process(delta) -> void:
+func _process(delta : float) -> void:
 	if Input.is_action_just_pressed("TAB"):
 		if is_inv_open == false:
 			get_node("../../Inventory").visible = 1
@@ -22,13 +22,13 @@ func _process(delta) -> void:
 			is_inv_open = false
 
 func is_eligible() -> MeshInstance3D:
-	var mousePos = get_viewport().get_size()/2
-	var camera3d = %Camera3D
-	var from = camera3d.project_ray_origin(mousePos)
-	var to = from + camera3d.project_ray_normal(mousePos) * RAY_LENGTH
+	var mousePos : Vector2 = get_viewport().get_size()/2
+	var camera3d : Camera3D = %Camera3D
+	var from : Vector3 = camera3d.project_ray_origin(mousePos)
+	var to : Vector3 = from + camera3d.project_ray_normal(mousePos) * RAY_LENGTH
 	
-	var new_intersection = PhysicsRayQueryParameters3D.create(from, to)
-	var intersection = camera3d.get_world_3d().direct_space_state.intersect_ray(new_intersection)
+	var new_intersection : PhysicsRayQueryParameters3D = PhysicsRayQueryParameters3D.create(from, to)
+	var intersection : Dictionary = camera3d.get_world_3d().direct_space_state.intersect_ray(new_intersection)
 	
 	if intersection and intersection.collider.get_parent().is_in_group("inv_item"):
 		return intersection.collider.get_parent()

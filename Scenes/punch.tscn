@@ -5,7 +5,8 @@
 [node name="punch" type="Node3D"]
 script = ExtResource("1_faf18")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="punch_fire_rate" type="Timer" parent="."]
+unique_name_in_owner = true
 wait_time = 0.5
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="punch_fire_rate" to="." method="_on_punch_fire_rate_timeout"]

@@ -1,20 +1,14 @@
 extends CharacterBody3D
 
-@export var damagedistance : Curve 
-var distance : float
-
 #ray varialbes
 var RAY_LENGTH : float = 100.0
 var can_ray_car : bool = false
 var can_ray_item : bool = false
 
 @onready var player: CharacterBody3D = $"."
-
-#weapons
-@onready var rifle: Node3D = $CameraPivot/Recoil/Camera3D/Rifle
-@onready var sniper: Node3D = $CameraPivot/Recoil/Camera3D/Sniper
-var damage : float = 1.0
-@onready var firerate: Timer = %Firerate
+@onready var camera_pivot: Node3D = %CameraPivot
+@onready var camera3d: Camera3D = %Camera3D
+@onready var ray_cast_3d: RayCast3D = $CameraPivot/Recoil/Camera3D/RayCast3D
 
 @export_group("Camera")
 @export_range(0.0, 1.0) var mouse_sensitivity : float = 0.1
@@ -25,16 +19,10 @@ var damage : float = 1.0
 @export var JUMP_VELOCITY : float = 15.0
 var camera_input_direction : Vector2 = Vector2.ZERO
 
-@onready var camera_pivot: Node3D = %CameraPivot
-@onready var camera3d: Camera3D = %Camera3D
-
-@onready var ray_cast_3d: RayCast3D = $CameraPivot/Recoil/Camera3D/RayCast3D
-var canshoot : bool = true
-
 #stamina variables
 var SPRINT_SPEED : float = 8.0
 var WALK_SPEED : float = 5.0
-var stamina : int = 100
+var stamina : float = 100
 
 #head movement variables
 const char_FREQ : float = 2.0
@@ -64,25 +52,6 @@ func _unhandled_input(event: InputEvent) -> void:
 		camera_input_direction = event.screen_relative * mouse_sensitivity
 		
 func _physics_process(delta: float) -> void:
-			#Handle Fire
-	if  Input.is_action_pressed("left_click") and canshoot:
-		#Timer
-		canshoot = false
-		%Firerate.start()
-		#Raycast
-		var mousePos : Vector2 = get_viewport().get_size()/2
-		var from : Vector3 = camera3d.project_ray_origin(mousePos)
-		var to : Vector3 = from + camera3d.project_ray_normal(mousePos) * RAY_LENGTH
-		
-		var new_intersection : PhysicsRayQueryParameters3D = PhysicsRayQueryParameters3D.create(from, to)
-		var intersection : Dictionary = camera3d.get_world_3d().direct_space_state.intersect_ray(new_intersection)
-
-		if intersection and intersection.collider.is_in_group("Enemy"):
-			distance = abs(player.global_position.distance_to(intersection.collider.global_position)) * 0.01
-			intersection.collider.damage(damage * round(damagedistance.sample_baked(distance)))
-		
-		camera_pivot.rotation.x += 0.05
-	
 	# Handle sprint 
 	if Input.is_action_pressed("sprint") and stamina >= 75:
 		move_speed = SPRINT_SPEED
@@ -99,7 +68,6 @@ func _physics_process(delta: float) -> void:
 	camera_input_direction = Vector2.ZERO 
 	
 	# Handle movement
-	
 	var raw_input : Vector2 = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
 	var forward : Vector3 = camera3d.global_basis.z
 	var right : Vector3 = camera3d.global_basis.x
@@ -109,16 +77,6 @@ func _physics_process(delta: float) -> void:
 	move_direction = move_direction.normalized()
 	
 	velocity = velocity.move_toward(move_direction * move_speed, acceleration * delta)
-	
-	  
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	
@@ -171,18 +129,11 @@ func _headchar(time : float) -> Vector3:
 	pos.x = cos(time * char_FREQ / 2) * char_AMP
 	return pos
 	
-	
-func _on_firerate_timeout() -> void:
-	canshoot = true
-	
-	
 func _on_CarArea_body_entered(body: Node3D) -> void:
 	can_ray_car = true
 func _on_CarArea_body_exited(body: Node3D) -> void:
 	can_ray_car = false
 	
-
-
 func _on_item_area_body_entered(body: Node3D) -> void:
 	can_ray_item = true
 func _on_item_area_body_exited(body: Node3D) -> void:
