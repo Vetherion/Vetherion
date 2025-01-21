@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://dmthcbtlrqmvk"]
 
-[ext_resource type="Script" path="res://Scenes/button.gd" id="1_eidpk"]
+[ext_resource type="Script" path="res://Scripts/button.gd" id="1_eidpk"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qbx3j"]
 

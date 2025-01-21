@@ -15,4 +15,3 @@ func _on_focus_exited() -> void:
 
 func _on_pressed() -> void:
 	dialogue_node.load_partial_dialogue(dialogue_node.current_dialogue, dialogue_node.current_focus)
-	print(dialogue_node.current_dialogue) # Replace with function body.

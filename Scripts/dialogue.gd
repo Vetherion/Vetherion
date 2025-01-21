@@ -38,13 +38,13 @@ func start_partial_dialogue(dialogue_path) -> void:
 	#var itemlist = get_node("./SubViewportContainer/SubViewport/ItemList")
 	var words = dict["start_text"].split(" ")
 	#var labels 
+	
 	for i in range(len(words)):
 		var label = label_scene.instantiate()
 		%HBoxContainer.add_child(label)
 		label.text = words[i]
 		label.modulate = 0
 		#label.get_node("anim").play("fade_out")
-		
 		
 	for i in %HBoxContainer.get_children():
 		i.get_node("anim").play("fade_out")
@@ -73,10 +73,17 @@ func load_partial_dialogue(dialogue, index):
 	current_dialogue = current
 	if typeof(current) == TYPE_DICTIONARY:
 		for i in %VBoxContainer.get_children():
-			if i.is_in_group("button") or i.is_in_group("label"):
+			if i.is_in_group("button") and i != null:
 				i.queue_free()
+				i = null
+		
+		for i in %HBoxContainer.get_children():
+			if i.is_in_group("label") and i != null:
+				i.queue_free()
+				i = null
 				
-		print(%VBoxContainer.get_children())
+		# !bad architecture
+		await get_tree().create_timer(0.01).timeout
 		# label update
 		var words = current["start_text"].split(" ")
 		for i in range(len(words)):
@@ -84,10 +91,11 @@ func load_partial_dialogue(dialogue, index):
 			%HBoxContainer.add_child(label)
 			label.text = words[i]
 			label.modulate = 0
-			
+		
 		for i in %HBoxContainer.get_children():
 			i.get_node("anim").play("fade_out")
 			await get_tree().create_timer(0.3).timeout
+		
 		
 		buttons.clear()
 		current_focus = 0
@@ -98,14 +106,19 @@ func load_partial_dialogue(dialogue, index):
 			buttons.append(button)
 		buttons[0].grab_focus()
 	else:
-
 		if typeof(current) == TYPE_STRING:
 			if current.right(3) == "END":
 				%Dialogue.visible = 0
 			else:
 				for i in %VBoxContainer.get_children():
-					if i.is_in_group("button") or i.is_in_group("label"):
+					if i.is_in_group("button") and i != null:
 						i.queue_free()
+						i = null
+				for i in %HBoxContainer.get_children():
+					if i.is_in_group("label") and i != null:
+						i.queue_free()
+						i = null
+				await get_tree().create_timer(0.01).timeout
 				var words = current["start_text"].split(" ")
 				for i in range(len(words)):
 					var label = label_scene.instantiate()
@@ -117,8 +130,14 @@ func load_partial_dialogue(dialogue, index):
 					await get_tree().create_timer(0.3).timeout
 		else:
 			for i in %VBoxContainer.get_children():
-				if i.is_in_group("button") or i.is_in_group("label"):
+				if i.is_in_group("button") and i != null:
 					i.queue_free()
+					i = null
+			for i in %HBoxContainer.get_children():
+				if i.is_in_group("label") and i != null:
+					i.queue_free()
+					i = null
+			await get_tree().create_timer(0.01).timeout
 				
 			var words = current["start_text"].split(" ")
 			for i in range(len(words)):
@@ -129,5 +148,3 @@ func load_partial_dialogue(dialogue, index):
 			for i in %HBoxContainer.get_children():
 				i.get_node("anim").play("fade_out")
 				await get_tree().create_timer(0.3).timeout
-func _on_item_list_item_activated(index: int) -> void:
-	load_partial_dialogue(current_dialogue, index)

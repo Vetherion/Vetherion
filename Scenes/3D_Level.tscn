@@ -90,7 +90,6 @@ render_target_update_mode = 0
 
 [node name="Inventory" type="Control" parent="HUD/SubViewportContainer/SubViewport"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 3
 anchor_right = 0.264
 anchor_bottom = 0.468
@@ -99,7 +98,6 @@ offset_bottom = -0.440033
 
 [node name="Dialogue" type="Control" parent="HUD/SubViewportContainer/SubViewport"]
 unique_name_in_owner = true
-visible = false
 custom_minimum_size = Vector2(320, 200)
 layout_mode = 3
 anchors_preset = 7
