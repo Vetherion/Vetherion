@@ -9,11 +9,7 @@ var current_weapon: Node3D = null
 
 var distance : float
 
-
 func _input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("Punch"):
-		var punch_scene : PackedScene = preload("res://Scenes/punch.tscn")
-		spawn_weapon(punch_scene)
 	if Input.is_action_just_pressed("Rifle"):
 		var rifle_scene : PackedScene = preload("res://Scenes/Rifle.tscn")
 		spawn_weapon(rifle_scene)
