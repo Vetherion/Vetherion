@@ -1,5 +1,5 @@
 {
-	"start_text": "lorem ipsum dolor?",
+	"start_text": "lorem ipsum dolor? lorem ",
 	"option_tree": {
 		"Yes!": "OK, then!END",
 		"No!": "sit ametEND",

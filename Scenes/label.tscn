@@ -1,0 +1,48 @@
+[gd_scene load_steps=4 format=3 uid="uid://bh2ojr7ymexb2"]
+
+[sub_resource type="Animation" id="Animation_dwh0q"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0.266667, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ul2ji"]
+resource_name = "fade_out"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 0.266667, 1, 0), Color(1, 0.266667, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ruifv"]
+_data = {
+"RESET": SubResource("Animation_dwh0q"),
+"fade_out": SubResource("Animation_ul2ji")
+}
+
+[node name="Label" type="Label" groups=["label"]]
+modulate = Color(1, 0.266667, 1, 1)
+text = "wqrwqrqw"
+
+[node name="anim" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_ruifv")
+}
