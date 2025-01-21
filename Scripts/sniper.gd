@@ -2,9 +2,16 @@ extends WeaponClass
 
 @export var damagedistance : Curve 
 
+var ammo : int = 30
+var magazine : int = 5
+
+const max_ammo : int = 30
+const max_magazine : int = 5
+
 func _input(event: InputEvent) -> void:
-			#Handle Fire
-	if  Input.is_action_just_pressed("left_click") and canshoot:
+	#Handle Fire
+	if  Input.is_action_just_pressed("left_click") and canshoot and magazine > 0:
+		magazine -= 1
 		#Timer
 		canshoot = false
 		%sniper_fire_rate.start()
@@ -21,6 +28,18 @@ func _input(event: InputEvent) -> void:
 			intersection.collider.damage(100.0 * round(damagedistance.sample_baked(distance)))
 		
 		get_parent().get_parent().get_parent().rotation.x += 0.05
+		
+	#Handle reload
+	if Input.is_action_just_pressed("Reload"):
+		if ammo >= max_magazine:
+			ammo = ammo - max_magazine + magazine
+			magazine = max_magazine
+		elif ammo > 0:
+			magazine += ammo
+			ammo = 0
+			if magazine > max_magazine:
+				ammo = magazine - max_magazine
+				magazine = max_magazine
 
 
 func _on_sniper_fire_rate_timeout() -> void:

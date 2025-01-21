@@ -1,11 +1,19 @@
 extends WeaponClass
 
+
 @export var damagedistance : Curve 
+
+var ammo : int = 90
+var magazine : int = 30
+
+const max_ammo : int = 90
+const max_magazine : int = 30
 
 func _physics_process(delta: float) -> void:
 			#Handle Fire
-	if  Input.is_action_pressed("left_click") and canshoot:
+	if  Input.is_action_pressed("left_click") and canshoot and magazine > 0:
 		#Timer
+		magazine -= 1
 		canshoot = false
 		%rifle_fire_rate.start()
 		#Raycast
@@ -24,3 +32,15 @@ func _physics_process(delta: float) -> void:
 
 func _on_rifle_fire_rate_timeout() -> void:
 	canshoot = true
+	
+func _input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed("Reload"):
+		if ammo >= max_magazine:
+			ammo = ammo - max_magazine + magazine
+			magazine = max_magazine
+		elif ammo > 0:
+			magazine += ammo
+			ammo = 0
+			if magazine > max_magazine:
+				ammo = magazine - max_magazine
+				magazine = max_magazine
