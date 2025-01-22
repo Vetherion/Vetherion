@@ -1,14 +1,15 @@
 [gd_scene load_steps=10 format=3 uid="uid://dmthcbtlrqmvk"]
 
 [ext_resource type="Script" path="res://Scripts/button.gd" id="1_eidpk"]
-[ext_resource type="FontFile" uid="uid://ciaikh02ahn8e" path="res://external/Orbitron Medium.ttf" id="1_p6kk0"]
+[ext_resource type="FontFile" uid="uid://40mbjcbebf0j" path="res://external/Orbitron Medium.ttf" id="1_p6kk0"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qbx3j"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lm8rp"]
 bg_color = Color(0.523333, 0.48, 1, 0.686275)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cis1f"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c66rf"]
+bg_color = Color(0.968627, 0.396078, 1, 0.709804)
 
 [sub_resource type="Animation" id="Animation_0pyw2"]
 length = 0.001
@@ -37,22 +38,6 @@ tracks/1/keys = {
 "values": [Color(1, 1, 1, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_6d7er"]
-resource_name = "select_in"
-length = 0.15
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:value")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.133333),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 100.0]
-}
-
 [sub_resource type="Animation" id="Animation_27y4d"]
 resource_name = "fade_out"
 length = 0.14
@@ -69,6 +54,22 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_6d7er"]
+resource_name = "select_in"
+length = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:value")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.133333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 100.0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ip058"]
 _data = {
 "RESET": SubResource("Animation_0pyw2"),
@@ -77,7 +78,7 @@ _data = {
 }
 
 [node name="ProgressBar" type="ProgressBar" groups=["button"]]
-custom_minimum_size = Vector2(200, 25)
+custom_minimum_size = Vector2(300, 25)
 offset_right = 185.0
 offset_bottom = 25.0
 size_flags_horizontal = 4
@@ -101,19 +102,32 @@ offset_right = 87.5
 offset_bottom = 12.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_disabled_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("1_p6kk0")
 theme_override_font_sizes/font_size = 16
-theme_override_styles/focus = SubResource("StyleBoxEmpty_cis1f")
-theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_cis1f")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_cis1f")
-theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_cis1f")
-theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_cis1f")
-theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_cis1f")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_cis1f")
-theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_cis1f")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_cis1f")
-theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_cis1f")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_cis1f")
+theme_override_styles/focus = SubResource("StyleBoxFlat_c66rf")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_c66rf")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_c66rf")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_c66rf")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_c66rf")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_c66rf")
+theme_override_styles/hover = SubResource("StyleBoxFlat_c66rf")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_c66rf")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_c66rf")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_c66rf")
+theme_override_styles/normal = SubResource("StyleBoxFlat_c66rf")
 script = ExtResource("1_eidpk")
 
 [node name="anim" type="AnimationPlayer" parent="."]

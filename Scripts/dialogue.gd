@@ -1,6 +1,7 @@
 #DISCLAIMER: This dialogue system has not finished. It may have many bugs, and it is not suitable for usage at the time. 
 
 #TODO: Fix the grab_focus bug
+#TODO: Fix the color bug
 
 #DONE TODO: Fix the stacking bug (Fixed but should be better way)
 #DONE TODO: Add crisp text (Added but not that good)
@@ -43,7 +44,8 @@ func start_partial_dialogue(dialogue_path) -> void:
 	current_dialogue = dict
 	var words = dict["start_text"].split(" ")
 	responder = dict["responder"]
-	words.insert(0, responder + ":")
+	#words.insert(0, responder + ":")
+	$VBoxContainer/Responder.text = responder
 	for i in range(len(words)):
 		var label = label_scene.instantiate()
 		%HBoxContainer.add_child(label)
@@ -91,7 +93,7 @@ func load_partial_dialogue(dialogue, index):
 		await get_tree().create_timer(0.01).timeout
 		# label update
 		var words = current["start_text"].split(" ")
-		words.insert(0, responder + ":")
+		$VBoxContainer/Responder.text = responder
 		for i in range(len(words)):
 			var label = label_scene.instantiate()
 			%HBoxContainer.add_child(label)
@@ -130,7 +132,7 @@ func load_partial_dialogue(dialogue, index):
 						i = null
 				await get_tree().create_timer(0.01).timeout
 				var words = current["start_text"].split(" ")
-				words.insert(0, responder + ":")
+				$VBoxContainer/Responder.text = responder
 				for i in range(len(words)):
 					var label = label_scene.instantiate()
 					%HBoxContainer.add_child(label)
@@ -151,7 +153,7 @@ func load_partial_dialogue(dialogue, index):
 			await get_tree().create_timer(0.01).timeout
 				
 			var words = current["start_text"].split(" ")
-			words.insert(0, responder + ":")
+			$VBoxContainer/Responder.text = responder
 			for i in range(len(words)):
 				var label = label_scene.instantiate()
 				%HBoxContainer.add_child(label)
