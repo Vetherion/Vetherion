@@ -16,9 +16,9 @@ var current_focus = 0
 var responder: String
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	#pass
-	start_partial_dialogue("res://dialogues/example_dialogue.json")
-	#%Dialogue.visible = 0 #<---------------------------------------------------------------DEGISECEK                 
+	pass
+	#start_partial_dialogue("res://dialogues/example_dialogue.json")
+	%Dialogue.visible = 0 #<---------------------------------------------------------------DEGISECEK                 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("arrow_down") and is_done:

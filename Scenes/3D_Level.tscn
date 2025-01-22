@@ -69,6 +69,7 @@ size = Vector3(100, 0.002, 100)
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.204, 1.03697, -1.222)
 
 [node name="HUD" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -85,10 +86,11 @@ offset_bottom = 1080.0
 transparent_bg = true
 handle_input_locally = false
 size = Vector2i(1920, 1080)
-render_target_update_mode = 4
+render_target_update_mode = 0
 
 [node name="Inventory" type="Control" parent="HUD/SubViewportContainer/SubViewport"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 3
 anchor_right = 0.264
 anchor_bottom = 0.468
@@ -97,6 +99,7 @@ offset_bottom = -0.440033
 
 [node name="Dialogue" type="Control" parent="HUD/SubViewportContainer/SubViewport"]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(320, 200)
 layout_mode = 3
 anchors_preset = 7
