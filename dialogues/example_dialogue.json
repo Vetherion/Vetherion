@@ -1,4 +1,5 @@
 {
+	"responder": "a person",
 	"start_text": "lorem ipsum dolor? lorem ",
 	"option_tree": {
 		"Yes!": "OK, then!END",
