@@ -5,8 +5,8 @@ const ENGINE_POWER : int = 200
 
 var camera_input_direction : Vector2 = Vector2.ZERO
 
-@onready var camera_pivot: Node3D = $CameraPivot
-@onready var camera_3d: Camera3D = $CameraPivot/Camera3D
+@export var camera_pivot: Node3D
+@export var camera_3d: Camera3D
 
 var look_at : Vector3
 # Called when the node enters the scene tree for the first time.

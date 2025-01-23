@@ -11,9 +11,12 @@ size = Vector3(1, 2, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_gog4e"]
 size = Vector3(1, 2, 1)
 
-[node name="player" type="CharacterBody3D"]
+[node name="player" type="CharacterBody3D" node_paths=PackedStringArray("player", "camera_pivot", "camera3d")]
 collision_layer = 3
 script = ExtResource("1_cbo13")
+player = NodePath(".")
+camera_pivot = NodePath("CameraPivot")
+camera3d = NodePath("CameraPivot/Recoil/Camera3D")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_cbere")
@@ -31,9 +34,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.601927, 0)
 unique_name_in_owner = true
 current = true
 script = ExtResource("6_qdqrk")
-
-[node name="RayCast3D" type="RayCast3D" parent="CameraPivot/Recoil/Camera3D"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 
 [node name="WeaponSwap" type="Timer" parent="CameraPivot/Recoil/Camera3D"]
 unique_name_in_owner = true

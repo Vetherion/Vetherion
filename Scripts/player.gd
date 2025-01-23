@@ -5,10 +5,9 @@ var RAY_LENGTH : float = 100.0
 var can_ray_car : bool = false
 var can_ray_item : bool = false
 
-@onready var player: CharacterBody3D = $"."
-@onready var camera_pivot: Node3D = %CameraPivot
-@onready var camera3d: Camera3D = %Camera3D
-@onready var ray_cast_3d: RayCast3D = $CameraPivot/Recoil/Camera3D/RayCast3D
+@export var player: CharacterBody3D
+@export var camera_pivot: Node3D 
+@export var camera3d: Camera3D 
 
 @export_group("Camera")
 @export_range(0.0, 1.0) var mouse_sensitivity : float = 0.1

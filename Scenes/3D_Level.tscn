@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://beqn6i68wci2n"]
+[gd_scene load_steps=23 format=3 uid="uid://beqn6i68wci2n"]
 
 [ext_resource type="PackedScene" uid="uid://bb34e6irwt0ia" path="res://Scenes/car.tscn" id="1_lvekw"]
 [ext_resource type="PackedScene" uid="uid://dhjrc28o432pk" path="res://Scenes/player.tscn" id="1_m4hl5"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://bh2ojr7ymexb2" path="res://Scenes/label.tscn" id="3_cjef4"]
 [ext_resource type="PackedScene" uid="uid://dmthcbtlrqmvk" path="res://Scenes/button.tscn" id="4_1jj05"]
 [ext_resource type="Script" path="res://Scripts/enemy.gd" id="4_qhv1j"]
-[ext_resource type="FontFile" uid="uid://40mbjcbebf0j" path="res://external/Orbitron Medium.ttf" id="5_hydll"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vp2qy"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -136,7 +135,6 @@ grow_vertical = 2
 modulate = Color(0, 0.646279, 0.720069, 1)
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_fonts/font = ExtResource("5_hydll")
 theme_override_font_sizes/font_size = 18
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HUD/SubViewportContainer/SubViewport/Dialogue/VBoxContainer"]

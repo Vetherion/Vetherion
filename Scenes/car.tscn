@@ -24,9 +24,11 @@ top_radius = 0.4
 bottom_radius = 0.4
 height = 0.25
 
-[node name="Car" type="VehicleBody3D"]
+[node name="Car" type="VehicleBody3D" node_paths=PackedStringArray("camera_pivot", "camera_3d")]
 gravity_scale = 4.0
 script = ExtResource("1_e448e")
+camera_pivot = NodePath("CameraPivot")
+camera_3d = NodePath("CameraPivot/Camera3D")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_3jim6")
