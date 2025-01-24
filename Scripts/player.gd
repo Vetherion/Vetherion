@@ -2,8 +2,6 @@ extends CharacterBody3D
 
 #ray varialbes
 var RAY_LENGTH : float = 100.0
-var can_ray_car : bool = false
-var can_ray_item : bool = false
 
 @export var player: CharacterBody3D
 @export var camera_pivot: Node3D 
@@ -75,19 +73,6 @@ func _physics_process(delta: float) -> void:
 	move_direction = move_direction.normalized()
 	
 	velocity = velocity.move_toward(move_direction * move_speed, acceleration * delta)
-
-	# car
-	if can_ray_car == true: #Arabanın yakınındaysan ray gondermeye basla
-		var mousePos : Vector2 = get_viewport().get_size()/2
-		var from : Vector3 = camera3d.project_ray_origin(mousePos)
-		var to : Vector3 = from + camera3d.project_ray_normal(mousePos) * 18
-		
-		var new_intersection : PhysicsRayQueryParameters3D = PhysicsRayQueryParameters3D.create(from, to)
-		var intersection : Dictionary = camera3d.get_world_3d().direct_space_state.intersect_ray(new_intersection)
-		
-		if intersection and intersection.collider.is_in_group("Car"):
-			if Input.is_action_just_pressed("E"):
-				player.queue_free()
 	
 func _process(delta: float) -> void:
 	# Gravity
@@ -104,13 +89,3 @@ func _headchar(time : float) -> Vector3:
 	pos.y = sin(time * char_FREQ) * char_AMP
 	pos.x = cos(time * char_FREQ / 2) * char_AMP
 	return pos
-	
-func _on_CarArea_body_entered(body: Node3D) -> void:
-	can_ray_car = true
-func _on_CarArea_body_exited(body: Node3D) -> void:
-	can_ray_car = false
-	
-func _on_item_area_body_entered(body: Node3D) -> void:
-	can_ray_item = true
-func _on_item_area_body_exited(body: Node3D) -> void:
-	can_ray_item = false

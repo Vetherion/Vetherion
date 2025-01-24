@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bb34e6irwt0ia"]
+[gd_scene load_steps=8 format=3 uid="uid://bb34e6irwt0ia"]
 
 [ext_resource type="Script" path="res://Scripts/car.gd" id="1_e448e"]
 
@@ -23,6 +23,8 @@ bottom_radius = 0.4
 top_radius = 0.4
 bottom_radius = 0.4
 height = 0.25
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_3gq0r"]
 
 [node name="Car" type="VehicleBody3D" node_paths=PackedStringArray("camera_pivot", "camera_3d")]
 gravity_scale = 4.0
@@ -98,3 +100,10 @@ top_level = true
 
 [node name="Camera3D" type="Camera3D" parent="CameraPivot"]
 transform = Transform3D(-1, 0, -8.74228e-08, -2.22374e-08, 0.967108, 0.254366, 8.45473e-08, 0.254366, -0.967108, 0, 1.986, -4.8)
+
+[node name="HitBox" type="Area3D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitBox"]
+transform = Transform3D(2.8855, 0, 0, 0, 2.81781, 0, 0, 0, 3.63137, 0, 0, 0)
+shape = SubResource("SphereShape3D_3gq0r")

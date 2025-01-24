@@ -3,7 +3,9 @@
 extends RayCast3D
 
 @export var inventory_script : Node
+@export var player: Node
 var anim_played = false
+var in_car = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -16,6 +18,7 @@ func _process(delta: float) -> void:
 		var collider = get_collider()
 		if collider != null and collider.get_parent() != null and collider.get_parent().is_in_group("inv_item"):
 			%interaction.visible = 1
+			%interaction.get_node("Action").text = "take"
 			if !anim_played:
 				%anim.play("select_in")
 				anim_played = true
@@ -29,6 +32,18 @@ func _process(delta: float) -> void:
 				if group_check:
 					inventory_script.add_to_inv(group_check)
 				collider.get_parent().queue_free()
+			else:
+				pass
+		elif collider != null and collider.get_parent() != null and collider.get_parent().is_in_group("Car"):
+			%interaction.visible = 1
+			if !anim_played:
+				%anim.play("select_in")
+				anim_played = true
+			%interaction.get_node("Action").text = "enter car"
+			if !in_car:
+				if Input.is_action_just_pressed("E"):
+					player.queue_free()
+					in_car = true
 			else:
 				pass
 		else:
