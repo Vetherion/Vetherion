@@ -85,10 +85,6 @@ unique_name_in_owner = true
 current = true
 script = ExtResource("6_qdqrk")
 
-[node name="WeaponSwap" type="Timer" parent="CameraPivot/Recoil/Camera3D"]
-unique_name_in_owner = true
-wait_time = 100.0
-
 [node name="Interaction_Ray" type="RayCast3D" parent="CameraPivot/Recoil" node_paths=PackedStringArray("inventory_script", "player")]
 transform = Transform3D(1, 0, 0, 0, -1.13546e-07, -1, 0, 2.59764, -4.37114e-08, 0, 0, -0.139095)
 collision_mask = 2

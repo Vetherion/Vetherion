@@ -1,5 +1,6 @@
-[gd_scene load_steps=18 format=3 uid="uid://beqn6i68wci2n"]
+[gd_scene load_steps=19 format=3 uid="uid://beqn6i68wci2n"]
 
+[ext_resource type="Script" path="res://Scripts/3D_Level.gd" id="1_1ufpl"]
 [ext_resource type="PackedScene" uid="uid://bb34e6irwt0ia" path="res://Scenes/car.tscn" id="1_lvekw"]
 [ext_resource type="PackedScene" uid="uid://dhjrc28o432pk" path="res://Scenes/player.tscn" id="1_m4hl5"]
 [ext_resource type="Script" path="res://Scripts/dialogue.gd" id="3_axax1"]
@@ -39,6 +40,7 @@ points = PackedVector3Array(-2.73364, 0.233645, -50.2336, 2.87383, 0.233645, 50.
 
 [node name="3D_Level" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.453897, 0)
+script = ExtResource("1_1ufpl")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_yomnb")
