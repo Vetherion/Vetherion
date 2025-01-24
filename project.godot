@@ -34,6 +34,8 @@ Enemy=""
 Car=""
 label=""
 button=""
+inv_rifle0=""
+inv_sniper0=""
 
 [gui]
 

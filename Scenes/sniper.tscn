@@ -26,7 +26,7 @@ shader_parameter/fov = 77.0
 material = SubResource("ShaderMaterial_ldvg4")
 size = Vector3(0.15, 0.15, 1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_v7m3g"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3sroy"]
 render_priority = 0
 shader = ExtResource("1_7mc2g")
 shader_parameter/albedo = Color(1, 1, 1, 1)
@@ -42,7 +42,7 @@ shader_parameter/uv2_offset = Vector3(0, 0, 0)
 shader_parameter/fov = 77.0
 
 [sub_resource type="BoxMesh" id="BoxMesh_kn836"]
-material = SubResource("ShaderMaterial_v7m3g")
+material = SubResource("ShaderMaterial_3sroy")
 size = Vector3(0.15, 0.15, 0.15)
 
 [sub_resource type="BoxMesh" id="BoxMesh_p87hy"]

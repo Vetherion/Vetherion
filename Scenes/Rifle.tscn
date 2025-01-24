@@ -29,7 +29,7 @@ size = Vector3(0.1, 0.1, 0.6)
 [sub_resource type="BoxMesh" id="BoxMesh_7fbbn"]
 size = Vector3(0.1, 0.1, 0.6)
 
-[node name="Rifle" type="Node3D"]
+[node name="Rifle" type="Node3D" groups=["inv_item", "inv_rifle0"]]
 script = ExtResource("1_4ckwo")
 damagedistance = SubResource("Curve_cu53u")
 

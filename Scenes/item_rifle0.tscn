@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://5w744otwipe6"]
+
+[ext_resource type="BoxMesh" uid="uid://utiq3tvj2e62" path="res://Scenes/item_rifle0.tres" id="1_ugnsr"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_u60yv"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" groups=["inv_item", "inv_rifle0"]]
+transform = Transform3D(1.00267, 0, 0, 0, 1.00267, 0, 0, 0, 1.00267, 0, 0, 0)
+mesh = ExtResource("1_ugnsr")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1.41272, 0, 0, 0, 1.36189, 0, 0, 0, 1.61772, 0, 0, 0)
+shape = SubResource("SphereShape3D_u60yv")

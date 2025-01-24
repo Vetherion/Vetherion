@@ -28,7 +28,6 @@ const char_FREQ : float = 2.0
 const char_AMP : float = 0.08
 var t_char : float = 0.0
 
-@onready var inventory_script : Node = get_node("Inventory")
 
 func _ready() -> void: #Start the game by capturing the mouse
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED 
@@ -76,29 +75,7 @@ func _physics_process(delta: float) -> void:
 	move_direction = move_direction.normalized()
 	
 	velocity = velocity.move_toward(move_direction * move_speed, acceleration * delta)
-	
-	
-	
-	
-	
-	
-	
-	
-	## inventory
-	if can_ray_item == true: 
-		if inventory_script.is_eligible() != null:
-			%Label.visible = 1
-			if Input.is_action_just_pressed("E"):
-				var item : MeshInstance3D = inventory_script.is_eligible()
-				if "gun0" in item.get_groups():
-					inventory_script.add_to_inv("gun0")
-				item.queue_free()
-			else:
-				pass
-		else:
-			%Label.visible = 0
-	else:
-		%Label.visible = 0
+
 	# car
 	if can_ray_car == true: #Arabanın yakınındaysan ray gondermeye basla
 		var mousePos : Vector2 = get_viewport().get_size()/2
