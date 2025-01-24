@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://dhjrc28o432pk"]
+[gd_scene load_steps=16 format=3 uid="uid://dhjrc28o432pk"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_cbo13"]
 [ext_resource type="Script" path="res://Scripts/reticle.gd" id="2_77glr"]
 [ext_resource type="Script" path="res://Scripts/inventory.gd" id="3_eet5f"]
 [ext_resource type="Script" path="res://Scripts/interaction.gd" id="3_jhsic"]
+[ext_resource type="Script" path="res://Scenes/reticle_ray.gd" id="4_sikl1"]
+[ext_resource type="FontFile" uid="uid://cbbo8shk6iyv1" path="res://external/Orbitron Medium.ttf" id="6_6rmts"]
 [ext_resource type="Script" path="res://Scripts/weapons.gd" id="6_qdqrk"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_cbere"]
@@ -11,6 +13,53 @@ size = Vector3(1, 2, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gog4e"]
 size = Vector3(1, 2, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sdq1w"]
+bg_color = Color(0.521569, 0.478431, 1, 0.686275)
+skew = Vector2(450, 80)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7lpnh"]
+bg_color = Color(0.523333, 0.48, 1, 0.196078)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y1ptv"]
+bg_color = Color(0.301961, 0.109804, 0.321569, 1)
+
+[sub_resource type="Animation" id="Animation_3ow6n"]
+resource_name = "select_in"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:value")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 100.0]
+}
+
+[sub_resource type="Animation" id="Animation_b8b73"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c83au"]
+_data = {
+"RESET": SubResource("Animation_b8b73"),
+"select_in": SubResource("Animation_3ow6n")
+}
 
 [node name="player" type="CharacterBody3D" node_paths=PackedStringArray("player", "camera_pivot", "camera3d")]
 collision_layer = 3
@@ -42,10 +91,20 @@ wait_time = 100.0
 
 [node name="Interaction_Ray" type="RayCast3D" parent="CameraPivot/Recoil" node_paths=PackedStringArray("inventory_script")]
 transform = Transform3D(1, 0, 0, 0, -1.13546e-07, -1, 0, 2.59764, -4.37114e-08, 0, 0, -0.139095)
+collision_mask = 2
+hit_from_inside = true
 collide_with_areas = true
 collide_with_bodies = false
 script = ExtResource("3_jhsic")
 inventory_script = NodePath("../../../Inventory_backend")
+
+[node name="Reticle_Ray" type="RayCast3D" parent="CameraPivot/Recoil" node_paths=PackedStringArray("Reticle")]
+transform = Transform3D(1, 0, 0, 0, -1.42721e-06, -1, 0, 32.6507, -4.37114e-08, 0, 0, -0.51918)
+collision_mask = 4
+collide_with_areas = true
+collide_with_bodies = false
+script = ExtResource("4_sikl1")
+Reticle = NodePath("../../../UserInterface/Reticle")
 
 [node name="UserInterface" type="Control" parent="."]
 unique_name_in_owner = true
@@ -87,21 +146,80 @@ width = 2.0
 points = PackedVector2Array(-5, 0, -15, 0)
 width = 2.0
 
-[node name="Label" type="Label" parent="UserInterface"]
+[node name="interaction" type="Control" parent="UserInterface"]
 unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 0
+offset_left = 76.0
+offset_top = -21.0
+offset_right = 116.0
+offset_bottom = 19.0
+
+[node name="Panel" type="Panel" parent="UserInterface/interaction"]
 visible = false
+modulate = Color(0.521569, 0.478431, 1, 0.686275)
+layout_mode = 2
+offset_left = 960.0
+offset_top = 540.0
+offset_right = 960.0
+offset_bottom = 540.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_sdq1w")
+
+[node name="ProgressBar" type="ProgressBar" parent="UserInterface/interaction"]
+custom_minimum_size = Vector2(65, 80)
+layout_mode = 2
+offset_left = 761.0
+offset_top = 699.0
+offset_right = 831.0
+offset_bottom = 779.0
+theme_override_styles/background = SubResource("StyleBoxFlat_7lpnh")
+theme_override_styles/fill = SubResource("StyleBoxFlat_y1ptv")
+show_percentage = false
+
+[node name="Key" type="Label" parent="UserInterface/interaction/ProgressBar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -28.0
+offset_top = -26.0
+offset_right = 522.0
+offset_bottom = 574.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.1, 0.1)
+theme_override_fonts/font = ExtResource("6_6rmts")
+theme_override_font_sizes/font_size = 600
+text = "E"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="anim" type="AnimationPlayer" parent="UserInterface/interaction/ProgressBar"]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_c83au")
+}
+
+[node name="Action" type="Label" parent="UserInterface/interaction"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(450, 80)
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.401
-anchor_top = 0.633
-anchor_right = 0.62
-anchor_bottom = 0.697
-offset_left = -0.920044
-offset_top = 0.359985
-offset_right = -0.400024
-offset_bottom = 0.23999
-theme_override_font_sizes/font_size = 50
-text = "Press E to pick up"
+anchor_left = 0.449
+anchor_top = 0.648
+anchor_right = 0.684
+anchor_bottom = 0.722
+offset_left = 840.04
+offset_top = 690.08
+offset_right = 2213.64
+offset_bottom = 1187.12
+scale = Vector2(0.1, 0.1)
+theme_override_fonts/font = ExtResource("6_6rmts")
+theme_override_font_sizes/font_size = 500
+text = "Take"
 
 [node name="Inventory_backend" type="Node" parent="."]
 script = ExtResource("3_eet5f")

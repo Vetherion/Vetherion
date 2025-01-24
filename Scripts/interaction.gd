@@ -3,6 +3,7 @@
 extends RayCast3D
 
 @export var inventory_script : Node
+var anim_played = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -14,7 +15,10 @@ func _process(delta: float) -> void:
 	if is_colliding():
 		var collider = get_collider()
 		if collider != null and collider.get_parent() != null and collider.get_parent().is_in_group("inv_item"):
-			%Label.visible = 1
+			%interaction.visible = 1
+			if !anim_played:
+				%anim.play("select_in")
+				anim_played = true
 			if Input.is_action_just_pressed("E"):
 				var group_check: String
 				for i in collider.get_parent().get_groups():
@@ -28,6 +32,10 @@ func _process(delta: float) -> void:
 			else:
 				pass
 		else:
-			%Label.visible = 0
+			%interaction.visible = 0
+			%anim.play("RESET")
+			anim_played = false
 	else:
-		%Label.visible = 0
+		%interaction.visible = 0
+		%anim.play("RESET")
+		anim_played = false

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://beqn6i68wci2n"]
+[gd_scene load_steps=20 format=3 uid="uid://beqn6i68wci2n"]
 
 [ext_resource type="PackedScene" uid="uid://bb34e6irwt0ia" path="res://Scenes/car.tscn" id="1_lvekw"]
 [ext_resource type="PackedScene" uid="uid://dhjrc28o432pk" path="res://Scenes/player.tscn" id="1_m4hl5"]
@@ -24,7 +24,9 @@ glow_enabled = true
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_mey7e"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_510kb"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_a0bsd"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6qyta"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1oho3"]
 size = Vector3(7.5, 7.5, 7.5)
@@ -136,15 +138,33 @@ size_flags_horizontal = 4
 
 [node name="Enemy" type="CharacterBody3D" parent="Enemys" groups=["Enemy"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.2552, 0.995435, 0.280393)
+collision_layer = 4
 script = ExtResource("4_qhv1j")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Enemys/Enemy"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Enemys/Enemy" groups=["Enemy"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.37297, 0)
+layers = 4
 mesh = SubResource("CapsuleMesh_mey7e")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Enemys/Enemy"]
-shape = SubResource("CapsuleShape3D_510kb")
+shape = SubResource("CapsuleShape3D_a0bsd")
+
+[node name="HitBox" type="Area3D" parent="Enemys/Enemy" groups=["Enemy"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00155163, 0.00576389, -0.00306463)
+collision_layer = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enemys/Enemy/HitBox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.372865, 0)
+shape = SubResource("CapsuleShape3D_6qyta")
 
 [node name="Items" type="Node3D" parent="."]
+
+[node name="MeshInstance3D3" parent="Items" instance=ExtResource("8_8nm2w")]
+transform = Transform3D(1.00267, 0, 0, 0, 1.00267, 0, 0, 0, 1.00267, 4.59703, 1.28626, 0.528242)
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D" parent="Items" instance=ExtResource("8_57qg2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.05914, 1.17469, -1.8576)
 
 [node name="Car" parent="." groups=["Car"] instance=ExtResource("1_lvekw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00435877, 0.848271, -11.4523)
@@ -173,12 +193,6 @@ mesh = SubResource("BoxMesh_tigif")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D2/StaticBody3D"]
 shape = SubResource("ConvexPolygonShape3D_2bfvv")
-
-[node name="MeshInstance3D3" parent="." instance=ExtResource("8_8nm2w")]
-transform = Transform3D(1.00267, 0, 0, 0, 1.00267, 0, 0, 0, 1.00267, 4.59703, 1.28626, 0.528242)
-
-[node name="MeshInstance3D4" parent="." instance=ExtResource("8_57qg2")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 4.76149, 1.81411, -2.95618)
 
 [connection signal="gui_focus_changed" from="HUD/SubViewportContainer/SubViewport" to="HUD/SubViewportContainer/SubViewport/Dialogue" method="_on_sub_viewport_gui_focus_changed"]
 [connection signal="body_entered" from="Car/CarArea" to="player" method="_on_CarArea_body_entered"]

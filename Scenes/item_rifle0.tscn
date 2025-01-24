@@ -6,9 +6,11 @@
 
 [node name="MeshInstance3D" type="MeshInstance3D" groups=["inv_item", "inv_rifle0"]]
 transform = Transform3D(1.00267, 0, 0, 0, 1.00267, 0, 0, 0, 1.00267, 0, 0, 0)
+layers = 2
 mesh = ExtResource("1_ugnsr")
 
 [node name="Area3D" type="Area3D" parent="."]
+collision_layer = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1.41272, 0, 0, 0, 1.36189, 0, 0, 0, 1.61772, 0, 0, 0)
