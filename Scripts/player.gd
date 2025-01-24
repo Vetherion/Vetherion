@@ -1,8 +1,5 @@
 extends CharacterBody3D
 
-#ray varialbes
-var RAY_LENGTH : float = 100.0
-
 @export var player: CharacterBody3D
 @export var camera_pivot: Node3D 
 @export var camera3d: Camera3D 
@@ -25,7 +22,6 @@ var stamina : float = 100
 const char_FREQ : float = 2.0
 const char_AMP : float = 0.08
 var t_char : float = 0.0
-
 
 func _ready() -> void: #Start the game by capturing the mouse
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED 

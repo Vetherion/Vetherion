@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://Scripts/inventory.gd" id="3_eet5f"]
 [ext_resource type="Script" path="res://Scripts/interaction.gd" id="3_jhsic"]
 [ext_resource type="Script" path="res://Scenes/reticle_ray.gd" id="4_sikl1"]
-[ext_resource type="FontFile" uid="uid://cbbo8shk6iyv1" path="res://external/Orbitron Medium.ttf" id="6_6rmts"]
+[ext_resource type="FontFile" uid="uid://s2voy0wfkcuv" path="res://external/Orbitron Medium.ttf" id="6_6rmts"]
 [ext_resource type="Script" path="res://Scripts/weapons.gd" id="6_qdqrk"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_cbere"]
@@ -24,6 +24,21 @@ bg_color = Color(0.523333, 0.48, 1, 0.196078)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y1ptv"]
 bg_color = Color(0.301961, 0.109804, 0.321569, 1)
 
+[sub_resource type="Animation" id="Animation_b8b73"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
 [sub_resource type="Animation" id="Animation_3ow6n"]
 resource_name = "select_in"
 length = 0.1
@@ -38,21 +53,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.0, 100.0]
-}
-
-[sub_resource type="Animation" id="Animation_b8b73"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:value")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_c83au"]

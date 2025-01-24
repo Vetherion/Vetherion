@@ -16,7 +16,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if is_colliding():
 		var collider = get_collider()
-		if collider != null and collider.get_parent() != null and collider.get_parent().is_in_group("inv_item"):
+		if collider and collider.get_parent() and collider.get_parent().is_in_group("inv_item"):
 			%interaction.visible = 1
 			%interaction.get_node("Action").text = "take"
 			if !anim_played:
@@ -34,7 +34,7 @@ func _process(delta: float) -> void:
 				collider.get_parent().queue_free()
 			else:
 				pass
-		elif collider != null and collider.get_parent() != null and collider.get_parent().is_in_group("Car"):
+		elif collider and collider.get_parent() and collider.get_parent().is_in_group("Car"):
 			%interaction.visible = 1
 			if !anim_played:
 				%anim.play("select_in")
