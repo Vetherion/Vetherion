@@ -6,10 +6,11 @@ extends WeaponClass
 @onready var player : CharacterBody3D = get_parent().get_parent().get_parent().get_parent()
 @onready var camerapivot : Node3D = get_parent().get_parent().get_parent()
 @onready var level1 : Node3D = get_parent().get_parent().get_parent().get_parent().get_parent()
+@onready var StateMachine = player.get_node("StateMachine") 
 
 func _input(event: InputEvent) -> void:
 	#Handle Fire
-	if  Input.is_action_just_pressed("left_click") and canshoot and level1.magazine_sniper > 0:
+	if  Input.is_action_just_pressed("left_click") and canshoot and level1.magazine_sniper > 0 and StateMachine.currentState == StateMachine.STATES.Move:
 		level1.magazine_sniper -= 1
 		#Timer
 		canshoot = false

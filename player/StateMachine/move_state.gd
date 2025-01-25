@@ -1,8 +1,8 @@
-extends CharacterBody3D
+extends State
 
-@export var player: CharacterBody3D
-@export var camera_pivot: Node3D 
-@export var camera3d: Camera3D 
+@onready var player1: CharacterBody3D = $"../.."
+@onready var camera_pivot: Node3D = %CameraPivot
+@onready var camera3d: WeaponClass = %Camera3D
 
 @export_group("Camera")
 @export_range(0.0, 1.0) var mouse_sensitivity : float = 0.1
@@ -28,14 +28,8 @@ func _ready() -> void: #Start the game by capturing the mouse
 	
 func _input(event: InputEvent) -> void:
 	# Handle jump.
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-		
-	#MOUSE MODE
-	if event.is_action_pressed("six"):
-		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED #now you can use your mouse 
-	if event.is_action_pressed("ui_cancel"):
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE #now you cant use your mouse
+	if Input.is_action_just_pressed("jump") and player1.is_on_floor():
+		player1.velocity.y = JUMP_VELOCITY
 
 func _unhandled_input(event: InputEvent) -> void:
 	# Set camera_input_direction
@@ -68,17 +62,17 @@ func _physics_process(delta: float) -> void:
 	move_direction.y = 0.0
 	move_direction = move_direction.normalized()
 	
-	velocity = velocity.move_toward(move_direction * move_speed, acceleration * delta)
+	player1.velocity = player1.velocity.move_toward(move_direction * move_speed, acceleration * delta)
 	
 func _process(delta: float) -> void:
 	# Gravity
-	if not is_on_floor():
-		velocity += get_gravity() * delta * 5
+	if not player1.is_on_floor():
+		player1.velocity += player1.get_gravity() * delta * 5
 	# Head char 
-	t_char += delta * velocity.length() * float(is_on_floor())
+	t_char += delta * player1.velocity.length() * float(player1.is_on_floor())
 	camera3d.transform.origin = _headchar(t_char)
 	
-	move_and_slide()
+	player1.move_and_slide()
 	
 func _headchar(time : float) -> Vector3:
 	var pos : Vector3 = Vector3.ZERO

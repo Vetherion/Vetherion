@@ -1,12 +1,16 @@
-[gd_scene load_steps=16 format=3 uid="uid://dhjrc28o432pk"]
+[gd_scene load_steps=20 format=3 uid="uid://dhjrc28o432pk"]
 
-[ext_resource type="Script" path="res://Scripts/player.gd" id="1_cbo13"]
+[ext_resource type="Script" path="res://player/player.gd" id="1_cbo13"]
 [ext_resource type="Script" path="res://Scripts/reticle.gd" id="2_77glr"]
 [ext_resource type="Script" path="res://Scripts/inventory.gd" id="3_eet5f"]
 [ext_resource type="Script" path="res://Scripts/interaction.gd" id="3_jhsic"]
 [ext_resource type="Script" path="res://Scenes/reticle_ray.gd" id="4_sikl1"]
-[ext_resource type="FontFile" uid="uid://s2voy0wfkcuv" path="res://external/Orbitron Medium.ttf" id="6_6rmts"]
+[ext_resource type="FontFile" uid="uid://2ptvifg6hp" path="res://external/Orbitron Medium.ttf" id="6_6rmts"]
 [ext_resource type="Script" path="res://Scripts/weapons.gd" id="6_qdqrk"]
+[ext_resource type="Script" path="res://player/StateMachine/StateMachine.gd" id="8_bw4md"]
+[ext_resource type="Script" path="res://player/StateMachine/move_state.gd" id="9_uiyeq"]
+[ext_resource type="Script" path="res://player/StateMachine/diyalogue_state.gd" id="10_jw2nf"]
+[ext_resource type="Script" path="res://player/StateMachine/inventory_state.gd" id="11_pdbfm"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_cbere"]
 size = Vector3(1, 2, 1)
@@ -61,12 +65,9 @@ _data = {
 "select_in": SubResource("Animation_3ow6n")
 }
 
-[node name="player" type="CharacterBody3D" node_paths=PackedStringArray("player", "camera_pivot", "camera3d")]
+[node name="player" type="CharacterBody3D"]
 collision_layer = 3
 script = ExtResource("1_cbo13")
-player = NodePath(".")
-camera_pivot = NodePath("CameraPivot")
-camera3d = NodePath("CameraPivot/Recoil/Camera3D")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_cbere")
@@ -219,3 +220,16 @@ theme_override_font_sizes/font_size = 500
 
 [node name="Inventory_backend" type="Node" parent="."]
 script = ExtResource("3_eet5f")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("body")]
+script = ExtResource("8_bw4md")
+body = NodePath("..")
+
+[node name="Move" type="Node" parent="StateMachine"]
+script = ExtResource("9_uiyeq")
+
+[node name="Diyalogue" type="Node" parent="StateMachine"]
+script = ExtResource("10_jw2nf")
+
+[node name="Inventory" type="Node" parent="StateMachine"]
+script = ExtResource("11_pdbfm")
