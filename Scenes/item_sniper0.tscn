@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://vxgux5f407k8"]
+[gd_scene load_steps=6 format=3 uid="uid://vxgux5f407k8"]
 
 [ext_resource type="Shader" path="res://Shader/Weapon.gdshader" id="1_rjuj6"]
+[ext_resource type="BoxMesh" uid="uid://bxewtqgo3ax4c" path="res://overview_meshes/item_sniper0.tres" id="2_88yim"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ldvg4"]
 render_priority = 0
@@ -21,25 +22,6 @@ shader_parameter/fov = 77.0
 material = SubResource("ShaderMaterial_ldvg4")
 size = Vector3(0.15, 0.15, 1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_v7m3g"]
-render_priority = 0
-shader = ExtResource("1_rjuj6")
-shader_parameter/albedo = Color(1, 1, 1, 1)
-shader_parameter/point_size = 1.0
-shader_parameter/roughness = 1.0
-shader_parameter/metallic_texture_channel = null
-shader_parameter/specular = 0.5
-shader_parameter/metallic = 0.0
-shader_parameter/uv1_scale = Vector3(1, 1, 1)
-shader_parameter/uv1_offset = Vector3(0, 0, 0)
-shader_parameter/uv2_scale = Vector3(1, 1, 1)
-shader_parameter/uv2_offset = Vector3(0, 0, 0)
-shader_parameter/fov = 77.0
-
-[sub_resource type="BoxMesh" id="BoxMesh_22jev"]
-material = SubResource("ShaderMaterial_v7m3g")
-size = Vector3(0.15, 0.15, 0.15)
-
 [sub_resource type="SphereShape3D" id="SphereShape3D_31afy"]
 
 [node name="MeshInstance3D" type="MeshInstance3D" groups=["inv_item", "inv_sniper0"]]
@@ -51,7 +33,7 @@ mesh = SubResource("BoxMesh_8l8ee")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.137981, -0.42525)
 layers = 2
 cast_shadow = 0
-mesh = SubResource("BoxMesh_22jev")
+mesh = ExtResource("2_88yim")
 skeleton = NodePath("../..")
 
 [node name="Area3D" type="Area3D" parent="."]

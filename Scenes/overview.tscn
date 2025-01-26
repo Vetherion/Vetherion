@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://m8jbt25qi0j3"]
+
+[ext_resource type="Script" path="res://Scripts/overview.gd" id="1_rscwp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b3lih"]
+albedo_color = Color(1, 0.270588, 1, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_4fvq2"]
+material = SubResource("StandardMaterial3D_b3lih")
+
+[node name="Overview" type="Node3D"]
+script = ExtResource("1_rscwp")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-4.37114e-08, -0.504528, 0.863396, 0, 0.863396, 0.504528, -1, 2.20536e-08, -3.77402e-08, 0.906799, 0.54962, -0.295913)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(3.23247, 0, 0, 0, 1, 0, 0, 0, 2.80578, 0, -0.299544, -0.0709535)
+mesh = SubResource("PlaneMesh_4fvq2")
+
+[node name="item" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.254862)

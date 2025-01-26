@@ -87,7 +87,6 @@ show_percentage = false
 
 [node name="button" type="Button" parent="." groups=["button"]]
 modulate = Color(0.301961, 0.109804, 0.321569, 1)
-self_modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(300, 25)
 layout_mode = 1
 anchors_preset = -1

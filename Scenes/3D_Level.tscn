@@ -1,10 +1,12 @@
-[gd_scene load_steps=19 format=3 uid="uid://beqn6i68wci2n"]
+[gd_scene load_steps=21 format=3 uid="uid://beqn6i68wci2n"]
 
 [ext_resource type="Script" path="res://Scripts/3D_Level.gd" id="1_1ufpl"]
 [ext_resource type="PackedScene" uid="uid://bb34e6irwt0ia" path="res://Scenes/car.tscn" id="1_lvekw"]
 [ext_resource type="PackedScene" uid="uid://dhjrc28o432pk" path="res://player/player.tscn" id="1_m4hl5"]
 [ext_resource type="Script" path="res://Scripts/dialogue.gd" id="3_axax1"]
+[ext_resource type="PackedScene" uid="uid://didfhp7chm7e" path="res://Scenes/inventory_button.tscn" id="3_bu7mb"]
 [ext_resource type="PackedScene" uid="uid://bh2ojr7ymexb2" path="res://Scenes/label.tscn" id="3_cjef4"]
+[ext_resource type="PackedScene" uid="uid://m8jbt25qi0j3" path="res://Scenes/overview.tscn" id="3_v4pc7"]
 [ext_resource type="PackedScene" uid="uid://dmthcbtlrqmvk" path="res://Scenes/button.tscn" id="4_1jj05"]
 [ext_resource type="Script" path="res://Scripts/enemy.gd" id="4_qhv1j"]
 [ext_resource type="PackedScene" uid="uid://5w744otwipe6" path="res://Scenes/item_rifle0.tscn" id="8_8nm2w"]
@@ -57,11 +59,127 @@ size = Vector3(100, 0.002, 100)
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.204, 1.03697, -1.222)
 
 [node name="HUD" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="InventoryContainer" type="SubViewportContainer" parent="HUD"]
+visible = false
+layout_mode = 2
+offset_right = 512.0
+offset_bottom = 512.0
+
+[node name="SubViewport" type="SubViewport" parent="HUD/InventoryContainer"]
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 0
+
+[node name="Inventory" type="Control" parent="HUD/InventoryContainer/SubViewport"]
+unique_name_in_owner = true
+layout_mode = 3
+anchor_right = 0.264
+anchor_bottom = 0.468
+offset_right = -0.880005
+offset_bottom = -0.440033
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/InventoryContainer/SubViewport/Inventory"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="1" type="HBoxContainer" parent="HUD/InventoryContainer/SubViewport/Inventory/VBoxContainer"]
+layout_mode = 2
+
+[node name="1" parent="HUD/InventoryContainer/SubViewport/Inventory/VBoxContainer/1" node_paths=PackedStringArray("overview") instance=ExtResource("3_bu7mb")]
+layout_mode = 2
+overview = NodePath("../../../../../../OverviewContainer/Inventory_overview/Overview")
+
+[node name="2" parent="HUD/InventoryContainer/SubViewport/Inventory/VBoxContainer/1" node_paths=PackedStringArray("overview") instance=ExtResource("3_bu7mb")]
+layout_mode = 2
+overview = NodePath("../../../../../../OverviewContainer/Inventory_overview/Overview")
+
+[node name="3" parent="HUD/InventoryContainer/SubViewport/Inventory/VBoxContainer/1" node_paths=PackedStringArray("overview") instance=ExtResource("3_bu7mb")]
+layout_mode = 2
+overview = NodePath("../../../../../../OverviewContainer/Inventory_overview/Overview")
+
+[node name="4" parent="HUD/InventoryContainer/SubViewport/Inventory/VBoxContainer/1" node_paths=PackedStringArray("overview") instance=ExtResource("3_bu7mb")]
+layout_mode = 2
+overview = NodePath("../../../../../../OverviewContainer/Inventory_overview/Overview")
+
+[node name="2" type="HBoxContainer" parent="HUD/InventoryContainer/SubViewport/Inventory/VBoxContainer"]
+layout_mode = 2
+
+[node name="1" parent="HUD/InventoryContainer/SubViewport/Inventory/VBoxContainer/2" node_paths=PackedStringArray("overview") instance=ExtResource("3_bu7mb")]
+layout_mode = 2
+overview = NodePath("../../../../../../OverviewContainer/Inventory_overview/Overview")
+
+[node name="2" parent="HUD/InventoryContainer/SubViewport/Inventory/VBoxContainer/2" node_paths=PackedStringArray("overview") instance=ExtResource("3_bu7mb")]
+layout_mode = 2
+overview = NodePath("../../../../../../OverviewContainer/Inventory_overview/Overview")
+
+[node name="3" parent="HUD/InventoryContainer/SubViewport/Inventory/VBoxContainer/2" node_paths=PackedStringArray("overview") instance=ExtResource("3_bu7mb")]
+layout_mode = 2
+overview = NodePath("../../../../../../OverviewContainer/Inventory_overview/Overview")
+
+[node name="4" parent="HUD/InventoryContainer/SubViewport/Inventory/VBoxContainer/2" node_paths=PackedStringArray("overview") instance=ExtResource("3_bu7mb")]
+layout_mode = 2
+overview = NodePath("../../../../../../OverviewContainer/Inventory_overview/Overview")
+
+[node name="3" type="HBoxContainer" parent="HUD/InventoryContainer/SubViewport/Inventory/VBoxContainer"]
+layout_mode = 2
+
+[node name="1" parent="HUD/InventoryContainer/SubViewport/Inventory/VBoxContainer/3" node_paths=PackedStringArray("overview") instance=ExtResource("3_bu7mb")]
+layout_mode = 2
+overview = NodePath("../../../../../../OverviewContainer/Inventory_overview/Overview")
+
+[node name="2" parent="HUD/InventoryContainer/SubViewport/Inventory/VBoxContainer/3" node_paths=PackedStringArray("overview") instance=ExtResource("3_bu7mb")]
+layout_mode = 2
+overview = NodePath("../../../../../../OverviewContainer/Inventory_overview/Overview")
+
+[node name="3" parent="HUD/InventoryContainer/SubViewport/Inventory/VBoxContainer/3" node_paths=PackedStringArray("overview") instance=ExtResource("3_bu7mb")]
+layout_mode = 2
+overview = NodePath("../../../../../../OverviewContainer/Inventory_overview/Overview")
+
+[node name="4" parent="HUD/InventoryContainer/SubViewport/Inventory/VBoxContainer/3" node_paths=PackedStringArray("overview") instance=ExtResource("3_bu7mb")]
+layout_mode = 2
+overview = NodePath("../../../../../../OverviewContainer/Inventory_overview/Overview")
+
+[node name="4" type="HBoxContainer" parent="HUD/InventoryContainer/SubViewport/Inventory/VBoxContainer"]
+layout_mode = 2
+
+[node name="1" parent="HUD/InventoryContainer/SubViewport/Inventory/VBoxContainer/4" node_paths=PackedStringArray("overview") instance=ExtResource("3_bu7mb")]
+layout_mode = 2
+overview = NodePath("../../../../../../OverviewContainer/Inventory_overview/Overview")
+
+[node name="2" parent="HUD/InventoryContainer/SubViewport/Inventory/VBoxContainer/4" node_paths=PackedStringArray("overview") instance=ExtResource("3_bu7mb")]
+layout_mode = 2
+overview = NodePath("../../../../../../OverviewContainer/Inventory_overview/Overview")
+
+[node name="3" parent="HUD/InventoryContainer/SubViewport/Inventory/VBoxContainer/4" node_paths=PackedStringArray("overview") instance=ExtResource("3_bu7mb")]
+layout_mode = 2
+overview = NodePath("../../../../../../OverviewContainer/Inventory_overview/Overview")
+
+[node name="4" parent="HUD/InventoryContainer/SubViewport/Inventory/VBoxContainer/4" node_paths=PackedStringArray("overview") instance=ExtResource("3_bu7mb")]
+layout_mode = 2
+overview = NodePath("../../../../../../OverviewContainer/Inventory_overview/Overview")
+
+[node name="OverviewContainer" type="SubViewportContainer" parent="HUD"]
+visible = false
+layout_mode = 0
+offset_left = 238.0
+offset_top = 10.0
+offset_right = 438.0
+offset_bottom = 210.0
+
+[node name="Inventory_overview" type="SubViewport" parent="HUD/OverviewContainer"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(200, 200)
+render_target_update_mode = 0
+
+[node name="Overview" parent="HUD/OverviewContainer/Inventory_overview" instance=ExtResource("3_v4pc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 21.9599, -23.4257)
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="HUD"]
 custom_minimum_size = Vector2(1920, 1080)
@@ -69,20 +187,13 @@ layout_mode = 1
 anchors_preset = -1
 offset_right = 1920.0
 offset_bottom = 1080.0
+mouse_filter = 2
 
 [node name="SubViewport" type="SubViewport" parent="HUD/SubViewportContainer"]
 transparent_bg = true
 handle_input_locally = false
 size = Vector2i(1920, 1080)
-render_target_update_mode = 0
-
-[node name="Inventory" type="Control" parent="HUD/SubViewportContainer/SubViewport"]
-unique_name_in_owner = true
-layout_mode = 3
-anchor_right = 0.264
-anchor_bottom = 0.468
-offset_right = -0.880005
-offset_bottom = -0.440033
+render_target_update_mode = 4
 
 [node name="Dialogue" type="Control" parent="HUD/SubViewportContainer/SubViewport"]
 unique_name_in_owner = true
@@ -182,6 +293,22 @@ mesh = SubResource("PlaneMesh_hhvtk")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
 shape = SubResource("ConvexPolygonShape3D_83pwm")
 
+[connection signal="pressed" from="HUD/InventoryContainer/SubViewport/Inventory/VBoxContainer/1/1" to="HUD/InventoryContainer/SubViewport/Inventory/VBoxContainer/1/1" method="_on_pressed"]
+[connection signal="pressed" from="HUD/InventoryContainer/SubViewport/Inventory/VBoxContainer/1/2" to="HUD/InventoryContainer/SubViewport/Inventory/VBoxContainer/1/2" method="_on_pressed"]
+[connection signal="pressed" from="HUD/InventoryContainer/SubViewport/Inventory/VBoxContainer/1/3" to="HUD/InventoryContainer/SubViewport/Inventory/VBoxContainer/1/3" method="_on_pressed"]
+[connection signal="pressed" from="HUD/InventoryContainer/SubViewport/Inventory/VBoxContainer/1/4" to="HUD/InventoryContainer/SubViewport/Inventory/VBoxContainer/1/4" method="_on_pressed"]
+[connection signal="pressed" from="HUD/InventoryContainer/SubViewport/Inventory/VBoxContainer/2/1" to="HUD/InventoryContainer/SubViewport/Inventory/VBoxContainer/2/1" method="_on_pressed"]
+[connection signal="pressed" from="HUD/InventoryContainer/SubViewport/Inventory/VBoxContainer/2/2" to="HUD/InventoryContainer/SubViewport/Inventory/VBoxContainer/2/2" method="_on_pressed"]
+[connection signal="pressed" from="HUD/InventoryContainer/SubViewport/Inventory/VBoxContainer/2/3" to="HUD/InventoryContainer/SubViewport/Inventory/VBoxContainer/2/3" method="_on_pressed"]
+[connection signal="pressed" from="HUD/InventoryContainer/SubViewport/Inventory/VBoxContainer/2/4" to="HUD/InventoryContainer/SubViewport/Inventory/VBoxContainer/2/4" method="_on_pressed"]
+[connection signal="pressed" from="HUD/InventoryContainer/SubViewport/Inventory/VBoxContainer/3/1" to="HUD/InventoryContainer/SubViewport/Inventory/VBoxContainer/3/1" method="_on_pressed"]
+[connection signal="pressed" from="HUD/InventoryContainer/SubViewport/Inventory/VBoxContainer/3/2" to="HUD/InventoryContainer/SubViewport/Inventory/VBoxContainer/3/2" method="_on_pressed"]
+[connection signal="pressed" from="HUD/InventoryContainer/SubViewport/Inventory/VBoxContainer/3/3" to="HUD/InventoryContainer/SubViewport/Inventory/VBoxContainer/3/3" method="_on_pressed"]
+[connection signal="pressed" from="HUD/InventoryContainer/SubViewport/Inventory/VBoxContainer/3/4" to="HUD/InventoryContainer/SubViewport/Inventory/VBoxContainer/3/4" method="_on_pressed"]
+[connection signal="pressed" from="HUD/InventoryContainer/SubViewport/Inventory/VBoxContainer/4/1" to="HUD/InventoryContainer/SubViewport/Inventory/VBoxContainer/4/1" method="_on_pressed"]
+[connection signal="pressed" from="HUD/InventoryContainer/SubViewport/Inventory/VBoxContainer/4/2" to="HUD/InventoryContainer/SubViewport/Inventory/VBoxContainer/4/2" method="_on_pressed"]
+[connection signal="pressed" from="HUD/InventoryContainer/SubViewport/Inventory/VBoxContainer/4/3" to="HUD/InventoryContainer/SubViewport/Inventory/VBoxContainer/4/3" method="_on_pressed"]
+[connection signal="pressed" from="HUD/InventoryContainer/SubViewport/Inventory/VBoxContainer/4/4" to="HUD/InventoryContainer/SubViewport/Inventory/VBoxContainer/4/4" method="_on_pressed"]
 [connection signal="gui_focus_changed" from="HUD/SubViewportContainer/SubViewport" to="HUD/SubViewportContainer/SubViewport/Dialogue" method="_on_sub_viewport_gui_focus_changed"]
 [connection signal="body_entered" from="Car/CarArea" to="player" method="_on_CarArea_body_entered"]
 [connection signal="body_exited" from="Car/CarArea" to="player" method="_on_CarArea_body_exited"]

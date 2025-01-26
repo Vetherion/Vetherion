@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://5w744otwipe6"]
 
-[ext_resource type="BoxMesh" uid="uid://utiq3tvj2e62" path="res://Scenes/item_rifle0.tres" id="1_ugnsr"]
+[ext_resource type="BoxMesh" uid="uid://utiq3tvj2e62" path="res://overview_meshes/item_rifle0.tres" id="1_ugnsr"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_u60yv"]
 
