@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://beqn6i68wci2n"]
+[gd_scene load_steps=26 format=3 uid="uid://beqn6i68wci2n"]
 
 [ext_resource type="Script" path="res://Scripts/3D_Level.gd" id="1_1ufpl"]
 [ext_resource type="PackedScene" uid="uid://bb34e6irwt0ia" path="res://car/car.tscn" id="1_lvekw"]
@@ -8,7 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://bh2ojr7ymexb2" path="res://Scenes/label.tscn" id="3_cjef4"]
 [ext_resource type="PackedScene" uid="uid://m8jbt25qi0j3" path="res://Scenes/overview.tscn" id="3_v4pc7"]
 [ext_resource type="PackedScene" uid="uid://dmthcbtlrqmvk" path="res://Scenes/button.tscn" id="4_1jj05"]
+[ext_resource type="Script" path="res://Scripts/ui.gd" id="4_5qmae"]
 [ext_resource type="Script" path="res://enemy/enemy.gd" id="4_qhv1j"]
+[ext_resource type="FontFile" uid="uid://ckjqci0g26e80" path="res://external/Orbitron Medium.ttf" id="4_vlyd7"]
 [ext_resource type="PackedScene" uid="uid://5w744otwipe6" path="res://Scenes/item_rifle0.tscn" id="8_8nm2w"]
 [ext_resource type="PackedScene" uid="uid://vxgux5f407k8" path="res://Scenes/item_sniper0.tscn" id="8_57qg2"]
 
@@ -171,6 +173,44 @@ overview = NodePath("../../../../../../OverviewContainer/Inventory_overview/Over
 layout_mode = 2
 overview = NodePath("../../../../../../OverviewContainer/Inventory_overview/Overview")
 
+[node name="UI" type="HBoxContainer" parent="HUD/InventoryContainer/SubViewport/Inventory/VBoxContainer" node_paths=PackedStringArray("player")]
+layout_mode = 2
+script = ExtResource("4_5qmae")
+player = NodePath("../../../../../../player")
+
+[node name="item_inactive_button" parent="HUD/InventoryContainer/SubViewport/Inventory/VBoxContainer/UI" node_paths=PackedStringArray("overview") instance=ExtResource("3_bu7mb")]
+custom_minimum_size = Vector2(110, 50)
+layout_mode = 2
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_vlyd7")
+theme_override_font_sizes/font_size = 16
+disabled = true
+overview = NodePath("../../../../../../OverviewContainer/Inventory_overview/Overview")
+
+[node name="equip" parent="HUD/InventoryContainer/SubViewport/Inventory/VBoxContainer/UI" node_paths=PackedStringArray("overview") instance=ExtResource("3_bu7mb")]
+custom_minimum_size = Vector2(106, 50)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_vlyd7")
+theme_override_font_sizes/font_size = 16
+text = "Equip"
+overview = NodePath("../../../../../../OverviewContainer/Inventory_overview/Overview")
+
+[node name="inequip" parent="HUD/InventoryContainer/SubViewport/Inventory/VBoxContainer/UI" node_paths=PackedStringArray("overview") instance=ExtResource("3_bu7mb")]
+custom_minimum_size = Vector2(106, 50)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_vlyd7")
+theme_override_font_sizes/font_size = 16
+text = "Inequip"
+overview = NodePath("../../../../../../OverviewContainer/Inventory_overview/Overview")
+
+[node name="drop" parent="HUD/InventoryContainer/SubViewport/Inventory/VBoxContainer/UI" node_paths=PackedStringArray("overview") instance=ExtResource("3_bu7mb")]
+custom_minimum_size = Vector2(106, 50)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_vlyd7")
+theme_override_font_sizes/font_size = 16
+text = "Drop"
+overview = NodePath("../../../../../../OverviewContainer/Inventory_overview/Overview")
+
 [node name="OverviewContainer" type="SubViewportContainer" parent="HUD"]
 visible = false
 layout_mode = 0
@@ -241,6 +281,7 @@ grow_vertical = 2
 modulate = Color(0, 0.646279, 0.720069, 1)
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("4_vlyd7")
 theme_override_font_sizes/font_size = 18
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HUD/SubViewportContainer/SubViewport/Dialogue/VBoxContainer"]
@@ -338,6 +379,9 @@ shape = SubResource("BoxShape3D_1oho3")
 [connection signal="pressed" from="HUD/InventoryContainer/SubViewport/Inventory/VBoxContainer/4/2" to="HUD/InventoryContainer/SubViewport/Inventory/VBoxContainer/4/2" method="_on_pressed"]
 [connection signal="pressed" from="HUD/InventoryContainer/SubViewport/Inventory/VBoxContainer/4/3" to="HUD/InventoryContainer/SubViewport/Inventory/VBoxContainer/4/3" method="_on_pressed"]
 [connection signal="pressed" from="HUD/InventoryContainer/SubViewport/Inventory/VBoxContainer/4/4" to="HUD/InventoryContainer/SubViewport/Inventory/VBoxContainer/4/4" method="_on_pressed"]
+[connection signal="pressed" from="HUD/InventoryContainer/SubViewport/Inventory/VBoxContainer/UI/equip" to="HUD/InventoryContainer/SubViewport/Inventory/VBoxContainer/UI" method="_on_equip_pressed"]
+[connection signal="pressed" from="HUD/InventoryContainer/SubViewport/Inventory/VBoxContainer/UI/inequip" to="HUD/InventoryContainer/SubViewport/Inventory/VBoxContainer/UI" method="_on_inequip_pressed"]
+[connection signal="pressed" from="HUD/InventoryContainer/SubViewport/Inventory/VBoxContainer/UI/drop" to="HUD/InventoryContainer/SubViewport/Inventory/VBoxContainer/UI" method="_on_drop_pressed"]
 [connection signal="gui_focus_changed" from="HUD/SubViewportContainer/SubViewport" to="HUD/SubViewportContainer/SubViewport/Dialogue" method="_on_sub_viewport_gui_focus_changed"]
 [connection signal="body_entered" from="NavigationRegion3D/Car/CarArea" to="player" method="_on_CarArea_body_entered"]
 [connection signal="body_exited" from="NavigationRegion3D/Car/CarArea" to="player" method="_on_CarArea_body_exited"]

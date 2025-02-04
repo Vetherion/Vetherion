@@ -14,8 +14,12 @@ func _process(delta: float) -> void:
 
 func _on_pressed() -> void:
 	if self.is_in_group("inv_sniper0"):
-		print("load1")
+		self.get_parent().get_parent().get_node("UI").selected_item = "inv_sniper0"
+		self.get_parent().get_parent().get_node("UI/item_inactive_button").text = "Sniper0"
+		print("Sniper select")
 		overview.get_node("item").mesh = load("res://overview_meshes/item_sniper0.tres")
 	elif self.is_in_group("inv_rifle0"):
-		print("load2")
+		self.get_parent().get_parent().get_node("UI").selected_item = "inv_rifle0"
+		self.get_parent().get_parent().get_node("UI/item_inactive_button").text = "Rifle0"
+		print("Rifle select")
 		overview.get_node("item").mesh = load("res://overview_meshes/item_rifle0.tres")
