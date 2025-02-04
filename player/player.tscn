@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dhjrc28o432pk"]
+[gd_scene load_steps=20 format=3 uid="uid://dhjrc28o432pk"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_cbo13"]
 [ext_resource type="Script" path="res://weapons/reticle.gd" id="2_77glr"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://Scripts/interaction.gd" id="3_jhsic"]
 [ext_resource type="Script" path="res://Scripts/reticle_ray.gd" id="4_sikl1"]
 [ext_resource type="Script" path="res://weapons/weapons.gd" id="6_qdqrk"]
+[ext_resource type="FontFile" uid="uid://ckjqci0g26e80" path="res://external/Orbitron Medium.ttf" id="6_w4t3i"]
 [ext_resource type="Script" path="res://player/StateMachine/StateMachine.gd" id="8_bw4md"]
 [ext_resource type="Script" path="res://player/StateMachine/move_state.gd" id="9_uiyeq"]
 [ext_resource type="Script" path="res://player/StateMachine/diyalogue_state.gd" id="10_jw2nf"]
@@ -87,7 +88,7 @@ script = ExtResource("6_qdqrk")
 
 [node name="Interaction_Ray" type="RayCast3D" parent="CameraPivot/Recoil" node_paths=PackedStringArray("inventory_script", "player")]
 transform = Transform3D(1, 0, 0, 0, -1.13546e-07, -1, 0, 2.59764, -4.37114e-08, 0, 0, -0.139095)
-collision_mask = 2
+collision_mask = 8
 hit_from_inside = true
 collide_with_areas = true
 script = ExtResource("3_jhsic")
@@ -186,6 +187,7 @@ offset_bottom = 574.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.1, 0.1)
+theme_override_fonts/font = ExtResource("6_w4t3i")
 theme_override_font_sizes/font_size = 600
 text = "E"
 horizontal_alignment = 1
@@ -212,6 +214,7 @@ offset_top = 690.08
 offset_right = 2213.64
 offset_bottom = 1187.12
 scale = Vector2(0.1, 0.1)
+theme_override_fonts/font = ExtResource("6_w4t3i")
 theme_override_font_sizes/font_size = 500
 
 [node name="Inventory_backend" type="Node" parent="."]

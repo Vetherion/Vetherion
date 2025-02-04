@@ -31,13 +31,13 @@ mesh = SubResource("BoxMesh_8l8ee")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.137981, -0.42525)
-layers = 2
+layers = 8
 cast_shadow = 0
 mesh = ExtResource("2_88yim")
 skeleton = NodePath("../..")
 
 [node name="Area3D" type="Area3D" parent="."]
-collision_layer = 2
+collision_layer = 8
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1.4147, 0, 0, 0, 1.28421, 0, 0, 0, 1.4364, 0, 0, 0)

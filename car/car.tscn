@@ -102,7 +102,7 @@ top_level = true
 transform = Transform3D(-1, 0, -8.74228e-08, -2.22374e-08, 0.967108, 0.254366, 8.45473e-08, 0.254366, -0.967108, 0, 1.986, -4.8)
 
 [node name="HitBox" type="Area3D" parent="."]
-collision_layer = 2
+collision_layer = 8
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HitBox"]
 transform = Transform3D(2.8855, 0, 0, 0, 2.81781, 0, 0, 0, 3.63137, 0, 0, 0)
