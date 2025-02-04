@@ -36,9 +36,6 @@ func attack_player() -> void:
 	can_attack = false  # Start attack cooldown
 	
 	# Configure raycast
-	raycast.enabled = true
-	raycast.target_position = (player.global_position - global_position).normalized() * 10  # Changed cast_to to target_position
-	
 	# Process raycast collision
 	if raycast.is_colliding():
 		var collider = raycast.get_collider()
@@ -49,8 +46,6 @@ func attack_player() -> void:
 			print("Ray başka bir nesneye çarptı!")
 	else:
 		print("Ray hiçbir nesneye çarpmadı!")
-	
-	raycast.enabled = false
 	
 	# Play attack animation if available
 	if has_node("AnimationPlayer"):

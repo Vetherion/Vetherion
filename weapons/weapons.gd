@@ -11,10 +11,10 @@ var distance : float
 
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("Rifle"):
-		var rifle_scene : PackedScene = preload("res://Scenes/Rifle.tscn")
+		var rifle_scene : PackedScene = preload("res://weapons/rifle/Rifle.tscn")
 		spawn_weapon(rifle_scene)
 	if Input.is_action_just_pressed("Sniper"):
-		var sniper_scene : PackedScene = preload("res://Scenes/sniper.tscn")
+		var sniper_scene : PackedScene = preload("res://weapons/sniper/sniper.tscn")
 		spawn_weapon(sniper_scene)
 		
 func spawn_weapon(weapon_scene: PackedScene) -> void:

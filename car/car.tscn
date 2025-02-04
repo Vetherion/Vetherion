@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://bb34e6irwt0ia"]
 
-[ext_resource type="Script" path="res://Scripts/car.gd" id="1_e448e"]
+[ext_resource type="Script" path="res://car/car.gd" id="1_e448e"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ew0gx"]
 shading_mode = 2

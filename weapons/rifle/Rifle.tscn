@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://bb6lbab00x0me"]
 
-[ext_resource type="Script" path="res://Scripts/rifle.gd" id="1_4ckwo"]
+[ext_resource type="Script" path="res://weapons/rifle/rifle.gd" id="1_4ckwo"]
 [ext_resource type="Shader" path="res://Shader/Weapon.gdshader" id="1_21b3a"]
 
 [sub_resource type="Curve" id="Curve_cu53u"]
