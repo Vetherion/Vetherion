@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://beqn6i68wci2n"]
+[gd_scene load_steps=24 format=3 uid="uid://beqn6i68wci2n"]
 
 [ext_resource type="Script" path="res://Scripts/3D_Level.gd" id="1_1ufpl"]
 [ext_resource type="PackedScene" uid="uid://bb34e6irwt0ia" path="res://Scenes/car.tscn" id="1_lvekw"]
@@ -25,20 +25,30 @@ sky = SubResource("Sky_gnomw")
 tonemap_mode = 2
 glow_enabled = true
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_mey7e"]
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_a0bsd"]
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6qyta"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_1oho3"]
-size = Vector3(7.5, 7.5, 7.5)
+[sub_resource type="NavigationMesh" id="NavigationMesh_hqwfi"]
+vertices = PackedVector3Array(-1.5, 0.406719, -13, 0, 0.406719, -13.25, 0, 0.406719, -49.5, -49.5, 0.406719, -49.5, -49.5, 0.406719, -11.25, -1.5, 0.406719, -11.25, 1.25, 0.406719, -9.75, 0.75, 0.406719, -9.5, 12, 0.406719, 2.5, 13, 0.406719, 1.75, 1.25, 0.406719, -13, 15, 0.406719, 1.75, 49.5, 0.406719, 2.75, 49.5, 0.406719, -49.5, 15.5, 0.406719, 2.75, -0.5, 1.65672, -12.25, -0.5, 1.65672, -10.5, 0.25, 1.65672, -10.5, 0.25, 1.65672, -12.25, -2, 0.656719, 21, -2, 1.15672, 23, 2, 1.15672, 23, 2, 0.656719, 21, -3, 0.406719, 21, -1.25, 0.406719, -9.5, -49.5, 0.406719, 23, 12.5, 0.406719, 3.5, -3, 0.406719, 23, 2.75, 0.406719, 21, 15, 0.406719, 4, 13, 0.406719, 4, 3, 0.406719, 21.25, 3, 0.406719, 28.25, 0.75, 0.406719, 28.5, 0.75, 0.406719, 49.5, 49.5, 0.406719, 49.5, -0.75, 0.406719, 49.5, -0.75, 0.406719, 28.5, -3, 0.406719, 28.25, -49.5, 0.406719, 49.5, -2, 18.1567, 111.25, 2, 18.1567, 111.25)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(3, 0, 4), PackedInt32Array(0, 5, 4), PackedInt32Array(7, 6, 8), PackedInt32Array(8, 6, 9), PackedInt32Array(10, 1, 2), PackedInt32Array(9, 6, 11), PackedInt32Array(11, 6, 10), PackedInt32Array(11, 10, 12), PackedInt32Array(12, 10, 2), PackedInt32Array(12, 2, 13), PackedInt32Array(12, 14, 11), PackedInt32Array(18, 17, 15), PackedInt32Array(15, 17, 16), PackedInt32Array(22, 21, 19), PackedInt32Array(19, 21, 20), PackedInt32Array(24, 23, 5), PackedInt32Array(5, 23, 4), PackedInt32Array(4, 23, 25), PackedInt32Array(8, 26, 7), PackedInt32Array(7, 26, 24), PackedInt32Array(24, 26, 19), PackedInt32Array(24, 19, 23), PackedInt32Array(23, 27, 25), PackedInt32Array(26, 28, 22), PackedInt32Array(26, 22, 19), PackedInt32Array(30, 29, 31), PackedInt32Array(31, 29, 32), PackedInt32Array(34, 33, 32), PackedInt32Array(32, 29, 34), PackedInt32Array(34, 29, 12), PackedInt32Array(34, 12, 35), PackedInt32Array(29, 14, 12), PackedInt32Array(31, 28, 30), PackedInt32Array(30, 28, 26), PackedInt32Array(38, 37, 36), PackedInt32Array(25, 27, 38), PackedInt32Array(36, 39, 38), PackedInt32Array(38, 39, 25), PackedInt32Array(41, 40, 21), PackedInt32Array(21, 40, 20), PackedInt32Array(37, 33, 36), PackedInt32Array(36, 33, 34)]
+agent_radius = 0.4
+agent_max_slope = 60.0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_hhvtk"]
 size = Vector2(5, 100)
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_83pwm"]
 points = PackedVector3Array(-2.73364, 0.233645, -50.2336, 2.87383, 0.233645, 50.2336, 2.87383, 0.233645, -50.2336, -2.73364, 0.233645, 50.2336)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_mey7e"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_jegip"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_a0bsd"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6qyta"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_4xl1m"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1oho3"]
+size = Vector3(7.5, 7.5, 7.5)
 
 [node name="3D_Level" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.453897, 0)
@@ -50,10 +60,6 @@ environment = SubResource("Environment_yomnb")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
 shadow_enabled = true
-
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
-use_collision = true
-size = Vector3(100, 0.002, 100)
 
 [node name="player" parent="." instance=ExtResource("1_m4hl5")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.204, 1.03697, -1.222)
@@ -244,27 +250,6 @@ size_flags_horizontal = 4
 
 [node name="Enemys" type="Node3D" parent="."]
 
-[node name="Enemy" type="CharacterBody3D" parent="Enemys" groups=["Enemy"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.2552, 0.995435, 0.280393)
-collision_layer = 4
-script = ExtResource("4_qhv1j")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Enemys/Enemy" groups=["Enemy"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.37297, 0)
-layers = 4
-mesh = SubResource("CapsuleMesh_mey7e")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Enemys/Enemy"]
-shape = SubResource("CapsuleShape3D_a0bsd")
-
-[node name="HitBox" type="Area3D" parent="Enemys/Enemy" groups=["Enemy"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00155163, 0.00576389, -0.00306463)
-collision_layer = 4
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Enemys/Enemy/HitBox"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.372865, 0)
-shape = SubResource("CapsuleShape3D_6qyta")
-
 [node name="Items" type="Node3D" parent="."]
 
 [node name="MeshInstance3D3" parent="Items" instance=ExtResource("8_8nm2w")]
@@ -274,24 +259,70 @@ skeleton = NodePath("../..")
 [node name="MeshInstance3D" parent="Items" instance=ExtResource("8_57qg2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.05914, 1.17469, -1.8576)
 
-[node name="Car" parent="." groups=["Car"] instance=ExtResource("1_lvekw")]
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_hqwfi")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D"]
+use_collision = true
+size = Vector3(100, 0.002, 100)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 0.981969, 0.189044, 0, -0.189044, 0.981969, 0, 8.35892, 62.6766)
+mesh = SubResource("PlaneMesh_hhvtk")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_83pwm")
+
+[node name="Enemy" type="CharacterBody3D" parent="NavigationRegion3D" groups=["Enemy"]]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 14.2948, 1.07276, 2.96155)
+collision_layer = 4
+script = ExtResource("4_qhv1j")
+player_path = NodePath("../../player")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Enemy" groups=["Enemy"]]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.0189381, -0.0306526, 0)
+layers = 4
+mesh = SubResource("CapsuleMesh_mey7e")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Enemy/MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.528182, -0.528152, 0.0274588)
+mesh = SubResource("BoxMesh_jegip")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Enemy"]
+shape = SubResource("CapsuleShape3D_a0bsd")
+
+[node name="HitBox" type="Area3D" parent="NavigationRegion3D/Enemy" groups=["Enemy"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00155163, 0.00576389, -0.00306463)
+collision_layer = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Enemy/HitBox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.372865, 0)
+shape = SubResource("CapsuleShape3D_6qyta")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="NavigationRegion3D/Enemy"]
+
+[node name="Timer" type="Timer" parent="NavigationRegion3D/Enemy"]
+wait_time = 0.5
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="NavigationRegion3D/Enemy"]
+transform = Transform3D(-4.37114e-08, 0, -0.138524, 0, 0.211235, 0, 1, 0, -6.0551e-09, 0.315255, 0.0837657, -1.22121)
+mesh = SubResource("BoxMesh_4xl1m")
+
+[node name="RayCast3D" type="RayCast3D" parent="NavigationRegion3D/Enemy"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.528243, -0.523024)
+
+[node name="Car" parent="NavigationRegion3D" groups=["Car"] instance=ExtResource("1_lvekw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00435877, 0.848271, -11.4523)
 
-[node name="CarArea" type="Area3D" parent="Car"]
+[node name="CarArea" type="Area3D" parent="NavigationRegion3D/Car"]
 collision_layer = 0
 collision_mask = 2
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Car/CarArea"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Car/CarArea"]
 shape = SubResource("BoxShape3D_1oho3")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.981969, 0.189044, 0, -0.189044, 0.981969, 0, 8.35892, 62.6766)
-mesh = SubResource("PlaneMesh_hhvtk")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
-shape = SubResource("ConvexPolygonShape3D_83pwm")
 
 [connection signal="pressed" from="HUD/InventoryContainer/SubViewport/Inventory/VBoxContainer/1/1" to="HUD/InventoryContainer/SubViewport/Inventory/VBoxContainer/1/1" method="_on_pressed"]
 [connection signal="pressed" from="HUD/InventoryContainer/SubViewport/Inventory/VBoxContainer/1/2" to="HUD/InventoryContainer/SubViewport/Inventory/VBoxContainer/1/2" method="_on_pressed"]
@@ -310,5 +341,5 @@ shape = SubResource("ConvexPolygonShape3D_83pwm")
 [connection signal="pressed" from="HUD/InventoryContainer/SubViewport/Inventory/VBoxContainer/4/3" to="HUD/InventoryContainer/SubViewport/Inventory/VBoxContainer/4/3" method="_on_pressed"]
 [connection signal="pressed" from="HUD/InventoryContainer/SubViewport/Inventory/VBoxContainer/4/4" to="HUD/InventoryContainer/SubViewport/Inventory/VBoxContainer/4/4" method="_on_pressed"]
 [connection signal="gui_focus_changed" from="HUD/SubViewportContainer/SubViewport" to="HUD/SubViewportContainer/SubViewport/Dialogue" method="_on_sub_viewport_gui_focus_changed"]
-[connection signal="body_entered" from="Car/CarArea" to="player" method="_on_CarArea_body_entered"]
-[connection signal="body_exited" from="Car/CarArea" to="player" method="_on_CarArea_body_exited"]
+[connection signal="body_entered" from="NavigationRegion3D/Car/CarArea" to="player" method="_on_CarArea_body_entered"]
+[connection signal="body_exited" from="NavigationRegion3D/Car/CarArea" to="player" method="_on_CarArea_body_exited"]

@@ -22,7 +22,6 @@ func _physics_process(delta: float) -> void:
 		
 		var new_intersection : PhysicsRayQueryParameters3D = PhysicsRayQueryParameters3D.create(from, to)
 		var intersection : Dictionary = camera3d.get_world_3d().direct_space_state.intersect_ray(new_intersection)
-
 		if intersection and intersection.collider.is_in_group("Enemy"):
 			distance = abs(player.global_position.distance_to(intersection.collider.global_position)) * 0.01
 			intersection.collider.damage(20.0 * round(damagedistance.sample_baked(distance)))

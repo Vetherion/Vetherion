@@ -19,12 +19,12 @@ func _physics_process(delta: float) -> void:
 		steering = move_toward(steering, Input.get_axis("move_right", "move_left") * MAX_STEER, delta * 2.5)
 		engine_force = Input.get_axis("move_back", "move_forward") * ENGINE_POWER
 		camera_pivot.global_position = camera_pivot.global_position.lerp(global_position, delta * 20.0)
-		#camera_pivot.transform = camera_pivot.transform.interpolate_with(transform, delta * 5.0)
-		#look_at = look_at.lerp(global_position + linear_velocity, delta * 5)
-		#camera_3d.look_at(look_at)
-		camera_pivot.rotation.x -= camera_input_direction.y * delta
-		camera_pivot.rotation.x = clamp(camera_pivot.rotation.x, -PI / 6.0, PI / 9) #Limit for Vision Rotate
-		camera_pivot.rotation.y -= camera_input_direction.x * delta 
+		camera_pivot.transform = camera_pivot.transform.interpolate_with(transform, delta * 5.0)
+		look_at = look_at.lerp(global_position + linear_velocity, delta * 5)
+		camera_3d.look_at(look_at)
+		#camera_pivot.rotation.x -= camera_input_direction.y * delta
+		#camera_pivot.rotation.x = clamp(camera_pivot.rotation.x, -PI / 6.0, PI / 9) #Limit for Vision Rotate
+		#camera_pivot.rotation.y -= camera_input_direction.x * delta 
 		
 	camera_input_direction = Vector2.ZERO 
 func _unhandled_input(event: InputEvent) -> void:
