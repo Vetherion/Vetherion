@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://beqn6i68wci2n"]
+[gd_scene load_steps=27 format=3 uid="uid://beqn6i68wci2n"]
 
 [ext_resource type="Script" path="res://Scripts/3D_Level.gd" id="1_1ufpl"]
 [ext_resource type="PackedScene" uid="uid://bb34e6irwt0ia" path="res://car/car.tscn" id="1_lvekw"]
@@ -26,6 +26,9 @@ background_mode = 2
 sky = SubResource("Sky_gnomw")
 tonemap_mode = 2
 glow_enabled = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iipce"]
+bg_color = Color(0.156863, 0, 0.270588, 0.709804)
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_hqwfi"]
 vertices = PackedVector3Array(-1.5, 0.406719, -13, 0, 0.406719, -13.25, 0, 0.406719, -49.5, -49.5, 0.406719, -49.5, -49.5, 0.406719, -11.25, -1.5, 0.406719, -11.25, 1.25, 0.406719, -9.75, 0.75, 0.406719, -9.5, 12, 0.406719, 2.5, 13, 0.406719, 1.75, 1.25, 0.406719, -13, 15, 0.406719, 1.75, 49.5, 0.406719, 2.75, 49.5, 0.406719, -49.5, 15.5, 0.406719, 2.75, -0.5, 1.65672, -12.25, -0.5, 1.65672, -10.5, 0.25, 1.65672, -10.5, 0.25, 1.65672, -12.25, -2, 0.656719, 21, -2, 1.15672, 23, 2, 1.15672, 23, 2, 0.656719, 21, -3, 0.406719, 21, -1.25, 0.406719, -9.5, -49.5, 0.406719, 23, 12.5, 0.406719, 3.5, -3, 0.406719, 23, 2.75, 0.406719, 21, 15, 0.406719, 4, 13, 0.406719, 4, 3, 0.406719, 21.25, 3, 0.406719, 28.25, 0.75, 0.406719, 28.5, 0.75, 0.406719, 49.5, 49.5, 0.406719, 49.5, -0.75, 0.406719, 49.5, -0.75, 0.406719, 28.5, -3, 0.406719, 28.25, -49.5, 0.406719, 49.5, -2, 18.1567, 111.25, 2, 18.1567, 111.25)
@@ -83,6 +86,29 @@ offset_bottom = 512.0
 transparent_bg = true
 handle_input_locally = false
 render_target_update_mode = 0
+
+[node name="Panel" type="Panel" parent="HUD/InventoryContainer/SubViewport"]
+custom_minimum_size = Vector2(500, 300)
+offset_right = 500.0
+offset_bottom = 350.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_iipce")
+
+[node name="Label" type="Label" parent="HUD/InventoryContainer/SubViewport/Panel"]
+modulate = Color(0.661989, 0.44348, 1, 1)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -95.5
+offset_top = -36.0
+offset_right = 95.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("4_vlyd7")
+theme_override_font_sizes/font_size = 36
+text = "Inventory"
 
 [node name="Inventory" type="Control" parent="HUD/InventoryContainer/SubViewport"]
 unique_name_in_owner = true
