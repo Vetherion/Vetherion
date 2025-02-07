@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="Vetherion"
-run/main_scene="res://Scenes/3D_Level.tscn"
+run/main_scene="res://Scenes/main_menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+SettingVariables="*res://Scenes/setting_variables.gd"
 
 [debug]
 
