@@ -8,7 +8,10 @@ var focus = [0, 0]
 var on_move = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	if SettingVariables.msaa3d:
+		get_viewport().msaa_3d = SettingVariables.msaa3d
+	if SettingVariables.fxaa:
+		get_viewport().screen_space_aa = Viewport.SCREEN_SPACE_AA_FXAA 
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
