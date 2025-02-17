@@ -2,7 +2,7 @@ extends HBoxContainer
 
 var selected_item: String
 @export var player: Node3D
-@onready var camera = player.get_node("CameraPivot/Recoil/Camera3D")
+@onready var camera = %Camera3D
 
 # Equip button
 func _on_equip_pressed() -> void:

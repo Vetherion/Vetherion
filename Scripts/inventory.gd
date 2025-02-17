@@ -1,9 +1,9 @@
 extends Node 
 
-@onready var col_one = get_node("../../HUD/InventoryContainer/SubViewport/Inventory/VBoxContainer/1")
-@onready var col_two = get_node("../../HUD/InventoryContainer/SubViewport/Inventory/VBoxContainer/2")
-@onready var col_thr = get_node("../../HUD/InventoryContainer/SubViewport/Inventory/VBoxContainer/3")
-@onready var col_fur = get_node("../../HUD/InventoryContainer/SubViewport/Inventory/VBoxContainer/4")
+@onready var col_one = get_node("VBoxContainer/1")
+@onready var col_two = get_node("VBoxContainer/2")
+@onready var col_thr = get_node("VBoxContainer/3")
+@onready var col_fur = get_node("VBoxContainer/4")
 
 var inventory = {
 	0: "void"
@@ -16,13 +16,13 @@ var is_inv_open : bool = false
 func _process(delta : float) -> void:
 	if Input.is_action_just_pressed("TAB"):
 		if is_inv_open == false:
-			get_node("../../HUD/InventoryContainer").visible = 1
-			get_node("../../HUD/OverviewContainer").visible = 1
+			self.visible = 1
+			$"../OverviewContainer".visible = 1
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 			is_inv_open = true
 		else:
-			get_node("../../HUD/InventoryContainer").visible = 0
-			get_node("../../HUD/OverviewContainer").visible = 0
+			self.visible = 0
+			$"../OverviewContainer".visible = 0
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 			is_inv_open = false
 

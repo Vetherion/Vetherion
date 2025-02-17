@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://lc37n36ypg1h"]
 
-[ext_resource type="FontFile" uid="uid://6j6uctg2fvq8" path="res://external/Orbitron Medium.ttf" id="1_8tymg"]
 [ext_resource type="Script" path="res://Scripts/main_menu.gd" id="1_r2xpf"]
+[ext_resource type="FontFile" uid="uid://cadai5uiru5i6" path="res://external/Orbitron Bold.ttf" id="3_xsq0p"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_js3ka"]
 bg_color = Color(0.168627, 0.0941176, 0.227451, 0.87451)
@@ -42,7 +42,7 @@ offset_left = -411.5
 offset_right = 411.5
 offset_bottom = 120.0
 grow_horizontal = 2
-theme_override_fonts/font = ExtResource("1_8tymg")
+theme_override_fonts/font = ExtResource("3_xsq0p")
 theme_override_font_sizes/font_size = 120
 text = "VETHERION"
 
@@ -64,6 +64,7 @@ theme_override_constants/separation = 13
 custom_minimum_size = Vector2(600, 80)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_xsq0p")
 theme_override_font_sizes/font_size = 60
 theme_override_styles/focus = SubResource("StyleBoxEmpty_lrs48")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_yjipj")
@@ -82,6 +83,7 @@ text = "RESUME"
 custom_minimum_size = Vector2(600, 80)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_xsq0p")
 theme_override_font_sizes/font_size = 60
 theme_override_styles/focus = SubResource("StyleBoxEmpty_lrs48")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_yjipj")
@@ -100,6 +102,7 @@ text = "NEW GAME"
 custom_minimum_size = Vector2(600, 80)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_xsq0p")
 theme_override_font_sizes/font_size = 60
 theme_override_styles/focus = SubResource("StyleBoxEmpty_lrs48")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_lrs48")
@@ -118,6 +121,7 @@ text = "LOAD SAVE"
 custom_minimum_size = Vector2(600, 80)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_xsq0p")
 theme_override_font_sizes/font_size = 60
 theme_override_styles/focus = SubResource("StyleBoxEmpty_lrs48")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_lrs48")
@@ -136,6 +140,7 @@ text = "SETTINGS"
 custom_minimum_size = Vector2(600, 80)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_xsq0p")
 theme_override_font_sizes/font_size = 60
 theme_override_styles/focus = SubResource("StyleBoxEmpty_lrs48")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_lrs48")
@@ -154,6 +159,7 @@ text = "CREDITS"
 custom_minimum_size = Vector2(600, 80)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_xsq0p")
 theme_override_font_sizes/font_size = 60
 theme_override_styles/focus = SubResource("StyleBoxEmpty_lrs48")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_lrs48")

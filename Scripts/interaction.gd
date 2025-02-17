@@ -2,7 +2,7 @@
 
 extends RayCast3D
 
-@export var inventory_script : Node
+@export var inventory : Node
 @export var player: Node
 var anim_played = false
 var in_car = false
@@ -30,7 +30,7 @@ func _process(delta: float) -> void:
 					else:
 						group_check = i
 				if group_check:
-					inventory_script.add_to_inv(group_check)
+					inventory.add_to_inv(group_check)
 				collider.get_parent().queue_free()
 			else:
 				pass
