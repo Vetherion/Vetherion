@@ -1,7 +1,7 @@
 extends WeaponClass
 
 @export var damagedistance : Curve 
-
+@export var recoilcurve : Curve
 
 @onready var camera3d : Camera3D = get_parent()
 @onready var player : CharacterBody3D = get_parent().get_parent().get_parent().get_parent()
@@ -23,9 +23,10 @@ func _physics_process(delta: float) -> void:
 			var collider = weapon_ray.get_collider()
 			if collider and collider.is_in_group("Enemy"):
 				distance = abs(player.global_position.distance_to(collider.global_position)) * 0.01
-				collider.damage(20.0 * round(damagedistance.sample_baked(distance)))
+				collider.damage(round(20.0 * (damagedistance.sample_baked(distance))))
 		
-		recoil.rotation.x += 0.05
+		camerapivot.rotation.x += 0.05
+		#weapon_ray.rotation.x += 0.05
 		
 func _on_rifle_fire_rate_timeout() -> void:
 	canshoot = true

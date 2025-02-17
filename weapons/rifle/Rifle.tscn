@@ -1,11 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://bb6lbab00x0me"]
+[gd_scene load_steps=8 format=3 uid="uid://bb6lbab00x0me"]
 
 [ext_resource type="Script" path="res://weapons/rifle/rifle.gd" id="1_4ckwo"]
 [ext_resource type="Shader" path="res://Shader/Weapon.gdshader" id="1_21b3a"]
 
 [sub_resource type="Curve" id="Curve_cu53u"]
-_data = [Vector2(0.0148515, 1), 0.0, 0.0, 0, 0, Vector2(0.232673, 1), 0.0, 0.0, 0, 0, Vector2(0.490099, 0.472527), 0.0, 0.0, 0, 0, Vector2(1, 0.43956), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.237624, 1), 0.0, 0.0, 0, 0, Vector2(0.490099, 0.472527), 0.0, 0.0, 0, 0, Vector2(1, 0.43956), 0.0, 0.0, 0, 0]
 point_count = 4
+
+[sub_resource type="Curve" id="Curve_a2g2u"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nws5j"]
 render_priority = 0
@@ -33,6 +35,7 @@ size = Vector3(0.1, 0.1, 0.6)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.628777, 0)
 script = ExtResource("1_4ckwo")
 damagedistance = SubResource("Curve_cu53u")
+recoilcurve = SubResource("Curve_a2g2u")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 cast_shadow = 0

@@ -104,7 +104,7 @@ script = ExtResource("4_sikl1")
 Reticle = NodePath("../../../UserInterface/Reticle")
 
 [node name="Weapon_Ray" type="RayCast3D" parent="CameraPivot/Recoil"]
-transform = Transform3D(1, 0, 0, 0, -1.14878e-06, -1, 0, 26.2809, -4.37114e-08, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, -8.36271e-06, -1, 0, 191.316, -4.37114e-08, 0, 0, 0)
 collision_mask = 16
 
 [node name="UserInterface" type="Control" parent="."]

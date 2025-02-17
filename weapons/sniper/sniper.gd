@@ -22,9 +22,9 @@ func _input(event: InputEvent) -> void:
 			var collider = weapon_ray.get_collider()
 			if collider and collider.is_in_group("Enemy"):
 				distance = abs(player.global_position.distance_to(collider.global_position)) * 0.01
-				collider.damage(100.0 * round(damagedistance.sample_baked(distance)))
+				collider.damage(round(100.0 * damagedistance.sample_baked(distance)))
 			
-		recoil.rotation.x += 0.05
+		camerapivot.rotation.x += 0.05
 		#weapon_ray.rotation.x += 0.05
 		
 	if Input.is_action_just_pressed("Reload"):
