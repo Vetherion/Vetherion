@@ -13,3 +13,4 @@ func damage(hit : float) -> void:
 	print(health)
 	if health <= 0:
 		queue_free() 
+		

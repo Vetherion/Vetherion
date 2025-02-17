@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://Scripts/interaction.gd" id="3_jhsic"]
 [ext_resource type="Script" path="res://Scripts/reticle_ray.gd" id="4_sikl1"]
 [ext_resource type="Script" path="res://weapons/weapons.gd" id="6_qdqrk"]
-[ext_resource type="FontFile" uid="uid://ckjqci0g26e80" path="res://external/Orbitron Medium.ttf" id="6_w4t3i"]
+[ext_resource type="FontFile" uid="uid://6j6uctg2fvq8" path="res://external/Orbitron Medium.ttf" id="6_w4t3i"]
 [ext_resource type="Script" path="res://player/StateMachine/StateMachine.gd" id="8_bw4md"]
 [ext_resource type="Script" path="res://player/StateMachine/move_state.gd" id="9_uiyeq"]
 [ext_resource type="Script" path="res://player/StateMachine/diyalogue_state.gd" id="10_jw2nf"]
@@ -102,6 +102,10 @@ collide_with_areas = true
 collide_with_bodies = false
 script = ExtResource("4_sikl1")
 Reticle = NodePath("../../../UserInterface/Reticle")
+
+[node name="Weapon_Ray" type="RayCast3D" parent="CameraPivot/Recoil"]
+transform = Transform3D(1, 0, 0, 0, -1.14878e-06, -1, 0, 26.2809, -4.37114e-08, 0, 0, 0)
+collision_mask = 16
 
 [node name="UserInterface" type="Control" parent="."]
 unique_name_in_owner = true

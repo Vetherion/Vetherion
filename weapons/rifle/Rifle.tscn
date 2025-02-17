@@ -30,6 +30,7 @@ size = Vector3(0.1, 0.1, 0.6)
 size = Vector3(0.1, 0.1, 0.6)
 
 [node name="Rifle" type="Node3D" groups=["inv_item", "inv_rifle0"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.628777, 0)
 script = ExtResource("1_4ckwo")
 damagedistance = SubResource("Curve_cu53u")
 

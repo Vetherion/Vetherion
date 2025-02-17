@@ -4,7 +4,7 @@ var health : float = 100.0
 @onready var enemy: CharacterBody3D = $"."
 var distance: float  # Type annotation added
 var player = null
-const SPEED = 3.0
+const SPEED : float = 3.0 
 @export var player_path : NodePath
 @onready var nav_agent: NavigationAgent3D = $NavigationAgent3D
 @onready var raycast: RayCast3D = $RayCast3D

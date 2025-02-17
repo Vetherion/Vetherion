@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dmthcbtlrqmvk" path="res://Scenes/button.tscn" id="4_1jj05"]
 [ext_resource type="Script" path="res://Scripts/ui.gd" id="4_5qmae"]
 [ext_resource type="Script" path="res://enemy/enemy.gd" id="4_qhv1j"]
-[ext_resource type="FontFile" uid="uid://ckjqci0g26e80" path="res://external/Orbitron Medium.ttf" id="4_vlyd7"]
+[ext_resource type="FontFile" uid="uid://6j6uctg2fvq8" path="res://external/Orbitron Medium.ttf" id="4_vlyd7"]
 [ext_resource type="PackedScene" uid="uid://5w744otwipe6" path="res://Scenes/item_rifle0.tscn" id="8_8nm2w"]
 [ext_resource type="PackedScene" uid="uid://vxgux5f407k8" path="res://Scenes/item_sniper0.tscn" id="8_57qg2"]
 
@@ -346,7 +346,7 @@ shape = SubResource("ConvexPolygonShape3D_83pwm")
 
 [node name="Enemy" type="CharacterBody3D" parent="NavigationRegion3D" groups=["Enemy"]]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 14.2948, 1.07276, 2.96155)
-collision_layer = 4
+collision_layer = 20
 script = ExtResource("4_qhv1j")
 player_path = NodePath("../../player")
 
@@ -367,7 +367,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00155163, 0.00576389, -0.00
 collision_layer = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Enemy/HitBox"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.372865, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0425878, 0)
 shape = SubResource("CapsuleShape3D_6qyta")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="NavigationRegion3D/Enemy"]
