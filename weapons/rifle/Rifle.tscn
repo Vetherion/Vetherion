@@ -7,7 +7,9 @@
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.237624, 1), 0.0, 0.0, 0, 0, Vector2(0.490099, 0.472527), 0.0, 0.0, 0, 0, Vector2(1, 0.43956), 0.0, 0.0, 0, 0]
 point_count = 4
 
-[sub_resource type="Curve" id="Curve_a2g2u"]
+[sub_resource type="Curve" id="Curve_6lwua"]
+_data = [Vector2(0, 0.05), 0.0, 0.0, 0, 0, Vector2(0.5, 0.05), 0.0, 0.0, 0, 0, Vector2(0.5, 0), 0.0, 0.0, 0, 0]
+point_count = 3
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nws5j"]
 render_priority = 0
@@ -35,7 +37,7 @@ size = Vector3(0.1, 0.1, 0.6)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.628777, 0)
 script = ExtResource("1_4ckwo")
 damagedistance = SubResource("Curve_cu53u")
-recoilcurve = SubResource("Curve_a2g2u")
+recoilcurve_y = SubResource("Curve_6lwua")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 cast_shadow = 0
@@ -49,5 +51,12 @@ skeleton = NodePath("../MeshInstance3D")
 [node name="rifle_fire_rate" type="Timer" parent="."]
 unique_name_in_owner = true
 wait_time = 0.12
+one_shot = true
+
+[node name="recoil_reset" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.2
+one_shot = true
 
 [connection signal="timeout" from="rifle_fire_rate" to="." method="_on_rifle_fire_rate_timeout"]
+[connection signal="timeout" from="recoil_reset" to="." method="_on_recoil_reset_timeout"]
