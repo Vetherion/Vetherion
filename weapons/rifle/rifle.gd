@@ -39,7 +39,7 @@ func _physics_process(delta: float) -> void:
 				
 			var collision_point = weapon_ray.get_collision_point()
 			var new_scene = preload("res://weapons/bullet_trace.tscn").instantiate()
-			get_tree().current_scene.add_child(new_scene)
+			collider.add_child(new_scene)
 			new_scene.global_transform.origin = collision_point
 			
 		if ammocount == 1:
