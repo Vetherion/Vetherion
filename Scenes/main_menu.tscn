@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://lc37n36ypg1h"]
 
 [ext_resource type="Script" path="res://Scripts/main_menu.gd" id="1_r2xpf"]
-[ext_resource type="FontFile" uid="uid://2jq5fltnfe5b" path="res://external/Orbitron Bold.otf" id="2_tw778"]
+[ext_resource type="FontFile" uid="uid://b6wqk1o0r3j7s" path="res://external/Orbitron Bold.otf" id="2_tw778"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_js3ka"]
 bg_color = Color(0.168627, 0.0941176, 0.227451, 0.87451)
@@ -183,7 +183,7 @@ text = "v0.1"
 [node name="Godot_label" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 15
 text = "Made with Godot Engine"
 
 [connection signal="pressed" from="VBoxContainer/RESUME" to="." method="_on_resume_pressed"]

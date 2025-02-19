@@ -1,8 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://djtdpeg702eww"]
+[gd_scene load_steps=7 format=3 uid="uid://djtdpeg702eww"]
 
 [ext_resource type="Script" path="res://Scripts/settings.gd" id="1_37k0w"]
-[ext_resource type="FontFile" uid="uid://cadai5uiru5i6" path="res://external/Orbitron Bold.ttf" id="1_sobwk"]
-[ext_resource type="FontFile" uid="uid://ckjqci0g26e80" path="res://external/Orbitron Medium.ttf" id="2_q3pk4"]
+[ext_resource type="FontFile" uid="uid://b6wqk1o0r3j7s" path="res://external/Orbitron Bold.otf" id="2_oiekj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hyxyb"]
 bg_color = Color(0.168627, 0.0941176, 0.227451, 0.87451)
@@ -41,7 +40,7 @@ offset_top = 50.0
 offset_right = 291.0
 offset_bottom = 150.0
 grow_horizontal = 2
-theme_override_fonts/font = ExtResource("1_sobwk")
+theme_override_fonts/font = ExtResource("2_oiekj")
 theme_override_font_sizes/font_size = 100
 text = "SETTINGS"
 
@@ -54,7 +53,7 @@ offset_bottom = 266.0
 
 [node name="Label" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_q3pk4")
+theme_override_fonts/font = ExtResource("2_oiekj")
 theme_override_font_sizes/font_size = 36
 text = "ANTI-ALIASING"
 
@@ -73,7 +72,6 @@ popup/item_3/id = 3
 
 [node name="FXAA" type="CheckBox" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_q3pk4")
 text = "FXAA ENABLED"
 
 [node name="BACK_TO_MAINMENU" type="Button" parent="."]
@@ -87,7 +85,7 @@ offset_right = 720.0
 offset_bottom = -3.0
 grow_vertical = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("1_sobwk")
+theme_override_fonts/font = ExtResource("2_oiekj")
 theme_override_font_sizes/font_size = 60
 theme_override_styles/focus = SubResource("StyleBoxEmpty_m6gu5")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_tcc4c")

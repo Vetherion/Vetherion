@@ -1,8 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://bbq0ni3ohwhby"]
+[gd_scene load_steps=7 format=3 uid="uid://bbq0ni3ohwhby"]
 
-[ext_resource type="FontFile" uid="uid://cadai5uiru5i6" path="res://external/Orbitron Bold.ttf" id="1_3xfoe"]
 [ext_resource type="Script" path="res://Scripts/credits.gd" id="1_gnj08"]
-[ext_resource type="FontFile" uid="uid://ckjqci0g26e80" path="res://external/Orbitron Medium.ttf" id="2_7js2e"]
+[ext_resource type="FontFile" uid="uid://b6wqk1o0r3j7s" path="res://external/Orbitron Bold.otf" id="2_lajpb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rtqx1"]
 bg_color = Color(0.168627, 0.0941176, 0.227451, 0.87451)
@@ -26,6 +25,7 @@ script = ExtResource("1_gnj08")
 
 [node name="Panel" type="Panel" parent="."]
 custom_minimum_size = Vector2(1920, 1080)
+layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_rtqx1")
@@ -40,7 +40,7 @@ offset_top = 50.0
 offset_right = 290.5
 offset_bottom = 150.0
 grow_horizontal = 2
-theme_override_fonts/font = ExtResource("1_3xfoe")
+theme_override_fonts/font = ExtResource("2_lajpb")
 theme_override_font_sizes/font_size = 100
 text = "CREDITS"
 
@@ -60,42 +60,36 @@ grow_vertical = 2
 
 [node name="Label" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_7js2e")
 theme_override_font_sizes/font_size = 36
 text = "Batuhan"
 horizontal_alignment = 1
 
 [node name="Label2" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_7js2e")
 theme_override_font_sizes/font_size = 36
 text = "Burak"
 horizontal_alignment = 1
 
 [node name="Label3" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_7js2e")
 theme_override_font_sizes/font_size = 36
 text = "Siyabend"
 horizontal_alignment = 1
 
 [node name="Label4" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_7js2e")
 theme_override_font_sizes/font_size = 36
 text = "Yağız"
 horizontal_alignment = 1
 
 [node name="Label5" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_7js2e")
 theme_override_font_sizes/font_size = 36
 text = "Yİğit"
 horizontal_alignment = 1
 
 [node name="Label6" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_7js2e")
 theme_override_font_sizes/font_size = 36
 text = "Orbitron font"
 horizontal_alignment = 1
@@ -118,7 +112,7 @@ offset_right = 720.0
 offset_bottom = -3.0
 grow_vertical = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("1_3xfoe")
+theme_override_fonts/font = ExtResource("2_lajpb")
 theme_override_font_sizes/font_size = 60
 theme_override_styles/focus = SubResource("StyleBoxEmpty_waf0a")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_1vpbq")
