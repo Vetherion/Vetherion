@@ -54,7 +54,6 @@ func _physics_process(delta: float) -> void:
 		weapon_ray.rotation.x += randf_range(-spread, spread * 2)
 		weapon_ray.rotation.y -= randf_range(-spread, spread * 2)
 		
-		
 func _on_rifle_fire_rate_timeout() -> void:
 	canshoot = true
 	
@@ -72,18 +71,12 @@ func _input(event: InputEvent) -> void:
 		get_node("../../../../HUD/Panel/Ammo").text = str(level1.magazine_rifle) + "/" + str(level1.ammo_rifle)
 		AmmoVariables.rifle_ammo = level1.magazine_rifle
 		AmmoVariables.rifle_total_ammo = level1.ammo_rifle
-	
-	if event is InputEventMouseMotion and rotation_tween:
-		rotation_tween.kill()  
-		rotation_tween = null
-		var target_rotation_x = camerapivot.rotation.x - (0.005 * tempcount + 0.005)
-		camerapivot.rotation.x = lerp(camerapivot.rotation.x, target_rotation_x, 0.1)
 
 func _on_recoil_reset_timeout() -> void:
 	tempcount = ammocount
 	ammocount = 0
 	rotation_tween = get_tree().create_tween()
-	rotation_tween.tween_property(camerapivot, "rotation:x", temp_rotation, 0.5) \
+	rotation_tween.tween_property(camerapivot, "rotation:x", camerapivot.rotation.x - deg_to_rad(tempcount * 0.3), 0.5) \
 		.set_trans(Tween.TRANS_QUAD) \
 		.set_ease(Tween.EASE_OUT)
 
