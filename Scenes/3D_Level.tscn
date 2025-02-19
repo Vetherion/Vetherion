@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://beqn6i68wci2n"]
+[gd_scene load_steps=24 format=3 uid="uid://beqn6i68wci2n"]
 
 [ext_resource type="Script" path="res://Scripts/3D_Level.gd" id="1_1ufpl"]
 [ext_resource type="PackedScene" uid="uid://bb34e6irwt0ia" path="res://car/car.tscn" id="1_lvekw"]
@@ -51,6 +51,20 @@ size = Vector3(1, 10, 10)
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_dgrdr"]
 points = PackedVector3Array(-0.579365, -5.07837, -5.07738, 0.5, 4.78914, 4.78724, 0.5, 4.78914, -4.78724, -0.579365, 5.07837, 5.07738, 0.5, -4.78815, 4.78724, -0.579365, -5.07837, 5.07738, -0.579365, 5.07837, -5.07738, 0.5, -4.78815, -4.78724, 0.366754, 5, -4.99804, 0.366754, 5, 4.99804)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8wtjh"]
+shading_mode = 2
+disable_ambient_light = true
+vertex_color_is_srgb = true
+albedo_color = Color(1, 0.0509804, 1, 1)
+metallic = 1.0
+metallic_specular = 1.0
+roughness = 0.55
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_u3jq6"]
+material = SubResource("StandardMaterial3D_8wtjh")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qesxt"]
 
 [node name="3D_Level" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.453897, 0)
@@ -155,6 +169,18 @@ collision_layer = 17
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
 shape = SubResource("ConvexPolygonShape3D_dgrdr")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." groups=["npc"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.41505, 7.89806)
+layers = 8
+mesh = SubResource("CapsuleMesh_u3jq6")
+
+[node name="HitBox" type="Area3D" parent="MeshInstance3D2" groups=["npc"]]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D2/HitBox" groups=["npc"]]
+shape = SubResource("CapsuleShape3D_qesxt")
 
 [connection signal="body_entered" from="NavigationRegion3D/Car/CarArea" to="player" method="_on_CarArea_body_entered"]
 [connection signal="body_exited" from="NavigationRegion3D/Car/CarArea" to="player" method="_on_CarArea_body_exited"]

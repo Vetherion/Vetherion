@@ -3,6 +3,7 @@
 extends RayCast3D
 
 @export var inventory : Node
+@export var dialogue: Node
 @export var player: Node
 var anim_played = false
 var in_car = false
@@ -44,6 +45,16 @@ func _process(delta: float) -> void:
 				if Input.is_action_just_pressed("E"):
 					player.queue_free()
 					in_car = true
+			else:
+				pass
+		elif collider and collider.get_parent() and collider.get_parent().is_in_group("npc"):
+			%interaction.visible = 1
+			if !anim_played:
+				%anim.play("select_in")
+				anim_played = true
+			%interaction.get_node("Action").text = "interact"
+			if Input.is_action_just_pressed("E"):
+				dialogue.start_partial_dialogue("res://dialogues/example_dialogue.json")
 			else:
 				pass
 		else:

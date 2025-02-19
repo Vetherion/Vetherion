@@ -121,6 +121,11 @@ func load_partial_dialogue(dialogue, index):
 			if current.right(3) == "END":
 				$"../../..".visible = 0
 				%Dialogue.visible = 0
+				current_dialogue = ""
+				is_done = false
+				buttons = []
+				current_focus = 0
+				responder = ""
 			else:
 				for i in %VBoxContainer.get_children():
 					if i.is_in_group("button") and i != null:

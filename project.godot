@@ -43,6 +43,7 @@ inv_rifle0=""
 inv_sniper0=""
 gui_rifle0=""
 gui_sniper0=""
+npc=""
 
 [gui]
 
