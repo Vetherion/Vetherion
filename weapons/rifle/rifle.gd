@@ -71,7 +71,13 @@ func _input(event: InputEvent) -> void:
 		get_node("../../../../HUD/Panel/Ammo").text = str(level1.magazine_rifle) + "/" + str(level1.ammo_rifle)
 		AmmoVariables.rifle_ammo = level1.magazine_rifle
 		AmmoVariables.rifle_total_ammo = level1.ammo_rifle
-
+		
+	if event is InputEventMouseMotion and rotation_tween:
+		rotation_tween.kill()  
+		rotation_tween = null
+		var target_rotation_x = camerapivot.rotation.x - (0.005 * tempcount + 0.005)
+		camerapivot.rotation.x = lerp(camerapivot.rotation.x, target_rotation_x, 0.1)
+		
 func _on_recoil_reset_timeout() -> void:
 	tempcount = ammocount
 	ammocount = 0
