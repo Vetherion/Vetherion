@@ -49,7 +49,8 @@ func _physics_process(delta: float) -> void:
 		camerapivot.rotation.x += (recoilcurve_y.sample_baked(ammocount/30.0))/100.0
 		camerapivot.rotation.y += (recoilcurve_x.sample_baked(ammocount/30.0))/100.0
 		
-		var spread = (core_spread * (ammocount + 29) * (player.velocity.x + 1.0) * (player.velocity.y + 1.0) * (player.velocity.z + 1.0)) / 150.0
+		
+		var spread = clamp((core_spread * (ammocount + 29) * (player.velocity.x + 1.0) * (player.velocity.y + 1.0) * (player.velocity.z + 1.0)) / 150.0, 0.0, 0.03)
 		weapon_ray.rotation.x += randf_range(-spread, spread * 2)
 		weapon_ray.rotation.y -= randf_range(-spread, spread * 2)
 		
