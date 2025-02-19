@@ -10,6 +10,7 @@ extends Node
 @onready var current_dialogue = ""
 @export var label_scene: PackedScene
 @export var button_scene: PackedScene
+@export var interaction: Node
 
 var is_done = false
 var buttons: Array[Object]
@@ -120,6 +121,7 @@ func load_partial_dialogue(dialogue, index):
 		if typeof(current) == TYPE_STRING:
 			if current.right(3) == "END":
 				$"../../..".visible = 0
+				interaction.in_dialogue = 0
 				%Dialogue.visible = 0
 				current_dialogue = ""
 				is_done = false

@@ -724,7 +724,7 @@ render_target_update_mode = 0
 [node name="Overview" parent="OverviewContainer/Inventory_overview" instance=ExtResource("15_orgm4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 21.9599, -23.4257)
 
-[node name="Dialogue" type="Control" parent="."]
+[node name="Dialogue" type="Control" parent="." node_paths=PackedStringArray("interaction")]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(320, 200)
@@ -744,6 +744,7 @@ size_flags_vertical = 8
 script = ExtResource("16_tvu3e")
 label_scene = ExtResource("17_wji7j")
 button_scene = ExtResource("18_8pgc4")
+interaction = NodePath("../CameraPivot/Recoil/Interaction_Ray")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Dialogue"]
 unique_name_in_owner = true

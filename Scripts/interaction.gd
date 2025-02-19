@@ -7,6 +7,7 @@ extends RayCast3D
 @export var player: Node
 var anim_played = false
 var in_car = false
+var in_dialogue = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -48,12 +49,16 @@ func _process(delta: float) -> void:
 			else:
 				pass
 		elif collider and collider.get_parent() and collider.get_parent().is_in_group("npc"):
-			%interaction.visible = 1
+			if in_dialogue:
+				%interaction.visible = 0
+			else:
+				%interaction.visible = 1
 			if !anim_played:
 				%anim.play("select_in")
 				anim_played = true
 			%interaction.get_node("Action").text = "interact"
 			if Input.is_action_just_pressed("E"):
+				in_dialogue = true
 				dialogue.start_partial_dialogue("res://dialogues/example_dialogue.json")
 			else:
 				pass
