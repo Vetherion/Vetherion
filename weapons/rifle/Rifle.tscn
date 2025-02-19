@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bb6lbab00x0me"]
+[gd_scene load_steps=9 format=3 uid="uid://bb6lbab00x0me"]
 
 [ext_resource type="Script" path="res://weapons/rifle/rifle.gd" id="1_4ckwo"]
 [ext_resource type="Shader" path="res://Shader/Weapon.gdshader" id="1_21b3a"]
@@ -8,8 +8,14 @@ _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.237624, 1), 0.0, 0.0, 0, 0, Ve
 point_count = 4
 
 [sub_resource type="Curve" id="Curve_6lwua"]
-_data = [Vector2(0, 0.05), 0.0, 0.0, 0, 0, Vector2(0.5, 0.05), 0.0, 0.0, 0, 0, Vector2(0.5, 0), 0.0, 0.0, 0, 0]
-point_count = 3
+min_value = -0.2
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.447368, 1), 0.0, 0.0, 0, 0, Vector2(0.489474, -0.2), 0.0, 0.0, 0, 0, Vector2(0.589474, 0.564835), 0.0, 0.0, 0, 0, Vector2(0.647368, -0.2), 0.0, 0.0, 0, 0, Vector2(0.763158, 0.564835), 0.0, 0.0, 0, 0, Vector2(0.831579, -0.2), 0.0, 0.0, 0, 0, Vector2(0.910526, 0.551648), 0.0, 0.0, 0, 0, Vector2(0.947368, -0.2), 0.0, 0.0, 0, 0, Vector2(1, 0.551648), 0.0, 0.0, 0, 0]
+point_count = 10
+
+[sub_resource type="Curve" id="Curve_2ym7a"]
+min_value = -1.0
+_data = [Vector2(0, 0.340659), 0.0, 0.0, 0, 0, Vector2(0.0947368, -0.274725), 0.0, 0.0, 0, 0, Vector2(0.136842, 0.296703), 0.0, 0.0, 0, 0, Vector2(0.205263, -0.340659), 0.0, 0.0, 0, 0, Vector2(0.263158, 0.318681), 0.0, 0.0, 0, 0, Vector2(0.33, 0), 0.0, 0.0, 0, 0, Vector2(0.33, -1), 0.0, 0.0, 0, 0, Vector2(0.689474, 1), 0.0, 0.0, 0, 0, Vector2(1, -1), 0.0, 0.0, 0, 0]
+point_count = 9
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nws5j"]
 render_priority = 0
@@ -38,6 +44,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.628777, 0)
 script = ExtResource("1_4ckwo")
 damagedistance = SubResource("Curve_cu53u")
 recoilcurve_y = SubResource("Curve_6lwua")
+recoilcurve_x = SubResource("Curve_2ym7a")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 cast_shadow = 0

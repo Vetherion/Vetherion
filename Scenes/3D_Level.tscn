@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://beqn6i68wci2n"]
+[gd_scene load_steps=21 format=3 uid="uid://beqn6i68wci2n"]
 
 [ext_resource type="Script" path="res://Scripts/3D_Level.gd" id="1_1ufpl"]
 [ext_resource type="PackedScene" uid="uid://bb34e6irwt0ia" path="res://car/car.tscn" id="1_lvekw"]
@@ -45,6 +45,12 @@ size = Vector3(0.7, 0.7, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1oho3"]
 size = Vector3(7.5, 7.5, 7.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_of6n5"]
+size = Vector3(1, 10, 10)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_dgrdr"]
+points = PackedVector3Array(-0.579365, -5.07837, -5.07738, 0.5, 4.78914, 4.78724, 0.5, 4.78914, -4.78724, -0.579365, 5.07837, 5.07738, 0.5, -4.78815, 4.78724, -0.579365, -5.07837, 5.07738, -0.579365, 5.07837, -5.07738, 0.5, -4.78815, -4.78724, 0.366754, 5, -4.99804, 0.366754, 5, 4.99804)
 
 [node name="3D_Level" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.453897, 0)
@@ -132,6 +138,17 @@ collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Car/CarArea"]
 shape = SubResource("BoxShape3D_1oho3")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.07419, 4.94134, -0.165283)
+layers = 17
+mesh = SubResource("BoxMesh_of6n5")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+collision_layer = 17
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_dgrdr")
 
 [connection signal="body_entered" from="NavigationRegion3D/Car/CarArea" to="player" method="_on_CarArea_body_entered"]
 [connection signal="body_exited" from="NavigationRegion3D/Car/CarArea" to="player" method="_on_CarArea_body_exited"]
