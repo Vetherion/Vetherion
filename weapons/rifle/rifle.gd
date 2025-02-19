@@ -24,6 +24,8 @@ func _physics_process(delta: float) -> void:
 	if  Input.is_action_pressed("left_click") and canshoot and level1.magazine_rifle > 0 and StateMachine.currentState == StateMachine.STATES.Move:
 		#Timer
 		level1.magazine_rifle -= 1
+		get_node("../../../../HUD/Panel/Ammo").text = str(level1.magazine_rifle) + "/" + str(level1.ammo_rifle)
+		AmmoVariables.rifle_ammo = level1.magazine_rifle
 		canshoot = false
 		%rifle_fire_rate.start()
 		ammocount += 1
@@ -66,6 +68,9 @@ func _input(event: InputEvent) -> void:
 			if level1.magazine_rifle > level1.max_magazine_rifle:
 				level1.ammo_rifle = level1.magazine_rifle - level1.max_magazine_rifle
 				level1.magazine_rifle = level1.max_magazine_rifle
+		get_node("../../../../HUD/Panel/Ammo").text = str(level1.magazine_rifle) + "/" + str(level1.ammo_rifle)
+		AmmoVariables.rifle_ammo = level1.magazine_rifle
+		AmmoVariables.rifle_total_ammo = level1.ammo_rifle
 	
 	if event is InputEventMouseMotion and rotation_tween:
 		rotation_tween.kill()  

@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://dmthcbtlrqmvk"]
 
-[ext_resource type="FontFile" uid="uid://ckjqci0g26e80" path="res://external/Orbitron Medium.ttf" id="1_4wh23"]
 [ext_resource type="Script" path="res://Scripts/button.gd" id="1_eidpk"]
+[ext_resource type="FontFile" uid="uid://3532wquhcbod" path="res://external/Orbitron Medium.otf" id="1_mtelf"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qbx3j"]
 
@@ -114,7 +114,7 @@ theme_override_colors/icon_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/icon_hover_color = Color(0, 0, 0, 1)
 theme_override_colors/icon_hover_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/icon_disabled_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("1_4wh23")
+theme_override_fonts/font = ExtResource("1_mtelf")
 theme_override_font_sizes/font_size = 16
 theme_override_styles/focus = SubResource("StyleBoxFlat_c66rf")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_c66rf")

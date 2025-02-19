@@ -14,6 +14,10 @@ const max_magazine_sniper : int = 5
 
 
 func _ready() -> void:
+	AmmoVariables.rifle_ammo = magazine_rifle
+	AmmoVariables.rifle_total_ammo = ammo_rifle
+	AmmoVariables.sniper_ammo = magazine_sniper
+	AmmoVariables.sniper_total_ammo = ammo_sniper
 	if SettingVariables.msaa3d:
 		get_viewport().msaa_3d = SettingVariables.msaa3d
 	if SettingVariables.fxaa:

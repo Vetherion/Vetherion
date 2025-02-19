@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bh2ojr7ymexb2"]
 
-[ext_resource type="FontFile" uid="uid://ckjqci0g26e80" path="res://external/Orbitron Medium.ttf" id="1_hfqoj"]
+[ext_resource type="FontFile" uid="uid://3532wquhcbod" path="res://external/Orbitron Medium.otf" id="1_bc7lk"]
 
 [sub_resource type="Animation" id="Animation_dwh0q"]
 length = 0.001
@@ -41,7 +41,7 @@ _data = {
 
 [node name="Label" type="Label" groups=["label"]]
 modulate = Color(0.31, 0.274763, 0.1178, 0)
-theme_override_fonts/font = ExtResource("1_hfqoj")
+theme_override_fonts/font = ExtResource("1_bc7lk")
 theme_override_font_sizes/font_size = 18
 text = "wqrwqrqw"
 

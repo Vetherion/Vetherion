@@ -14,6 +14,8 @@ func _input(event: InputEvent) -> void:
 	#Handle Fire
 	if  Input.is_action_just_pressed("left_click") and canshoot and level1.magazine_sniper > 0 and StateMachine.currentState == StateMachine.STATES.Move:
 		level1.magazine_sniper -= 1
+		get_node("../../../../HUD/Panel/Ammo").text = str(level1.magazine_sniper) + "/" + str(level1.ammo_sniper)
+		AmmoVariables.sniper_ammo = level1.magazine_sniper
 		#Timer
 		canshoot = false
 		%sniper_fire_rate.start()
@@ -37,6 +39,8 @@ func _input(event: InputEvent) -> void:
 			if level1.magazine_sniper > level1.max_magazine_sniper:
 				level1.ammo_sniper = level1.magazine_sniper - level1.max_magazine_sniper
 				level1.magazine_sniper = level1.max_magazine_sniper
-				
+		AmmoVariables.sniper_ammo = level1.magazine_sniper
+		AmmoVariables.sniper_total_ammo = level1.ammo_sniper
+		get_node("../../../../HUD/Panel/Ammo").text = str(level1.magazine_sniper) + "/" + str(level1.ammo_sniper)
 func _on_sniper_fire_rate_timeout() -> void:
 	canshoot = true
