@@ -144,6 +144,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.07419, 4.94134, -0.165283)
 layers = 17
 mesh = SubResource("BoxMesh_of6n5")
 
+[node name="HitBox" type="Area3D" parent="MeshInstance3D"]
+collision_layer = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/HitBox"]
+shape = SubResource("ConvexPolygonShape3D_dgrdr")
+
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
 collision_layer = 17
 

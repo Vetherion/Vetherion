@@ -10,5 +10,7 @@ func _process(delta: float) -> void:
 		var collider = get_collider()
 		if collider and collider.is_in_group("Enemy"):
 			Reticle.modulate = Color(255, 0, 255)
+		else:
+			Reticle.modulate = Color(255, 255, 255)
 	else:
 		Reticle.modulate = Color(255, 255, 255)
