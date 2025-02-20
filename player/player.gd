@@ -10,6 +10,7 @@ func _input(event: InputEvent) -> void:
 
 func damage(hit : float) -> void:
 	health -= hit
+	$HUD/Health.value = health
 	print(health)
 	if health <= 0:
 		queue_free() 

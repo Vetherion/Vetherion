@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=4 uid="uid://dhjrc28o432pk"]
+[gd_scene load_steps=39 format=4 uid="uid://dhjrc28o432pk"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_cbo13"]
 [ext_resource type="Script" path="res://weapons/reticle.gd" id="2_77glr"]
@@ -379,6 +379,11 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 "
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_arerf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_67c8p"]
+bg_color = Color(0, 0.723869, 0.610141, 1)
 
 [node name="player" type="CharacterBody3D"]
 collision_layer = 3
@@ -865,6 +870,22 @@ size = Vector2i(256, 256)
 render_target_update_mode = 4
 
 [node name="Node2D" parent="HUD/Minimap/Minimap" instance=ExtResource("20_qqwxw")]
+
+[node name="Health" type="ProgressBar" parent="HUD"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -252.0
+offset_right = 252.0
+offset_bottom = 89.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("19_1ac7k")
+theme_override_font_sizes/font_size = 35
+theme_override_styles/background = SubResource("StyleBoxFlat_arerf")
+theme_override_styles/fill = SubResource("StyleBoxFlat_67c8p")
+value = 100.0
 
 [connection signal="pressed" from="Inventory/VBoxContainer/1/1" to="Inventory/VBoxContainer/1/1" method="_on_pressed"]
 [connection signal="pressed" from="Inventory/VBoxContainer/1/2" to="Inventory/VBoxContainer/1/2" method="_on_pressed"]
