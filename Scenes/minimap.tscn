@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://727xpupr0l63"]
+
+[ext_resource type="Script" path="res://Scripts/minimap.gd" id="1_ktdkf"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_xo2gf"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_ec186"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_ktdkf")
+
+[node name="Player" type="Sprite2D" parent="."]
+position = Vector2(128, 128)
+scale = Vector2(35, 35)
+texture = SubResource("CanvasTexture_xo2gf")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+position = Vector2(0.6, -0.0285715)
+rotation = 1.5708
+scale = Vector2(0.128572, 1)
+texture = SubResource("CanvasTexture_ec186")
+
+[node name="Npc_enemy" type="Sprite2D" parent="."]
+modulate = Color(1, 0.184314, 1, 1)
+position = Vector2(200, 62)
+scale = Vector2(35, 35)
+texture = SubResource("CanvasTexture_xo2gf")
