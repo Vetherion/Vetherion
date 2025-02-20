@@ -30,6 +30,8 @@ func _physics_process(delta: float) -> void:
 		canshoot = false
 		%rifle_fire_rate.start()
 		ammocount += 1
+		if ammocount < 5:
+			AmmocountVariable.ammocount = ammocount
 		%recoil_reset.start()
 		
 		if weapon_ray.is_colliding():
@@ -47,13 +49,18 @@ func _physics_process(delta: float) -> void:
 			temp_rotation = camerapivot.rotation.x
 			weapon_ray.rotation_degrees = Vector3(90, 0, 0)
 		
-		camerapivot.rotation.x += (recoilcurve_y.sample_baked(ammocount/30.0))/100.0
-		camerapivot.rotation.y += (recoilcurve_x.sample_baked(ammocount/30.0))/100.0
+		camerapivot.rotation.x += (recoilcurve_y.sample_baked(ammocount/30.0))/75
+		camerapivot.rotation.y += (recoilcurve_x.sample_baked(ammocount/30.0))/75
 		
 		
-		var spread = clamp((core_spread * (ammocount + 29) * (player.velocity.x + 1.0) * (player.velocity.y + 1.0) * (player.velocity.z + 1.0)) / 150.0, 0.0, 0.03)
-		weapon_ray.rotation.x += randf_range(-spread, spread * 2)
-		weapon_ray.rotation.y -= randf_range(-spread, spread * 2)
+		var spread = clamp((core_spread * (ammocount + 29) * ((player.velocity.x + 4.0) * 0.25) * ((player.velocity.y + 4.0) * 0.25) * ((player.velocity.z + 4.0) * 0.25)) / 150.0, 0.0, 0.03)
+		print(spread)
+		weapon_ray.rotation.x += randf_range(-spread , spread * 2)
+		if camerapivot.rotation.y < 0:
+			weapon_ray.rotation.y -= randf_range(-spread, spread * 2)
+		if camerapivot.rotation.y > 0:
+			weapon_ray.rotation.y -= randf_range(spread, -spread * 2)
+		#TO DO mouse hızına ve karakter hızına baglı olarak eklenen recoiller geri cıkacak haraket azalısında
 		
 func _on_rifle_fire_rate_timeout() -> void:
 	canshoot = true
@@ -83,8 +90,9 @@ func _input(event: InputEvent) -> void:
 func _on_recoil_reset_timeout() -> void:
 	tempcount = ammocount
 	ammocount = 0
+	AmmocountVariable.ammocount = ammocount
 	rotation_tween = get_tree().create_tween()
-	rotation_tween.tween_property(camerapivot, "rotation:x", camerapivot.rotation.x - deg_to_rad(tempcount * 0.3), 0.5) \
+	rotation_tween.tween_property(camerapivot, "rotation:x", camerapivot.rotation.x - deg_to_rad(tempcount * 0.45), 0.5) \
 		.set_trans(Tween.TRANS_QUAD) \
 		.set_ease(Tween.EASE_OUT)
 
