@@ -29,7 +29,7 @@ scale = Vector2(17.5, 17.5)
 texture = SubResource("CanvasTexture_xo2gf")
 
 [node name="wall" type="Sprite2D" parent="."]
-position = Vector2(83.25, 6.75)
+position = Vector2(83.2499, 43.0892)
 rotation = 1.5708
-scale = Vector2(167.5, 14.5)
+scale = Vector2(94.8217, 14.5)
 texture = SubResource("CanvasTexture_x6d5v")
