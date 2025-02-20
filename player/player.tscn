@@ -794,29 +794,15 @@ mouse_filter = 2
 [node name="Panel" type="Panel" parent="HUD"]
 custom_minimum_size = Vector2(250, 120)
 layout_mode = 1
-anchors_preset = 2
+anchors_preset = 3
+anchor_left = 1.0
 anchor_top = 1.0
+anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -250.0
 offset_top = -120.0
-offset_right = 180.0
+grow_horizontal = 0
 grow_vertical = 0
-
-[node name="Ammo" type="Label" parent="HUD/Panel"]
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -25.0
-offset_top = -50.0
-offset_right = 25.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_fonts/font = ExtResource("19_1ac7k")
-theme_override_font_sizes/font_size = 35
-script = SubResource("GDScript_jngej")
 
 [node name="Gun" type="Label" parent="HUD/Panel"]
 custom_minimum_size = Vector2(120, 40)
@@ -834,6 +820,33 @@ theme_override_fonts/font = ExtResource("19_1ac7k")
 theme_override_font_sizes/font_size = 32
 text = "NONE"
 uppercase = true
+
+[node name="Cnt" type="HBoxContainer" parent="HUD/Panel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -37.0
+offset_top = -50.0
+offset_right = 37.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Ammo" type="Label" parent="HUD/Panel/Cnt"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("19_1ac7k")
+theme_override_font_sizes/font_size = 25
+script = SubResource("GDScript_jngej")
+
+[node name="Ammo_total" type="Label" parent="HUD/Panel/Cnt"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("19_1ac7k")
+theme_override_font_sizes/font_size = 35
+script = SubResource("GDScript_jngej")
 
 [connection signal="pressed" from="Inventory/VBoxContainer/1/1" to="Inventory/VBoxContainer/1/1" method="_on_pressed"]
 [connection signal="pressed" from="Inventory/VBoxContainer/1/2" to="Inventory/VBoxContainer/1/2" method="_on_pressed"]
