@@ -25,5 +25,15 @@ func _process(delta: float) -> void:
 	elif !enemies.get_node("Enemy") and $Npc_enemy:
 		$Npc_enemy.queue_free()
 		
+	if enemies.get_parent().get_node("MeshInstance3D2").position.z - player.position.z > 0:
+		$wall.position.y = 128 + SCALE*(enemies.get_parent().get_node("MeshInstance3D2").position.z - player.position.z)
+	else:
+		$wall.position.y = 128 + SCALE*(enemies.get_parent().get_node("MeshInstance3D2").position.z - player.position.z)
+	if enemies.get_parent().get_node("MeshInstance3D2").position.x - player.position.x > 0:
+		$wall.position.x = 128 + SCALE*(enemies.get_parent().get_node("MeshInstance3D2").position.x - player.position.x)
+	else:
+		$wall.position.x = 128 + SCALE*(enemies.get_parent().get_node("MeshInstance3D2").position.x - player.position.x)
+		
+		
 		
 		
