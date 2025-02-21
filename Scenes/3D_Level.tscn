@@ -1,8 +1,9 @@
-[gd_scene load_steps=25 format=3 uid="uid://beqn6i68wci2n"]
+[gd_scene load_steps=32 format=3 uid="uid://beqn6i68wci2n"]
 
 [ext_resource type="Script" path="res://Scripts/3D_Level.gd" id="1_1ufpl"]
 [ext_resource type="PackedScene" uid="uid://bb34e6irwt0ia" path="res://car/car.tscn" id="1_lvekw"]
 [ext_resource type="PackedScene" uid="uid://dhjrc28o432pk" path="res://player/player.tscn" id="1_m4hl5"]
+[ext_resource type="Script" path="res://Scripts/item.gd" id="3_bmjj1"]
 [ext_resource type="Script" path="res://enemy/enemy.gd" id="4_qhv1j"]
 [ext_resource type="PackedScene" uid="uid://dnq8dkjoh7tut" path="res://external/rifle0_mat.glb" id="4_tc50s"]
 [ext_resource type="PackedScene" uid="uid://5w744otwipe6" path="res://Scenes/item_rifle0.tscn" id="8_8nm2w"]
@@ -20,6 +21,82 @@ background_mode = 2
 sky = SubResource("Sky_gnomw")
 tonemap_mode = 2
 glow_enabled = true
+
+[sub_resource type="Animation" id="Animation_feimw"]
+resource_name = "spin"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("rifle0_mat:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1.5708, 1.5708, 0), Vector3(1.5708, 1.5708, 12.5664)]
+}
+
+[sub_resource type="Animation" id="Animation_vakq5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("rifle0_mat:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.5708, 1.5708, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ha32y"]
+_data = {
+"RESET": SubResource("Animation_vakq5"),
+"spin": SubResource("Animation_feimw")
+}
+
+[sub_resource type="Animation" id="Animation_ibs83"]
+resource_name = "spin"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 12.5664, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_var5w"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 12.5664, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nt64g"]
+_data = {
+"RESET": SubResource("Animation_var5w"),
+"spin": SubResource("Animation_ibs83")
+}
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_hqwfi"]
 vertices = PackedVector3Array(-1.5, 0.406719, -13, -0.25, 0.406719, -13.25, -0.25, 0.406719, -49.5, -49.5, 0.406719, -49.5, -49.5, 0.406719, -11.25, -1.5, 0.406719, -11.25, 9.25, 0.406719, 2.5, 12, 0.406719, 2.5, 13, 0.406719, 1.75, 9.25, 0.406719, -5.5, 1.25, 0.406719, -9.75, 0.75, 0.406719, -9.5, 7, 0.406719, -5.25, 7.25, 0.406719, -5.75, 15, 0.406719, 1.75, 49.5, 0.406719, 2.75, 1.25, 0.406719, -13, 49.5, 0.406719, -49.5, 15.5, 0.406719, 2.75, -0.5, 1.65672, -12.25, -0.5, 1.65672, -10.5, 0.25, 1.65672, -10.5, 0.25, 1.65672, -12.25, -2, 0.656719, 21, -2, 1.15672, 23, 2, 1.15672, 23, 2, 0.656719, 21, -3, 0.406719, 21, -1.25, 0.406719, -9.5, -49.5, 0.406719, 23, 7, 0.406719, 5, -3, 0.406719, 23, 2.75, 0.406719, 21, 9.25, 0.406719, 5.25, 13, 0.406719, 4, 15, 0.406719, 4, 3, 0.406719, 28.25, 0.75, 0.406719, 49.5, 49.5, 0.406719, 49.5, 3, 0.406719, 21.25, 7.5, 0.406719, 5.5, 0.75, 0.406719, 28.5, -0.75, 0.406719, 49.5, -0.75, 0.406719, 28.5, -3, 0.406719, 28.25, -49.5, 0.406719, 49.5, -2, 18.1567, 111.25, 2, 18.1567, 111.25)
@@ -82,6 +159,7 @@ shadow_enabled = true
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.204, 1.03697, -1.222)
 
 [node name="Items" type="Node3D" parent="."]
+script = ExtResource("3_bmjj1")
 
 [node name="MeshInstance3D3" parent="Items" instance=ExtResource("8_8nm2w")]
 transform = Transform3D(1.00267, 0, 0, 0, 1.00267, 0, 0, 0, 1.00267, 4.59703, 1.28626, 0.528242)
@@ -91,8 +169,18 @@ skeleton = NodePath("../..")
 [node name="rifle0_mat" parent="Items/MeshInstance3D3" instance=ExtResource("4_tc50s")]
 transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, 0, 0, 0)
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Items/MeshInstance3D3"]
+libraries = {
+"": SubResource("AnimationLibrary_ha32y")
+}
+
 [node name="MeshInstance3D" parent="Items" instance=ExtResource("8_57qg2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.05914, 1.17469, -1.8576)
+transform = Transform3D(1, 0, 3.49691e-07, 0, 1, 0, -3.49691e-07, 0, 1, 5.05914, 1.17469, -1.8576)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Items/MeshInstance3D"]
+libraries = {
+"": SubResource("AnimationLibrary_nt64g")
+}
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_hqwfi")

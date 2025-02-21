@@ -5,6 +5,7 @@ extends RayCast3D
 @export var inventory : Node
 @export var dialogue: Node
 @export var player: Node
+@export var camera: Camera3D
 var anim_played = false
 var in_car = false
 var in_dialogue = false
@@ -20,6 +21,9 @@ func _process(delta: float) -> void:
 		var collider = get_collider()
 		if collider and collider.get_parent() and collider.get_parent().is_in_group("inv_item"):
 			%interaction.visible = 1
+			var target_position_3d = collider.global_transform.origin
+			var screen_position = camera.unproject_position(target_position_3d)
+			%interaction.position = screen_position - Vector2(650,650)
 			%interaction.get_node("Action").text = "take"
 			if !anim_played:
 				%anim.play("select_in")
@@ -38,6 +42,9 @@ func _process(delta: float) -> void:
 				pass
 		elif collider and collider.get_parent() and collider.get_parent().is_in_group("Car"):
 			%interaction.visible = 1
+			var target_position_3d = collider.global_transform.origin
+			var screen_position = camera.unproject_position(target_position_3d)
+			%interaction.position = screen_position - Vector2(650,650)
 			if !anim_played:
 				%anim.play("select_in")
 				anim_played = true
@@ -49,6 +56,9 @@ func _process(delta: float) -> void:
 			else:
 				pass
 		elif collider and collider.get_parent() and collider.get_parent().is_in_group("npc"):
+			var target_position_3d = collider.global_transform.origin
+			var screen_position = camera.unproject_position(target_position_3d)
+			%interaction.position = screen_position - Vector2(650,650)
 			if in_dialogue:
 				%interaction.visible = 0
 			else:
