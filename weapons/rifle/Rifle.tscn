@@ -69,7 +69,7 @@ wait_time = 0.2
 one_shot = true
 
 [node name="rifle0_mat" parent="." instance=ExtResource("3_ypu3o")]
-transform = Transform3D(-7.64949e-08, 1.75, -7.64949e-08, 0, -7.64949e-08, -1.75, -1.75, -7.64949e-08, 3.3437e-15, 0, 0, -0.11553)
+transform = Transform3D(-7.64949e-08, 1.75, -7.64949e-08, 0, -7.64949e-08, -1.75, -1.75, -7.64949e-08, 3.3437e-15, 0, 0, -0.238876)
 
 [connection signal="timeout" from="rifle_fire_rate" to="." method="_on_rifle_fire_rate_timeout"]
 [connection signal="timeout" from="recoil_reset" to="." method="_on_recoil_reset_timeout"]
