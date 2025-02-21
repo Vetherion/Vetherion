@@ -39,7 +39,16 @@ func _process(delta: float) -> void:
 
 func start_partial_dialogue(dialogue_path) -> void:
 	%Dialogue.visible = 1
-
+	for i in %VBoxContainer.get_children():
+		if i.is_in_group("button") and i != null:
+			i.queue_free()
+			i = null
+		
+	for i in %HBoxContainer.get_children():
+		if i.is_in_group("label") and i != null:
+			i.queue_free()
+			i = null
+			
 	var text = FileAccess.get_file_as_string(dialogue_path)
 	var dict = JSON.parse_string(text)
 	current_dialogue = dict
@@ -54,9 +63,11 @@ func start_partial_dialogue(dialogue_path) -> void:
 		label.modulate = 0
 		#label.get_node("anim").play("fade_out")
 		
-	for i in %HBoxContainer.get_children():
-		i.get_node("anim").play("fade_out")
-		await get_tree().create_timer(0.3).timeout
+	if %HBoxContainer.get_children() != null:
+		for i in %HBoxContainer.get_children():
+			if i != null:
+				i.get_node("anim").play("fade_out")
+				await get_tree().create_timer(0.3).timeout
 	
 	is_done = true
 
