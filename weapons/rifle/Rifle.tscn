@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://bb6lbab00x0me"]
+[gd_scene load_steps=10 format=3 uid="uid://bb6lbab00x0me"]
 
 [ext_resource type="Script" path="res://weapons/rifle/rifle.gd" id="1_4ckwo"]
 [ext_resource type="Shader" path="res://Shader/Weapon.gdshader" id="1_21b3a"]
+[ext_resource type="PackedScene" uid="uid://dnq8dkjoh7tut" path="res://external/rifle0_mat.glb" id="3_ypu3o"]
 
 [sub_resource type="Curve" id="Curve_cu53u"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.237624, 1), 0.0, 0.0, 0, 0, Vector2(0.490099, 0.472527), 0.0, 0.0, 0, 0, Vector2(1, 0.43956), 0.0, 0.0, 0, 0]
@@ -47,10 +48,12 @@ recoilcurve_y = SubResource("Curve_6lwua")
 recoilcurve_x = SubResource("Curve_2ym7a")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
 cast_shadow = 0
 mesh = SubResource("BoxMesh_dr22j")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+visible = false
 cast_shadow = 3
 mesh = SubResource("BoxMesh_7fbbn")
 skeleton = NodePath("../MeshInstance3D")
@@ -64,6 +67,9 @@ one_shot = true
 unique_name_in_owner = true
 wait_time = 0.2
 one_shot = true
+
+[node name="rifle0_mat" parent="." instance=ExtResource("3_ypu3o")]
+transform = Transform3D(-7.64949e-08, 1.75, -7.64949e-08, 0, -7.64949e-08, -1.75, -1.75, -7.64949e-08, 3.3437e-15, 0, 0, -0.11553)
 
 [connection signal="timeout" from="rifle_fire_rate" to="." method="_on_rifle_fire_rate_timeout"]
 [connection signal="timeout" from="recoil_reset" to="." method="_on_recoil_reset_timeout"]

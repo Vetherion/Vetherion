@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://m8jbt25qi0j3"]
+[gd_scene load_steps=5 format=3 uid="uid://m8jbt25qi0j3"]
 
 [ext_resource type="Script" path="res://Scripts/overview.gd" id="1_rscwp"]
+[ext_resource type="PackedScene" uid="uid://dnq8dkjoh7tut" path="res://external/rifle0_mat.glb" id="2_864ws"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b3lih"]
 albedo_color = Color(1, 0.270588, 1, 1)
@@ -20,3 +21,7 @@ mesh = SubResource("PlaneMesh_4fvq2")
 
 [node name="item" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.254862)
+
+[node name="rifle0_mat" parent="item" instance=ExtResource("2_864ws")]
+transform = Transform3D(-6.55671e-08, 1.5, -6.55671e-08, 0, -6.55671e-08, -1.5, -1.5, -6.55671e-08, 2.86603e-15, 0, 0, -0.034046)
+visible = false

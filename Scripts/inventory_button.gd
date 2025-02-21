@@ -17,9 +17,12 @@ func _on_pressed() -> void:
 		self.get_parent().get_parent().get_node("UI").selected_item = "inv_sniper0"
 		self.get_parent().get_parent().get_node("UI/item_inactive_button").text = "Sniper0"
 		print("Sniper select")
+		overview.get_node("item/rifle0_mat").visible = 0
 		overview.get_node("item").mesh = load("res://overview_meshes/item_sniper0.tres")
 	elif self.is_in_group("inv_rifle0"):
 		self.get_parent().get_parent().get_node("UI").selected_item = "inv_rifle0"
 		self.get_parent().get_parent().get_node("UI/item_inactive_button").text = "Rifle0"
 		print("Rifle select")
-		overview.get_node("item").mesh = load("res://overview_meshes/item_rifle0.tres")
+		overview.get_node("item").mesh = load("")
+		overview.get_node("item/rifle0_mat").visible = 1
+		#overview.get_node("item").mesh = load("res://overview_meshes/item_rifle0.tres")
