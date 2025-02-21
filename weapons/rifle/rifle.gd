@@ -54,7 +54,6 @@ func _physics_process(delta: float) -> void:
 		
 		
 		var spread = clamp((core_spread * (ammocount + 29) * ((player.velocity.x + 4.0) * 0.25) * ((player.velocity.y + 4.0) * 0.25) * ((player.velocity.z + 4.0) * 0.25)) / 150.0, 0.0, 0.03)
-		print(spread)
 		weapon_ray.rotation.x += randf_range(-spread , spread * 2)
 		if camerapivot.rotation.y < 0:
 			weapon_ray.rotation.y -= randf_range(-spread, spread * 2)
