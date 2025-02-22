@@ -11,6 +11,7 @@ extends Node
 @export var label_scene: PackedScene
 @export var button_scene: PackedScene
 @export var interaction: Node
+@export var state_machine: Node
 
 var is_done = false
 var buttons: Array[Object]
@@ -37,8 +38,12 @@ func _process(delta: float) -> void:
 		buttons[current_focus].get_node("button").grab_focus()
 		
 
-func start_partial_dialogue(dialogue_path) -> void:
+func start_partial_dialogue(lookat, dialogue_path) -> void:
 	%Dialogue.visible = 1
+	%CameraPivot.look_at(lookat.position + Vector3(.0, .75, .0))
+	match state_machine.currentState:
+		state_machine.STATES.Move:
+			state_machine.change_state(state_machine.STATES.Dialogue)
 	for i in %VBoxContainer.get_children():
 		if i.is_in_group("button") and i != null:
 			i.queue_free()
@@ -139,6 +144,9 @@ func load_partial_dialogue(dialogue, index):
 				buttons = []
 				current_focus = 0
 				responder = ""
+				match state_machine.currentState:
+					state_machine.STATES.Dialogue:
+						state_machine.change_state(state_machine.STATES.Move)
 			else:
 				for i in %VBoxContainer.get_children():
 					if i.is_in_group("button") and i != null:

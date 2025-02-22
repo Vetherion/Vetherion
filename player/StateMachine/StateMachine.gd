@@ -3,7 +3,7 @@ extends Node
 @export var body : CharacterBody3D
 @export var initialState : STATES
 
-enum STATES {Move, Diyalogue, Inventory}
+enum STATES {Move, Dialogue, Inventory}
 
 var currentState : STATES
 var previousState : STATES  # Track previous state
