@@ -10,7 +10,11 @@ func _input(event: InputEvent) -> void:
 
 func damage(hit : float) -> void:
 	health -= hit
-	$HUD/Health.value = health
+
+	var tween = create_tween()
+	tween.tween_property(get_node("HUD/Health2/Health"), "value", health, 0.75).set_trans(Tween.TRANS_CUBIC)
+	tween.tween_property(get_node("HUD/Health2"), "value", health, 1).set_trans(Tween.TRANS_LINEAR)
+	
 	print(health)
 	if health <= 0:
 		queue_free() 
