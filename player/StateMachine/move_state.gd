@@ -79,3 +79,13 @@ func _headchar(time : float) -> Vector3:
 	pos.y = sin(time * char_FREQ) * char_AMP
 	pos.x = cos(time * char_FREQ / 2) * char_AMP
 	return pos
+
+func enter() -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	camera_input_direction = Vector2.ZERO
+	t_char = 0.0  # Reset head bob
+
+func exit() -> void:
+	# Reset movement variables
+	player1.velocity = Vector3.ZERO
+	camera_input_direction = Vector2.ZERO

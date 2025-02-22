@@ -6,10 +6,11 @@ extends Node
 enum STATES {Move, Diyalogue, Inventory}
 
 var currentState : STATES
-
+var previousState : STATES  # Track previous state
 
 func _ready() -> void:
 	currentState = initialState if initialState else STATES.Move
+	previousState = currentState
 	get_children()[currentState].set_active(true)
 
 func _input(event: InputEvent) -> void:
@@ -20,12 +21,14 @@ func _input(event: InputEvent) -> void:
 			STATES.Inventory:
 				change_state(STATES.Move)
 		
-func _physics_process(delta: float) -> void:
-	#if body.animationPause : return
-	pass
 func change_state(newState):
 	if newState == currentState: return
 	
+	previousState = currentState  # Store the previous state
 	get_children()[currentState].set_active(false)
+	
+	# Small delay before activating new state to ensure clean transition
+	await get_tree().create_timer(0.05).timeout
+	
 	currentState = newState
 	get_children()[currentState].set_active(true)
