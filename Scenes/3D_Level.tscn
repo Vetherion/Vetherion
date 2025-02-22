@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://beqn6i68wci2n"]
+[gd_scene load_steps=36 format=3 uid="uid://beqn6i68wci2n"]
 
 [ext_resource type="Script" path="res://Scripts/3D_Level.gd" id="1_1ufpl"]
 [ext_resource type="PackedScene" uid="uid://bb34e6irwt0ia" path="res://car/car.tscn" id="1_lvekw"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://Scripts/item.gd" id="3_bmjj1"]
 [ext_resource type="Script" path="res://enemy/enemy.gd" id="4_qhv1j"]
 [ext_resource type="PackedScene" uid="uid://dnq8dkjoh7tut" path="res://external/rifle0_mat.glb" id="4_tc50s"]
+[ext_resource type="Shader" path="res://Shader/grid.gdshader" id="7_l6v2y"]
 [ext_resource type="PackedScene" uid="uid://5w744otwipe6" path="res://Scenes/item_rifle0.tscn" id="8_8nm2w"]
 [ext_resource type="PackedScene" uid="uid://vxgux5f407k8" path="res://Scenes/item_sniper0.tscn" id="8_57qg2"]
 
@@ -104,8 +105,16 @@ polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Arr
 agent_radius = 0.4
 agent_max_slope = 60.0
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jrur0"]
+render_priority = 0
+shader = ExtResource("7_l6v2y")
+
 [sub_resource type="PlaneMesh" id="PlaneMesh_hhvtk"]
 size = Vector2(5, 100)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4t2dy"]
+render_priority = 0
+shader = ExtResource("7_l6v2y")
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_83pwm"]
 points = PackedVector3Array(-2.73364, 0.233645, -50.2336, 2.87383, 0.233645, 50.2336, 2.87383, 0.233645, -50.2336, -2.73364, 0.233645, 50.2336)
@@ -126,6 +135,10 @@ size = Vector3(0.7, 0.7, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_of6n5"]
 size = Vector3(1, 10, 10)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w4ca0"]
+render_priority = 0
+shader = ExtResource("7_l6v2y")
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_dgrdr"]
 points = PackedVector3Array(-0.579365, -5.07837, -5.07738, 0.5, 4.78914, 4.78724, 0.5, 4.78914, -4.78724, -0.579365, 5.07837, 5.07738, 0.5, -4.78815, 4.78724, -0.579365, -5.07837, 5.07738, -0.579365, 5.07837, -5.07738, 0.5, -4.78815, -4.78724, 0.366754, 5, -4.99804, 0.366754, 5, 4.99804)
@@ -188,11 +201,13 @@ navigation_mesh = SubResource("NavigationMesh_hqwfi")
 [node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D"]
 use_collision = true
 size = Vector3(100, 0.002, 100)
+material = SubResource("ShaderMaterial_jrur0")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D"]
 transform = Transform3D(1, 0, 0, 0, 0.981969, 0.189044, 0, -0.189044, 0.981969, 0, 8.35892, 62.6766)
 mesh = SubResource("PlaneMesh_hhvtk")
 skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_4t2dy")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/MeshInstance3D"]
 
@@ -251,6 +266,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.07419, 4.94134, -0.165283)
 layers = 17
 mesh = SubResource("BoxMesh_of6n5")
 skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_w4ca0")
 
 [node name="HitBox" type="Area3D" parent="NavigationRegion3D/MeshInstance3D2"]
 collision_layer = 5
