@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://weapons/rifle/rifle.gd" id="1_4ckwo"]
 [ext_resource type="Shader" path="res://Shader/Weapon.gdshader" id="1_21b3a"]
-[ext_resource type="PackedScene" uid="uid://cxbejrk722pg1" path="res://external/rifle0_mat.glb" id="3_ypu3o"]
+[ext_resource type="PackedScene" uid="uid://dnq8dkjoh7tut" path="res://external/rifle0_mat.glb" id="3_ypu3o"]
 
 [sub_resource type="Curve" id="Curve_cu53u"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.237624, 1), 0.0, 0.0, 0, 0, Vector2(0.490099, 0.472527), 0.0, 0.0, 0, 0, Vector2(1, 0.43956), 0.0, 0.0, 0, 0]

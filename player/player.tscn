@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=4 uid="uid://dhjrc28o432pk"]
+[gd_scene load_steps=41 format=4 uid="uid://dhjrc28o432pk"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_cbo13"]
 [ext_resource type="Script" path="res://weapons/reticle.gd" id="2_77glr"]
@@ -11,15 +11,17 @@
 [ext_resource type="Script" path="res://player/StateMachine/diyalogue_state.gd" id="10_jw2nf"]
 [ext_resource type="Script" path="res://player/StateMachine/inventory_state.gd" id="11_pdbfm"]
 [ext_resource type="Texture2D" uid="uid://dmwm5o7hrso7l" path="res://external/bitmap.png" id="12_01h06"]
-[ext_resource type="FontFile" uid="uid://ddhg6qicrk472" path="res://external/Orbitron Medium.otf" id="12_iklaq"]
+[ext_resource type="FontFile" uid="uid://cik5oxwblyave" path="res://external/Orbitron Medium.otf" id="12_iklaq"]
 [ext_resource type="PackedScene" uid="uid://didfhp7chm7e" path="res://Scenes/inventory_button.tscn" id="13_e4sah"]
 [ext_resource type="Script" path="res://Scripts/ui.gd" id="14_saej1"]
 [ext_resource type="PackedScene" uid="uid://m8jbt25qi0j3" path="res://Scenes/overview.tscn" id="15_orgm4"]
 [ext_resource type="Script" path="res://Scripts/dialogue.gd" id="16_tvu3e"]
 [ext_resource type="PackedScene" uid="uid://bh2ojr7ymexb2" path="res://Scenes/label.tscn" id="17_wji7j"]
 [ext_resource type="PackedScene" uid="uid://dmthcbtlrqmvk" path="res://Scenes/button.tscn" id="18_8pgc4"]
-[ext_resource type="FontFile" uid="uid://2jq5fltnfe5b" path="res://external/Orbitron Bold.otf" id="19_1ac7k"]
+[ext_resource type="FontFile" uid="uid://b6wqk1o0r3j7s" path="res://external/Orbitron Bold.otf" id="19_1ac7k"]
+[ext_resource type="Texture2D" uid="uid://b0mc5r5eaulim" path="res://external/sniper0_union.png" id="20_fxgqg"]
 [ext_resource type="PackedScene" uid="uid://727xpupr0l63" path="res://Scenes/minimap.tscn" id="20_qqwxw"]
+[ext_resource type="Texture2D" uid="uid://djh65hpfc7hq2" path="res://external/rifle0.png" id="20_v80qs"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_cbere"]
 size = Vector3(1, 2, 1)
@@ -790,7 +792,6 @@ layout_mode = 2
 size_flags_horizontal = 4
 
 [node name="HUD" type="Control" parent="."]
-visible = false
 custom_minimum_size = Vector2(1920, 1080)
 layout_mode = 3
 anchors_preset = 8
@@ -819,12 +820,20 @@ grow_horizontal = 0
 grow_vertical = 0
 
 [node name="Selected_gun" type="Control" parent="HUD/Cnt"]
-visible = false
 layout_mode = 2
+mouse_filter = 2
 
-[node name="Selected_gun" type="Sprite2D" parent="HUD/Cnt/Selected_gun"]
+[node name="sniper0" type="Sprite2D" parent="HUD/Cnt/Selected_gun"]
+visible = false
+position = Vector2(125, -53)
+scale = Vector2(0.0580879, 0.0580879)
+texture = ExtResource("20_fxgqg")
+
+[node name="rifle0" type="Sprite2D" parent="HUD/Cnt/Selected_gun"]
+visible = false
 position = Vector2(118, -47)
 scale = Vector2(0.1, 0.1)
+texture = ExtResource("20_v80qs")
 
 [node name="Panel" type="Panel" parent="HUD/Cnt"]
 custom_minimum_size = Vector2(250, 120)
@@ -887,7 +896,7 @@ grow_horizontal = 0
 handle_input_locally = false
 gui_disable_input = true
 size = Vector2i(256, 256)
-render_target_update_mode = 0
+render_target_update_mode = 4
 
 [node name="Node2D" parent="HUD/Minimap/Minimap" instance=ExtResource("20_qqwxw")]
 

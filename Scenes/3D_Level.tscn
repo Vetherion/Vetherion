@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dhjrc28o432pk" path="res://player/player.tscn" id="1_m4hl5"]
 [ext_resource type="Script" path="res://Scripts/item.gd" id="3_bmjj1"]
 [ext_resource type="Script" path="res://enemy/enemy.gd" id="4_qhv1j"]
-[ext_resource type="PackedScene" uid="uid://cxbejrk722pg1" path="res://external/rifle0_mat.glb" id="4_tc50s"]
+[ext_resource type="PackedScene" uid="uid://dnq8dkjoh7tut" path="res://external/rifle0_mat.glb" id="4_tc50s"]
 [ext_resource type="PackedScene" uid="uid://5w744otwipe6" path="res://Scenes/item_rifle0.tscn" id="8_8nm2w"]
 [ext_resource type="PackedScene" uid="uid://vxgux5f407k8" path="res://Scenes/item_sniper0.tscn" id="8_57qg2"]
 

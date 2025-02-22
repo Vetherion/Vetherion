@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://m8jbt25qi0j3"]
+[gd_scene load_steps=6 format=3 uid="uid://m8jbt25qi0j3"]
 
 [ext_resource type="Script" path="res://Scripts/overview.gd" id="1_rscwp"]
 [ext_resource type="PackedScene" uid="uid://dnq8dkjoh7tut" path="res://external/rifle0_mat.glb" id="2_864ws"]
+[ext_resource type="PackedScene" uid="uid://rdylqbotbii3" path="res://external/sniper_2.glb" id="3_d0cy3"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b3lih"]
 albedo_color = Color(1, 0.270588, 1, 1)
@@ -24,4 +25,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.254862)
 
 [node name="rifle0_mat" parent="item" instance=ExtResource("2_864ws")]
 transform = Transform3D(-6.55671e-08, 1.5, -6.55671e-08, 0, -6.55671e-08, -1.5, -1.5, -6.55671e-08, 2.86603e-15, 0, 0, -0.034046)
+visible = false
+
+[node name="sniper_2" parent="item" instance=ExtResource("3_d0cy3")]
+transform = Transform3D(-2.62268e-08, 0.6, -2.62268e-08, 0, -2.62268e-08, -0.6, -0.6, -2.62268e-08, 1.14641e-15, 0.310385, -0.00680549, -0.00432533)
 visible = false

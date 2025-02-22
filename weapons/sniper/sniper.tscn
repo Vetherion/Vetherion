@@ -1,82 +1,22 @@
-[gd_scene load_steps=10 format=3 uid="uid://bdw2t4mgvcg0c"]
+[gd_scene load_steps=4 format=3 uid="uid://bdw2t4mgvcg0c"]
 
-[ext_resource type="Shader" path="res://Shader/Weapon.gdshader" id="1_7mc2g"]
 [ext_resource type="Script" path="res://weapons/sniper/sniper.gd" id="1_vq1d3"]
+[ext_resource type="PackedScene" uid="uid://rdylqbotbii3" path="res://external/sniper_2.glb" id="2_ko2oj"]
 
 [sub_resource type="Curve" id="Curve_kyy6y"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.262376, 1), 0.0, 0.0, 0, 0, Vector2(0.519802, 0.538462), 0.0, 0.0, 0, 0, Vector2(1, 0.516483), 0.0, 0.0, 0, 0]
 point_count = 4
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ldvg4"]
-render_priority = 0
-shader = ExtResource("1_7mc2g")
-shader_parameter/albedo = Color(1, 1, 1, 1)
-shader_parameter/point_size = 1.0
-shader_parameter/roughness = 1.0
-shader_parameter/metallic_texture_channel = null
-shader_parameter/specular = 0.5
-shader_parameter/metallic = 0.0
-shader_parameter/uv1_scale = Vector3(1, 1, 1)
-shader_parameter/uv1_offset = Vector3(0, 0, 0)
-shader_parameter/uv2_scale = Vector3(1, 1, 1)
-shader_parameter/uv2_offset = Vector3(0, 0, 0)
-shader_parameter/fov = 77.0
-
-[sub_resource type="BoxMesh" id="BoxMesh_15pev"]
-material = SubResource("ShaderMaterial_ldvg4")
-size = Vector3(0.15, 0.15, 1)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_3sroy"]
-render_priority = 0
-shader = ExtResource("1_7mc2g")
-shader_parameter/albedo = Color(1, 1, 1, 1)
-shader_parameter/point_size = 1.0
-shader_parameter/roughness = 1.0
-shader_parameter/metallic_texture_channel = null
-shader_parameter/specular = 0.5
-shader_parameter/metallic = 0.0
-shader_parameter/uv1_scale = Vector3(1, 1, 1)
-shader_parameter/uv1_offset = Vector3(0, 0, 0)
-shader_parameter/uv2_scale = Vector3(1, 1, 1)
-shader_parameter/uv2_offset = Vector3(0, 0, 0)
-shader_parameter/fov = 77.0
-
-[sub_resource type="BoxMesh" id="BoxMesh_kn836"]
-material = SubResource("ShaderMaterial_3sroy")
-size = Vector3(0.15, 0.15, 0.15)
-
-[sub_resource type="BoxMesh" id="BoxMesh_p87hy"]
-size = Vector3(0.15, 0.15, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_t1kox"]
-size = Vector3(0.15, 0.15, 0.15)
-
 [node name="Sniper" type="Node3D"]
 script = ExtResource("1_vq1d3")
 damagedistance = SubResource("Curve_kyy6y")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-cast_shadow = 0
-mesh = SubResource("BoxMesh_15pev")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshInstance3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.137981, -0.42525)
-cast_shadow = 0
-mesh = SubResource("BoxMesh_kn836")
-skeleton = NodePath("../..")
-
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
-cast_shadow = 3
-mesh = SubResource("BoxMesh_p87hy")
-
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="MeshInstance3D3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.139, -0.425)
-cast_shadow = 3
-mesh = SubResource("BoxMesh_t1kox")
 
 [node name="sniper_fire_rate" type="Timer" parent="."]
 unique_name_in_owner = true
 wait_time = 1.25
 one_shot = true
+
+[node name="sniper_2" parent="." instance=ExtResource("2_ko2oj")]
+transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, 0.374389, -0.0485085, -0.252398)
 
 [connection signal="timeout" from="sniper_fire_rate" to="." method="_on_sniper_fire_rate_timeout"]
