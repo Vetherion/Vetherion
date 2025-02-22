@@ -3,6 +3,7 @@ extends WeaponClass
 @export var damagedistance : Curve 
 @export var recoilcurve_y : Curve
 @export var recoilcurve_x : Curve
+@export var weapon_recoil_show : Curve
 
 @onready var camera3d : Camera3D = get_parent()
 @onready var player : CharacterBody3D = get_parent().get_parent().get_parent().get_parent()
@@ -22,7 +23,11 @@ var spread
 func _physics_process(delta: float) -> void:
 	#Handle Fire
 	if  Input.is_action_pressed("left_click") and canshoot and level1.magazine_rifle > 0 and StateMachine.currentState == StateMachine.STATES.Move:
-		#Timer
+		var increase = weapon_recoil_show.sample_baked(ammocount / 30.0) * 0.009
+		var tween = get_tree().create_tween()
+		var target_position = rifle.position + Vector3(0, increase, 1.5 * increase)
+		tween.tween_property(rifle, "position", target_position, 0.05)
+		
 		level1.magazine_rifle -= 1
 		get_node("../../../../HUD/Cnt/Panel/Cnt/Ammo").text = str(level1.magazine_rifle)
 		get_node("../../../../HUD/Cnt/Panel/Cnt/Ammo_total").text = str(level1.ammo_rifle)
@@ -59,7 +64,6 @@ func _physics_process(delta: float) -> void:
 			weapon_ray.rotation.y -= randf_range(-spread, spread * 2)
 		if camerapivot.rotation.y > 0:
 			weapon_ray.rotation.y -= randf_range(spread, -spread * 2)
-		#TO DO mouse hızına ve karakter hızına baglı olarak eklenen recoiller geri cıkacak haraket azalısında
 		
 func _on_rifle_fire_rate_timeout() -> void:
 	canshoot = true
@@ -87,6 +91,8 @@ func _input(event: InputEvent) -> void:
 		camerapivot.rotation.x = lerp(camerapivot.rotation.x, target_rotation_x, 0.1)
 		
 func _on_recoil_reset_timeout() -> void:
+	rifle.position = Vector3(0.5, -0.3, -0.5)
+	
 	tempcount = ammocount
 	ammocount = 0
 	AmmocountVariable.ammocount = ammocount

@@ -77,5 +77,6 @@ mesh = SubResource("BoxMesh_t1kox")
 [node name="sniper_fire_rate" type="Timer" parent="."]
 unique_name_in_owner = true
 wait_time = 1.25
+one_shot = true
 
 [connection signal="timeout" from="sniper_fire_rate" to="." method="_on_sniper_fire_rate_timeout"]

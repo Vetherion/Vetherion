@@ -13,7 +13,7 @@ func _on_equip_pressed() -> void:
 
 # Inequip button
 func _on_inequip_pressed() -> void:
-	if camera.current_weapon:
+	if camera.current_weapon != null:
 		camera.current_weapon.queue_free()
 
 # Drop button
