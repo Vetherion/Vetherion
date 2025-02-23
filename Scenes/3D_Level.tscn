@@ -145,8 +145,8 @@ points = PackedVector3Array(-0.579365, -5.07837, -5.07738, 0.5, 4.78914, 4.78724
 shading_mode = 2
 disable_ambient_light = true
 vertex_color_is_srgb = true
-albedo_color = Color(1, 0.0509804, 1, 1)
-metallic = 1.0
+albedo_color = Color(7.70092e-07, 0.722496, 0.655341, 1)
+metallic = 0.68
 metallic_specular = 1.0
 roughness = 0.55
 
@@ -236,7 +236,7 @@ layers = 4
 mesh = SubResource("CapsuleMesh_mey7e")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Enemies/Enemy"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.27117, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000510216, 0.27117, 0.0092907)
 shape = SubResource("CapsuleShape3D_a0bsd")
 
 [node name="HitBox" type="Area3D" parent="NavigationRegion3D/Enemies/Enemy" groups=["Enemy"]]

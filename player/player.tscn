@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=4 uid="uid://dhjrc28o432pk"]
+[gd_scene load_steps=45 format=4 uid="uid://dhjrc28o432pk"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_cbo13"]
 [ext_resource type="Script" path="res://weapons/reticle.gd" id="2_77glr"]
@@ -19,9 +19,11 @@
 [ext_resource type="PackedScene" uid="uid://bh2ojr7ymexb2" path="res://Scenes/label.tscn" id="17_wji7j"]
 [ext_resource type="PackedScene" uid="uid://dmthcbtlrqmvk" path="res://Scenes/button.tscn" id="18_8pgc4"]
 [ext_resource type="FontFile" uid="uid://b6wqk1o0r3j7s" path="res://external/Orbitron Bold.otf" id="19_1ac7k"]
+[ext_resource type="Script" path="res://Scripts/mission.gd" id="20_0l050"]
 [ext_resource type="Texture2D" uid="uid://b0mc5r5eaulim" path="res://external/sniper0_union.png" id="20_fxgqg"]
 [ext_resource type="PackedScene" uid="uid://727xpupr0l63" path="res://Scenes/minimap.tscn" id="20_qqwxw"]
 [ext_resource type="Texture2D" uid="uid://djh65hpfc7hq2" path="res://external/rifle0.png" id="20_v80qs"]
+[ext_resource type="Texture2D" uid="uid://cekhvaeqj5ixb" path="res://external/exclamation.png" id="24_7xa47"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_cbere"]
 size = Vector3(1, 2, 1)
@@ -797,6 +799,11 @@ layout_direction = 1
 layout_mode = 2
 size_flags_horizontal = 4
 
+[node name="Mission_system" type="Node" parent="." node_paths=PackedStringArray("camera", "exclamation")]
+script = ExtResource("20_0l050")
+camera = NodePath("../CameraPivot/Recoil/Camera3D")
+exclamation = NodePath("../HUD/Exclamation")
+
 [node name="HUD" type="Control" parent="."]
 custom_minimum_size = Vector2(1920, 1080)
 layout_mode = 3
@@ -890,6 +897,7 @@ theme_override_font_sizes/font_size = 25
 script = SubResource("GDScript_jngej")
 
 [node name="Minimap" type="SubViewportContainer" parent="HUD"]
+visible = false
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -902,7 +910,7 @@ grow_horizontal = 0
 handle_input_locally = false
 gui_disable_input = true
 size = Vector2i(256, 256)
-render_target_update_mode = 4
+render_target_update_mode = 0
 
 [node name="Node2D" parent="HUD/Minimap/Minimap" instance=ExtResource("20_qqwxw")]
 
@@ -931,6 +939,13 @@ theme_override_styles/background = SubResource("StyleBoxEmpty_64qq7")
 theme_override_styles/fill = SubResource("StyleBoxFlat_67c8p")
 value = 100.0
 show_percentage = false
+
+[node name="Exclamation" type="TextureRect" parent="HUD"]
+layout_mode = 0
+offset_right = 37.0
+offset_bottom = 43.0
+texture = ExtResource("24_7xa47")
+expand_mode = 1
 
 [connection signal="pressed" from="Inventory/VBoxContainer/1/1" to="Inventory/VBoxContainer/1/1" method="_on_pressed"]
 [connection signal="pressed" from="Inventory/VBoxContainer/1/2" to="Inventory/VBoxContainer/1/2" method="_on_pressed"]
