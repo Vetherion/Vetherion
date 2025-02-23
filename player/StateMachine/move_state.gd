@@ -17,6 +17,7 @@ var camera_input_direction : Vector2 = Vector2.ZERO
 var SPRINT_SPEED : float = 8.0
 var WALK_SPEED : float = 5.0
 var stamina : float = 100
+var initial_stamina: float = 100 
 
 #head movement variables
 const char_FREQ : float = 2.0
@@ -45,7 +46,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		move_speed = WALK_SPEED 
 		stamina += 2.0 * delta
-		stamina = clamp(stamina, 0, 100)
+		stamina = clamp(stamina, 0, initial_stamina)
 	# Set camera angle by using camera_input_direction
 	camera_pivot.rotation.x -= camera_input_direction.y * delta
 	camera_pivot.rotation.x = clamp(camera_pivot.rotation.x, -PI / 3.0, PI / 1.5) #Limit for Vision Rotate
