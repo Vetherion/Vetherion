@@ -4,7 +4,7 @@ extends Node
 @export var player: CharacterBody3D
 @export var SaveResource: Resource
 
-const SAVE_PATH = "res://save_resource2.tres"
+const SAVE_PATH = "user://save_test.tres"
 
 	
 func SaveGame() -> void:
@@ -13,6 +13,7 @@ func SaveGame() -> void:
 	SaveResource.inventory = inventory.inventory
 	SaveResource.inventory_gui = inventory.inventory_gui
 	SaveResource.position = player.position
+	SaveResource.camera_rotation = player.get_node("CameraPivot").rotation
 	ResourceSaver.save(SaveResource, SAVE_PATH)
 
 func LoadGame() -> Resource:
@@ -30,6 +31,7 @@ func _on_load_pressed() -> void:
 	var save = LoadGame() 
 	if save:
 		player.position = save.position
+		player.get_node("CameraPivot").rotation = save.camera_rotation
 		player.health = save.health
 		inventory.inventory = save.inventory
 		inventory.inventory_gui = save.inventory_gui
