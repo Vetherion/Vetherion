@@ -41,6 +41,7 @@ func _process(delta: float) -> void:
 func start_partial_dialogue(lookat, dialogue_path) -> void:
 	%Dialogue.visible = 1
 	$"../HUD".visible = 0
+	%UserInterface.visible = 0
 	%CameraPivot.look_at(lookat.position + Vector3(.0, .75, .0))
 	match state_machine.currentState:
 		state_machine.STATES.Move:
@@ -146,6 +147,7 @@ func load_partial_dialogue(dialogue, index):
 				current_focus = 0
 				responder = ""
 				$"../HUD".visible = 1
+				%UserInterface.visible = 1
 				match state_machine.currentState:
 					state_machine.STATES.Dialogue:
 						state_machine.change_state(state_machine.STATES.Move)

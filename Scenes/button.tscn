@@ -1,12 +1,12 @@
 [gd_scene load_steps=10 format=3 uid="uid://dmthcbtlrqmvk"]
 
 [ext_resource type="Script" path="res://Scripts/button.gd" id="1_eidpk"]
-[ext_resource type="FontFile" uid="uid://3532wquhcbod" path="res://external/Orbitron Medium.otf" id="1_mtelf"]
+[ext_resource type="FontFile" uid="uid://cik5oxwblyave" path="res://external/Orbitron Medium.otf" id="1_mtelf"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qbx3j"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lm8rp"]
-bg_color = Color(0.523333, 0.48, 1, 0.686275)
+bg_color = Color(0.673711, 0.658585, 1, 0.815686)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c66rf"]
 bg_color = Color(0.968627, 0.396078, 1, 0.709804)
@@ -78,7 +78,7 @@ _data = {
 }
 
 [node name="ProgressBar" type="ProgressBar" groups=["button"]]
-custom_minimum_size = Vector2(300, 25)
+custom_minimum_size = Vector2(450, 35)
 offset_right = 185.0
 offset_bottom = 25.0
 size_flags_horizontal = 4
@@ -87,18 +87,18 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_lm8rp")
 show_percentage = false
 
 [node name="button" type="Button" parent="." groups=["button"]]
-modulate = Color(0.301961, 0.109804, 0.321569, 1)
-custom_minimum_size = Vector2(300, 25)
+modulate = Color(0.283994, 0.123135, 0.39996, 1)
+custom_minimum_size = Vector2(450, 35)
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -87.5
-offset_top = -12.5
-offset_right = 87.5
-offset_bottom = 12.5
+offset_left = -225.0
+offset_top = -17.5
+offset_right = 225.0
+offset_bottom = 17.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
@@ -115,7 +115,7 @@ theme_override_colors/icon_hover_color = Color(0, 0, 0, 1)
 theme_override_colors/icon_hover_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/icon_disabled_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("1_mtelf")
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 22
 theme_override_styles/focus = SubResource("StyleBoxFlat_c66rf")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_c66rf")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_c66rf")

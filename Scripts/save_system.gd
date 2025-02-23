@@ -34,4 +34,4 @@ func _on_load_pressed() -> void:
 		inventory.inventory = save.inventory
 		inventory.inventory_gui = save.inventory_gui
 		inventory.load_gui()
-		$"../HUD/load2".text = "Loaded: " + "pos: " + str(player.position) + "\nhp: " + str(player.health) + "\ninv: " + str(inventory.inventory) + "\ninv_gui: " + str(inventory.inventory_gui)
+		$"../HUD/load2".text = "Loaded: " + "\npos: " + str(player.position) + "\nhp: " + str(player.health) + "\ninv: " + str(inventory.inventory) + "\ninv_gui: " + str(inventory.inventory_gui)

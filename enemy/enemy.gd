@@ -25,9 +25,9 @@ func _physics_process(delta: float) -> void:  # Changed from _process to _physic
 		nav_agent.set_target_position(player.global_position)  # Changed from global_transform.origin
 		var next_nav_point = nav_agent.get_next_path_position()
 		velocity = (next_nav_point - global_position).normalized() * SPEED
-		move_and_slide()
+		#move_and_slide()
 	elif can_attack:  # Only attack if cooldown is finished
-		attack_player()
+		pass#attack_player()
 
 func attack_player() -> void:
 	if player == null:

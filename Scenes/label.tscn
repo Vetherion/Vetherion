@@ -42,7 +42,7 @@ _data = {
 [node name="Label" type="Label" groups=["label"]]
 modulate = Color(1, 0.27451, 0.486275, 1)
 theme_override_fonts/font = ExtResource("1_bc7lk")
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 24
 text = "wqrwqrqw"
 
 [node name="anim" type="AnimationPlayer" parent="."]
