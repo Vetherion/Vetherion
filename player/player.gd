@@ -12,8 +12,8 @@ func damage(hit : float) -> void:
 	health -= hit
 
 	var tween = create_tween()
-	tween.tween_property(get_node("HUD/Health2/Health"), "value", health, 0.75).set_trans(Tween.TRANS_CUBIC)
-	tween.tween_property(get_node("HUD/Health2"), "value", health, 1).set_trans(Tween.TRANS_LINEAR)
+	tween.tween_property(get_node("HUD/Health2/Health"), "value", health, 0.5).set_trans(Tween.TRANS_QUINT)
+	tween.tween_property(get_node("HUD/Health2"), "value", health, 0.75).set_trans(Tween.TRANS_LINEAR)
 	
 	print(health)
 	if health <= 0:

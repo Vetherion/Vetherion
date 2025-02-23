@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://beqn6i68wci2n"]
+[gd_scene load_steps=35 format=3 uid="uid://beqn6i68wci2n"]
 
 [ext_resource type="Script" path="res://Scripts/3D_Level.gd" id="1_1ufpl"]
 [ext_resource type="PackedScene" uid="uid://bb34e6irwt0ia" path="res://car/car.tscn" id="1_lvekw"]
@@ -124,10 +124,8 @@ size = Vector3(7.5, 7.5, 7.5)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_mey7e"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_jegip"]
-size = Vector3(0.7, 0.7, 1)
-
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_a0bsd"]
+height = 2.07026
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6qyta"]
 
@@ -233,19 +231,16 @@ script = ExtResource("4_qhv1j")
 player_path = NodePath("../../../player")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Enemies/Enemy" groups=["Enemy"]]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.0189381, -0.0306526, 0)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.0189381, 0.322338, 0)
 layers = 4
 mesh = SubResource("CapsuleMesh_mey7e")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Enemies/Enemy/MeshInstance3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.528182, -0.528152, 0.0274588)
-mesh = SubResource("BoxMesh_jegip")
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Enemies/Enemy"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.27117, 0)
 shape = SubResource("CapsuleShape3D_a0bsd")
 
 [node name="HitBox" type="Area3D" parent="NavigationRegion3D/Enemies/Enemy" groups=["Enemy"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00155163, 0.00576389, -0.00306463)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00155163, 0.328306, -0.00306416)
 collision_layer = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Enemies/Enemy/HitBox"]
@@ -255,7 +250,7 @@ shape = SubResource("CapsuleShape3D_6qyta")
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="NavigationRegion3D/Enemies/Enemy"]
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="NavigationRegion3D/Enemies/Enemy"]
-transform = Transform3D(-4.37114e-08, 0, -0.138524, 0, 0.211235, 0, 1, 0, -6.0551e-09, 0.315255, 0.0837657, -1.22121)
+transform = Transform3D(-4.37114e-08, 0, -0.138524, 0, 0.211235, 0, 1, 0, -6.0551e-09, 0.315255, 0.372513, -1.22121)
 mesh = SubResource("BoxMesh_4xl1m")
 
 [node name="RayCast3D" type="RayCast3D" parent="NavigationRegion3D/Enemies/Enemy"]
