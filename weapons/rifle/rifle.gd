@@ -12,6 +12,7 @@ extends WeaponClass
 @onready var StateMachine = player.get_node("StateMachine")
 @onready var weapon_ray = get_parent().get_parent().get_node("Weapon_Ray")
 @onready var recoil : Node3D = get_parent().get_parent()
+@onready var fire_particle: GPUParticles3D = $rifle0_mat/Node3D/GPUParticles3D
 
 var ammocount : int = 0
 var temp_rotation
@@ -23,6 +24,10 @@ var spread
 func _physics_process(delta: float) -> void:
 	#Handle Fire
 	if  Input.is_action_pressed("left_click") and canshoot and level1.magazine_rifle > 0 and StateMachine.currentState == StateMachine.STATES.Move:
+		#fire_particle.position = rifle.position + Vector3(1.0 , 1.0, 1.0)
+		fire_particle.emitting = true
+		%particle.start()
+		
 		var increase = weapon_recoil_show.sample_baked(ammocount / 30.0) * 0.009
 		var tween = get_tree().create_tween()
 		var target_position = rifle.position + Vector3(0, increase, 1.5 * increase)
@@ -105,3 +110,7 @@ func _process(delta):
 	if  Input.is_action_pressed("left_click") and canshoot and level1.magazine_rifle > 0 and rotation_tween:
 		rotation_tween.kill()
 		rotation_tween = null
+
+
+func _on_particle_timeout() -> void:
+	fire_particle.emitting = false

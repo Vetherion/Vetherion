@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bb6lbab00x0me"]
+[gd_scene load_steps=13 format=3 uid="uid://bb6lbab00x0me"]
 
 [ext_resource type="Script" path="res://weapons/rifle/rifle.gd" id="1_4ckwo"]
 [ext_resource type="Shader" path="res://Shader/Weapon.gdshader" id="1_21b3a"]
@@ -45,6 +45,12 @@ size = Vector3(0.1, 0.1, 0.6)
 [sub_resource type="BoxMesh" id="BoxMesh_7fbbn"]
 size = Vector3(0.1, 0.1, 0.6)
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_f5mkc"]
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="QuadMesh" id="QuadMesh_frigt"]
+size = Vector2(0.1, 0.1)
+
 [node name="Rifle" type="Node3D" groups=["inv_item", "inv_rifle0"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.628777, 0)
 script = ExtResource("1_4ckwo")
@@ -77,5 +83,20 @@ one_shot = true
 [node name="rifle0_mat" parent="." instance=ExtResource("3_ypu3o")]
 transform = Transform3D(-7.64949e-08, 1.75, -7.64949e-08, 0, -7.64949e-08, -1.75, -1.75, -7.64949e-08, 3.3437e-15, 0, 0, -0.2)
 
+[node name="Node3D" type="Node3D" parent="rifle0_mat"]
+transform = Transform3D(-2.49779e-08, -1.02731e-21, -0.571429, 0.571429, -2.49779e-08, -2.49779e-08, -2.49779e-08, -0.571429, 1.09182e-15, -0.165446, -7.23189e-09, 0)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="rifle0_mat/Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0133133, 0, -1.11445)
+emitting = false
+lifetime = 0.4
+process_material = SubResource("ParticleProcessMaterial_f5mkc")
+draw_pass_1 = SubResource("QuadMesh_frigt")
+
+[node name="particle" type="Timer" parent="rifle0_mat/Node3D/GPUParticles3D"]
+unique_name_in_owner = true
+wait_time = 0.1
+
 [connection signal="timeout" from="rifle_fire_rate" to="." method="_on_rifle_fire_rate_timeout"]
 [connection signal="timeout" from="recoil_reset" to="." method="_on_recoil_reset_timeout"]
+[connection signal="timeout" from="rifle0_mat/Node3D/GPUParticles3D/particle" to="." method="_on_particle_timeout"]
