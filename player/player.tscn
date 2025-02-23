@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=4 uid="uid://dhjrc28o432pk"]
+[gd_scene load_steps=48 format=4 uid="uid://dhjrc28o432pk"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_cbo13"]
 [ext_resource type="Script" path="res://weapons/reticle.gd" id="2_77glr"]
@@ -24,6 +24,8 @@
 [ext_resource type="PackedScene" uid="uid://727xpupr0l63" path="res://Scenes/minimap.tscn" id="20_qqwxw"]
 [ext_resource type="Texture2D" uid="uid://djh65hpfc7hq2" path="res://external/rifle0.png" id="20_v80qs"]
 [ext_resource type="Texture2D" uid="uid://cekhvaeqj5ixb" path="res://external/exclamation.png" id="24_7xa47"]
+[ext_resource type="Script" path="res://Scripts/save_system.gd" id="25_oqby4"]
+[ext_resource type="Resource" uid="uid://cl38sfwt36o7o" path="res://save_resource.tres" id="26_abnty"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_cbere"]
 size = Vector3(1, 2, 1)
@@ -393,6 +395,20 @@ bg_color = Color(1, 0.162697, 0.779274, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_67c8p"]
 bg_color = Color(0, 0.723869, 0.610141, 1)
+
+[sub_resource type="GDScript" id="GDScript_pwhig"]
+script/source = "extends Button
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
 
 [node name="player" type="CharacterBody3D"]
 collision_layer = 3
@@ -812,10 +828,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -960.0
-offset_top = -540.0
-offset_right = 960.0
-offset_bottom = 540.0
+offset_left = -1263.0
+offset_top = -615.0
+offset_right = 657.0
+offset_bottom = 465.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -947,6 +963,35 @@ offset_bottom = 43.0
 texture = ExtResource("24_7xa47")
 expand_mode = 1
 
+[node name="save" type="Button" parent="HUD"]
+layout_mode = 0
+offset_left = 992.0
+offset_top = 363.0
+offset_right = 1092.0
+offset_bottom = 394.0
+text = "save"
+script = SubResource("GDScript_pwhig")
+
+[node name="load2" type="Label" parent="HUD"]
+layout_mode = 0
+offset_left = 944.0
+offset_top = 413.0
+offset_right = 1356.0
+offset_bottom = 522.0
+
+[node name="load" type="Button" parent="HUD"]
+offset_left = 1097.0
+offset_top = 363.0
+offset_right = 1197.0
+offset_bottom = 394.0
+text = "load"
+
+[node name="SaveLoad" type="Node" parent="." node_paths=PackedStringArray("inventory", "player")]
+script = ExtResource("25_oqby4")
+inventory = NodePath("../Inventory")
+player = NodePath("..")
+SaveResource = ExtResource("26_abnty")
+
 [connection signal="pressed" from="Inventory/VBoxContainer/1/1" to="Inventory/VBoxContainer/1/1" method="_on_pressed"]
 [connection signal="pressed" from="Inventory/VBoxContainer/1/2" to="Inventory/VBoxContainer/1/2" method="_on_pressed"]
 [connection signal="pressed" from="Inventory/VBoxContainer/1/3" to="Inventory/VBoxContainer/1/3" method="_on_pressed"]
@@ -966,3 +1011,5 @@ expand_mode = 1
 [connection signal="pressed" from="Inventory/VBoxContainer/UI/equip" to="Inventory/VBoxContainer/UI" method="_on_equip_pressed"]
 [connection signal="pressed" from="Inventory/VBoxContainer/UI/inequip" to="Inventory/VBoxContainer/UI" method="_on_inequip_pressed"]
 [connection signal="pressed" from="Inventory/VBoxContainer/UI/drop" to="Inventory/VBoxContainer/UI" method="_on_drop_pressed"]
+[connection signal="pressed" from="HUD/save" to="SaveLoad" method="_on_save_pressed"]
+[connection signal="pressed" from="HUD/load" to="SaveLoad" method="_on_load_pressed"]
