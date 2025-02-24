@@ -15,7 +15,6 @@ extends WeaponClass
 @onready var fire_particle: GPUParticles3D = $rifle0_mat/Node3D/GPUParticles3D
 
 var ammocount : int = 0
-var temp_rotation
 var tempcount = 0
 var rotation_tween: Tween = null
 var core_spread : float = 0.01
@@ -56,12 +55,10 @@ func _physics_process(delta: float) -> void:
 			new_scene.global_transform.origin = collision_point
 			
 		if ammocount == 1:
-			temp_rotation = camerapivot.rotation.x
 			weapon_ray.rotation_degrees = Vector3(90, 0, 0)
 		
 		camerapivot.rotation.x += (recoilcurve_y.sample_baked(ammocount/30.0))/75
 		camerapivot.rotation.y += (recoilcurve_x.sample_baked(ammocount/30.0))/75
-		
 		
 		var spread = clamp((core_spread * (ammocount + 29) * ((player.velocity.x + 4.0) * 0.25) * ((player.velocity.y + 4.0) * 0.25) * ((player.velocity.z + 4.0) * 0.25)) / 150.0, 0.0, 0.03)
 		weapon_ray.rotation.x += randf_range(-spread , spread * 2)
@@ -69,6 +66,7 @@ func _physics_process(delta: float) -> void:
 			weapon_ray.rotation.y -= randf_range(-spread, spread * 2)
 		if camerapivot.rotation.y > 0:
 			weapon_ray.rotation.y -= randf_range(spread, -spread * 2)
+		#weapon_ray.rotation(core bir spread seması olacak ve her vurus sonrası ray sıfırlanıp tekrar spread eklenecek)
 		
 func _on_rifle_fire_rate_timeout() -> void:
 	canshoot = true
@@ -97,7 +95,6 @@ func _input(event: InputEvent) -> void:
 		
 func _on_recoil_reset_timeout() -> void:
 	rifle.position = Vector3(0.5, -0.3, -0.5)
-	
 	tempcount = ammocount
 	ammocount = 0
 	AmmocountVariable.ammocount = ammocount
@@ -110,7 +107,6 @@ func _process(delta):
 	if  Input.is_action_pressed("left_click") and canshoot and level1.magazine_rifle > 0 and rotation_tween:
 		rotation_tween.kill()
 		rotation_tween = null
-
 
 func _on_particle_timeout() -> void:
 	fire_particle.emitting = false
