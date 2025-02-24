@@ -7,7 +7,7 @@ enum STATES {Move, Dialogue, Inventory}
 
 var currentState : STATES
 var string_cur_state: String
-var previousState : STATES  # Track previous state
+var previousState : STATES  
 
 func _ready() -> void:
 	currentState = initialState if initialState else STATES.Move

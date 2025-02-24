@@ -7,12 +7,12 @@
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.262376, 1), 0.0, 0.0, 0, 0, Vector2(0.519802, 0.538462), 0.0, 0.0, 0, 0, Vector2(1, 0.516483), 0.0, 0.0, 0, 0]
 point_count = 4
 
-[sub_resource type="Animation" id="Animation_ebqhv"]
-resource_name = "load_animation"
-
 [sub_resource type="Animation" id="Animation_tppwc"]
 resource_name = "Reload"
 length = 2.5
+
+[sub_resource type="Animation" id="Animation_ebqhv"]
+resource_name = "load_animation"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4kblx"]
 _data = {

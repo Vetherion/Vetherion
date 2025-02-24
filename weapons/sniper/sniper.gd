@@ -4,7 +4,6 @@ extends WeaponClass
 
 @export var damagedistance : Curve  
 
-@onready var camera3d : Camera3D = get_parent()
 @onready var player : CharacterBody3D = get_parent().get_parent().get_parent().get_parent()
 @onready var camerapivot : Node3D = get_parent().get_parent().get_parent()
 @onready var level1 : Node3D = get_parent().get_parent().get_parent().get_parent().get_parent()
@@ -33,7 +32,6 @@ func _input(event: InputEvent) -> void:
 				collider.damage(round(100.0 * damagedistance.sample_baked(distance)))
 			
 		camerapivot.rotation.x += 0.05
-		#weapon_ray.rotation.x += 0.05
 		
 	if Input.is_action_just_pressed("Reload"):
 		animation_player.play("Reload")

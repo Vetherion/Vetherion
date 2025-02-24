@@ -7,7 +7,6 @@ extends WeaponClass
 @export var recoilcurve_x : Curve
 @export var weapon_recoil_show : Curve
 
-@onready var camera3d : Camera3D = get_parent()
 @onready var player : CharacterBody3D = get_parent().get_parent().get_parent().get_parent()
 @onready var camerapivot : Node3D = get_parent().get_parent().get_parent()
 @onready var level1 : Node3D = get_parent().get_parent().get_parent().get_parent().get_parent()
