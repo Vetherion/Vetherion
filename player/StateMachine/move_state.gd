@@ -12,7 +12,7 @@ extends State
 @export var acceleration : float = 20.0
 @export var JUMP_VELOCITY : float = 15.0
 var camera_input_direction : Vector2 = Vector2.ZERO
-
+var move_direction
 #stamina variables
 var SPRINT_SPEED : float = 8.0
 var WALK_SPEED : float = 5.0
@@ -59,11 +59,16 @@ func _physics_process(delta: float) -> void:
 	var forward : Vector3 = camera3d.global_basis.z
 	var right : Vector3 = camera3d.global_basis.x
 	
-	var move_direction : Vector3 = forward * raw_input.y + right * raw_input.x
-	move_direction.y = 0.0
-	move_direction = move_direction.normalized()
-	
-	player1.velocity = player1.velocity.move_toward(move_direction * move_speed, acceleration * delta)
+	if not player1.is_on_floor():
+		var move_direction : Vector3 = forward * raw_input.y * 0.1 + right * raw_input.x * 0.1
+		move_direction.y = 0.0
+		move_direction = move_direction.normalized()
+		player1.velocity = player1.velocity.move_toward(move_direction * move_speed, acceleration * delta)
+	elif player1.is_on_floor():
+		var move_direction : Vector3 = forward * raw_input.y + right * raw_input.x
+		move_direction.y = 0.0
+		move_direction = move_direction.normalized()
+		player1.velocity = player1.velocity.move_toward(move_direction * move_speed, acceleration * delta)
 	
 func _process(delta: float) -> void:
 	# Gravity
