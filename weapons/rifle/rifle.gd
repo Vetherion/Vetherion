@@ -1,5 +1,7 @@
 extends WeaponClass
 
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+
 @export var damagedistance : Curve 
 @export var recoilcurve_y : Curve
 @export var recoilcurve_x : Curve
@@ -20,9 +22,19 @@ var rotation_tween: Tween = null
 var core_spread : float = 0.01
 var spread 
 
+func _ready() -> void:
+	animation_player.play("load_animation") 
+	
 func _physics_process(delta: float) -> void:
 	#Handle Fire
-	if  Input.is_action_pressed("left_click") and canshoot and level1.magazine_rifle > 0 and StateMachine.currentState == StateMachine.STATES.Move:
+	if (
+		not (animation_player.current_animation in ["Reload", "load_animation"]) and
+		Input.is_action_pressed("left_click") and 
+		canshoot and 
+		level1.magazine_rifle > 0 and 
+		StateMachine.currentState == StateMachine.STATES.Move
+):
+
 		#fire_particle.position = rifle.position + Vector3(1.0 , 1.0, 1.0)
 		fire_particle.emitting = true
 		%particle.start()
@@ -73,6 +85,7 @@ func _on_rifle_fire_rate_timeout() -> void:
 	
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("Reload"):
+		animation_player.play("Reload")
 		if level1.ammo_rifle >= level1.max_magazine_rifle:
 			level1.ammo_rifle = level1.ammo_rifle - level1.max_magazine_rifle + level1.magazine_rifle
 			level1.magazine_rifle = level1.max_magazine_rifle
@@ -82,6 +95,7 @@ func _input(event: InputEvent) -> void:
 			if level1.magazine_rifle > level1.max_magazine_rifle:
 				level1.ammo_rifle = level1.magazine_rifle - level1.max_magazine_rifle
 				level1.magazine_rifle = level1.max_magazine_rifle
+				
 		get_node("../../../../HUD/Cnt/Panel/Cnt/Ammo").text = str(level1.magazine_rifle)
 		get_node("../../../../HUD/Cnt/Panel/Cnt/Ammo_total").text = str(level1.ammo_rifle)
 		AmmoVariables.rifle_ammo = level1.magazine_rifle

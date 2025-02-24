@@ -1,5 +1,7 @@
 extends WeaponClass
 
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+
 @export var damagedistance : Curve  
 
 @onready var camera3d : Camera3D = get_parent()
@@ -10,9 +12,12 @@ extends WeaponClass
 @onready var weapon_ray = get_parent().get_parent().get_node("Weapon_Ray")
 @onready var recoil : Node3D = get_parent().get_parent()
 
+func _ready() -> void:
+	animation_player.play("load_animation") 
+	
 func _input(event: InputEvent) -> void:
 	#Handle Fire
-	if  Input.is_action_just_pressed("left_click") and canshoot and level1.magazine_sniper > 0 and StateMachine.currentState == StateMachine.STATES.Move:
+	if  not (animation_player.current_animation in ["Reload", "load_animation"]) and Input.is_action_just_pressed("left_click") and canshoot and level1.magazine_sniper > 0 and StateMachine.currentState == StateMachine.STATES.Move:
 		level1.magazine_sniper -= 1
 		get_node("../../../../HUD/Cnt/Panel/Cnt/Ammo").text = str(level1.magazine_sniper)
 		get_node("../../../../HUD/Cnt/Panel/Cnt/Ammo_total").text = str(level1.ammo_sniper)
@@ -31,6 +36,7 @@ func _input(event: InputEvent) -> void:
 		#weapon_ray.rotation.x += 0.05
 		
 	if Input.is_action_just_pressed("Reload"):
+		animation_player.play("Reload")
 		if level1.ammo_sniper >= level1.max_magazine_sniper:
 			level1.ammo_sniper = level1.ammo_sniper - level1.max_magazine_sniper + level1.magazine_sniper
 			level1.magazine_sniper = level1.max_magazine_sniper

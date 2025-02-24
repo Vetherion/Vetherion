@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://bdw2t4mgvcg0c"]
+[gd_scene load_steps=7 format=3 uid="uid://bdw2t4mgvcg0c"]
 
 [ext_resource type="Script" path="res://weapons/sniper/sniper.gd" id="1_vq1d3"]
 [ext_resource type="PackedScene" uid="uid://rdylqbotbii3" path="res://external/sniper_2.glb" id="2_ko2oj"]
@@ -6,6 +6,19 @@
 [sub_resource type="Curve" id="Curve_kyy6y"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.262376, 1), 0.0, 0.0, 0, 0, Vector2(0.519802, 0.538462), 0.0, 0.0, 0, 0, Vector2(1, 0.516483), 0.0, 0.0, 0, 0]
 point_count = 4
+
+[sub_resource type="Animation" id="Animation_ebqhv"]
+resource_name = "load_animation"
+
+[sub_resource type="Animation" id="Animation_tppwc"]
+resource_name = "Reload"
+length = 2.5
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4kblx"]
+_data = {
+"Reload": SubResource("Animation_tppwc"),
+"load_animation": SubResource("Animation_ebqhv")
+}
 
 [node name="Sniper" type="Node3D"]
 script = ExtResource("1_vq1d3")
@@ -18,5 +31,10 @@ one_shot = true
 
 [node name="sniper_2" parent="." instance=ExtResource("2_ko2oj")]
 transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, 0.374389, -0.0485085, -0.252398)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_4kblx")
+}
 
 [connection signal="timeout" from="sniper_fire_rate" to="." method="_on_sniper_fire_rate_timeout"]

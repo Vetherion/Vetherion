@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://bb6lbab00x0me"]
+[gd_scene load_steps=18 format=3 uid="uid://bb6lbab00x0me"]
 
 [ext_resource type="Script" path="res://weapons/rifle/rifle.gd" id="1_4ckwo"]
 [ext_resource type="Shader" path="res://Shader/Weapon.gdshader" id="1_21b3a"]
 [ext_resource type="PackedScene" uid="uid://dnq8dkjoh7tut" path="res://external/rifle0_mat.glb" id="3_ypu3o"]
+[ext_resource type="Shader" path="res://weapons/rifle/Rifle.gdshader" id="4_8hc2t"]
 
 [sub_resource type="Curve" id="Curve_cu53u"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.237624, 1), 0.0, 0.0, 0, 0, Vector2(0.490099, 0.472527), 0.0, 0.0, 0, 0, Vector2(1, 0.43956), 0.0, 0.0, 0, 0]
@@ -45,11 +46,31 @@ size = Vector3(0.1, 0.1, 0.6)
 [sub_resource type="BoxMesh" id="BoxMesh_7fbbn"]
 size = Vector3(0.1, 0.1, 0.6)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kk570"]
+render_priority = 0
+shader = ExtResource("4_8hc2t")
+shader_parameter/time = null
+shader_parameter/explosion_center = null
+shader_parameter/explosion_strength = null
+
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_f5mkc"]
 gravity = Vector3(0, 0, 0)
 
 [sub_resource type="QuadMesh" id="QuadMesh_frigt"]
 size = Vector2(0.1, 0.1)
+
+[sub_resource type="Animation" id="Animation_ebqhv"]
+resource_name = "load_animation"
+
+[sub_resource type="Animation" id="Animation_tppwc"]
+resource_name = "Reload"
+length = 2.5
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4kblx"]
+_data = {
+"Reload": SubResource("Animation_tppwc"),
+"load_animation": SubResource("Animation_ebqhv")
+}
 
 [node name="Rifle" type="Node3D" groups=["inv_item", "inv_rifle0"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.628777, 0)
@@ -88,6 +109,7 @@ transform = Transform3D(-2.49779e-08, -1.02731e-21, -0.571429, 0.571429, -2.4977
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="rifle0_mat/Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0133133, 0, -1.11445)
+material_override = SubResource("ShaderMaterial_kk570")
 emitting = false
 lifetime = 0.4
 process_material = SubResource("ParticleProcessMaterial_f5mkc")
@@ -96,6 +118,11 @@ draw_pass_1 = SubResource("QuadMesh_frigt")
 [node name="particle" type="Timer" parent="rifle0_mat/Node3D/GPUParticles3D"]
 unique_name_in_owner = true
 wait_time = 0.1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_4kblx")
+}
 
 [connection signal="timeout" from="rifle_fire_rate" to="." method="_on_rifle_fire_rate_timeout"]
 [connection signal="timeout" from="recoil_reset" to="." method="_on_recoil_reset_timeout"]
