@@ -1,7 +1,9 @@
 extends Control
 
 @export var player: CharacterBody3D
-@export var state_machine: Node
+@export var dialogue: Control
+@export var move_state_machine: Node
+@export var real_state_machine: Node
 @onready var level0 = player.get_parent()
 
 # Called when the node enters the scene tree for the first time.
@@ -11,7 +13,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	$Label.text = "FPS: " + str(Engine.get_frames_per_second()) + "\nstamina: "  + str(state_machine.stamina) + "\nHP: " + str(player.health) + "\npos: " + str(player.position) + "\nvel: " + str(player.velocity) + "\nspd: " + str(player.velocity.length())
+	$Label.text = "FPS: " + str(Engine.get_frames_per_second()) + "\nstamina: "  + str(move_state_machine.stamina) + "\nHP: " + str(player.health) + "\npos: " + str(player.position) + "\ncam rotation: " + str(%CameraPivot.rotation) + "\nwep rotation: " + str($"../CameraPivot/Recoil/Weapon_Ray".rotation) + "\nvel: " + str(player.velocity) + "\nspd: " + str(player.velocity.length()) + "\ncurrent_state: " + real_state_machine.string_cur_state
 
 
 #infinite ammo
@@ -37,8 +39,8 @@ func _on_check_button_toggled(toggled_on: bool) -> void:
 
 func _on_infinite_stamina_toggled(toggled_on: bool) -> void:
 	if toggled_on:
-		state_machine.initial_stamina = 99999.99 
-		state_machine.stamina = 99999.99 
+		move_state_machine.initial_stamina = 99999.99 
+		move_state_machine.stamina = 99999.99 
 	else:
-		state_machine.initial_stamina = 100.00
-		state_machine.stamina = 100.00
+		move_state_machine.initial_stamina = 100.00
+		move_state_machine.stamina = 100.00

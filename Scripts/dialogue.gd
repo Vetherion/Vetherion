@@ -13,6 +13,7 @@ extends Node
 @export var interaction: Node
 @export var state_machine: Node
 
+var in_dialogue = false
 var is_done = false
 var buttons: Array[Object]
 var current_focus = 0
@@ -43,6 +44,7 @@ func start_partial_dialogue(lookat, dialogue_path) -> void:
 	$"../HUD".visible = 0
 	%UserInterface.visible = 0
 	%CameraPivot.look_at(lookat.position + Vector3(.0, .75, .0))
+	in_dialogue = true
 	match state_machine.currentState:
 		state_machine.STATES.Move:
 			state_machine.change_state(state_machine.STATES.Dialogue)
@@ -146,6 +148,7 @@ func load_partial_dialogue(dialogue, index):
 				buttons = []
 				current_focus = 0
 				responder = ""
+				in_dialogue = false
 				$"../HUD".visible = 1
 				%UserInterface.visible = 1
 				match state_machine.currentState:

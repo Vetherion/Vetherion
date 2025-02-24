@@ -6,11 +6,13 @@ extends Node
 enum STATES {Move, Dialogue, Inventory}
 
 var currentState : STATES
+var string_cur_state: String
 var previousState : STATES  # Track previous state
 
 func _ready() -> void:
 	currentState = initialState if initialState else STATES.Move
 	previousState = currentState
+	string_cur_state = "move"
 	get_children()[currentState].set_active(true)
 
 func _input(event: InputEvent) -> void:
@@ -32,3 +34,9 @@ func change_state(newState):
 	
 	currentState = newState
 	get_children()[currentState].set_active(true)
+	if currentState == 0:
+		string_cur_state = "move"
+	elif currentState == 1:
+		string_cur_state = "dialogue"
+	elif currentState == 2:
+		string_cur_state = "inventory"
