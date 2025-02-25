@@ -54,8 +54,8 @@ func _physics_process(delta: float) -> void:
 		
 		var spread_y = (corespread_y.sample_baked(ammocount/30.0) * 3 * ((player.velocity.x + 4.0) * 0.25) * ((player.velocity.y + 4.0) * 0.25) * ((player.velocity.z + 4.0) * 0.25))
 		var spread_x = (corespread_x.sample_baked(ammocount/30.0) * 2 * ((player.velocity.x + 4.0) * 0.25) * ((player.velocity.y + 4.0) * 0.25) * ((player.velocity.z + 4.0) * 0.25))
-		spread_y = randf_range(spread_y * 0.8, spread_y * 1.3)
-		spread_x = randf_range(spread_x * 0.8, spread_x * 1.3)
+		spread_y = randf_range(spread_y * 0.9, spread_y * 1.1)
+		spread_x = randf_range(spread_x * 0.9, spread_x * 1.1)
 		weapon_ray.rotation_degrees = Vector3(90 + spread_y, -spread_x, 0) 
 		
 		if weapon_ray.is_colliding():
@@ -76,7 +76,7 @@ func _on_rifle_fire_rate_timeout() -> void:
 	canshoot = true
 	
 func _input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("Reload"):
+	if Input.is_action_just_pressed("Reload") and level1.magazine_rifle != 30:
 		animation_player.play("Reload")
 		if level1.ammo_rifle >= level1.max_magazine_rifle:
 			level1.ammo_rifle = level1.ammo_rifle - level1.max_magazine_rifle + level1.magazine_rifle
