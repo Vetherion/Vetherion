@@ -27,7 +27,7 @@ void fragment() {
     float alpha_mask = smoothstep(0.5, 0.45, dist);
 
     // Ateş rengi (sarıdan kırmızıya, sonra siyaha)
-    vec3 fire_color = mix(vec3(1.0, 0.5, 0.0), vec3(1.0, 0.0, 0.0), smoothstep(0.0, 1.0, fract(time)));
+    vec3 fire_color = mix(vec3(1.0, 0.1, 0.0), vec3(1.0, 0.0, 0.0), smoothstep(0.0, 1.0, fract(time)));
     fire_color = mix(fire_color, vec3(0.0, 0.0, 0.0), smoothstep(0.5, 1.0, time));
 
     // Gürültü ekleyerek daha doğal bir görünüm sağla

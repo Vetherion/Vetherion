@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bb6lbab00x0me"]
+[gd_scene load_steps=21 format=3 uid="uid://bb6lbab00x0me"]
 
 [ext_resource type="Script" path="res://weapons/rifle/rifle.gd" id="1_4ckwo"]
 [ext_resource type="Shader" path="res://Shader/Weapon.gdshader" id="1_21b3a"]
@@ -24,6 +24,15 @@ point_count = 9
 min_value = -1.0
 _data = [Vector2(0, 0.494505), 0.0, 0.0, 0, 0, Vector2(0.105528, 0.67033), 0.0, 0.0, 0, 0, Vector2(0.201005, -0.208791), 0.0, 0.0, 0, 0, Vector2(0.291457, 1), 0.0, 0.0, 0, 0, Vector2(0.336683, -0.450549), 0.0, 0.0, 0, 0, Vector2(0.41206, 0.637363), 0.0, 0.0, 0, 0, Vector2(0.547739, 0.384615), 0.0, 0.0, 0, 0, Vector2(0.60804, 1), 0.0, 0.0, 0, 0, Vector2(0.638191, -0.472527), 0.0, 0.0, 0, 0, Vector2(0.718593, 1), 0.0, 0.0, 0, 0, Vector2(0.834171, -0.582418), 0.0, 0.0, 0, 0, Vector2(0.849246, 0.637363), 0.0, 0.0, 0, 0, Vector2(0.904523, 1), 0.0, 0.0, 0, 0, Vector2(0.944724, 0.604396), 0.0, 0.0, 0, 0, Vector2(1, -1), 0.0, 0.0, 0, 0]
 point_count = 15
+
+[sub_resource type="Curve" id="Curve_c8ga6"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.147368, 1), 0.0, 0.0, 0, 0, Vector2(0.252632, 0.78022), 0.0, 0.0, 0, 0, Vector2(0.357895, 1), 0.0, 0.0, 0, 0, Vector2(0.452632, 0.692308), 0.0, 0.0, 0, 0, Vector2(0.557895, 1), 0.0, 0.0, 0, 0, Vector2(0.652632, 0.714286), 0.0, 0.0, 0, 0, Vector2(0.715789, 1), 0.0, 0.0, 0, 0, Vector2(0.821053, 0.67033), 0.0, 0.0, 0, 0, Vector2(0.884211, 1), 0.0, 0.0, 0, 0, Vector2(0.942105, 0.736264), 0.0, 0.0, 0, 0, Vector2(0.994737, 1), 0.0, 0.0, 0, 0]
+point_count = 12
+
+[sub_resource type="Curve" id="Curve_xkubq"]
+min_value = -1.0
+_data = [Vector2(0, -0.17033), 0.0, 0.0, 0, 0, Vector2(0.0526316, 0.258242), 0.0, 0.0, 0, 0, Vector2(0.121053, -0.203297), 0.0, 0.0, 0, 0, Vector2(0.163158, 0.208791), 0.0, 0.0, 0, 0, Vector2(0.205263, -0.252747), 0.0, 0.0, 0, 0, Vector2(0.257895, 0), 0.0, 0.0, 0, 0, Vector2(0.505263, 0.758242), 0.0, 0.0, 0, 0, Vector2(0.684211, 0.296703), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 9
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nws5j"]
 render_priority = 0
@@ -80,6 +89,8 @@ damagedistance = SubResource("Curve_cu53u")
 recoilcurve_y = SubResource("Curve_6lwua")
 recoilcurve_x = SubResource("Curve_2ym7a")
 weapon_recoil_show = SubResource("Curve_o7yhg")
+corespread_y = SubResource("Curve_c8ga6")
+corespread_x = SubResource("Curve_xkubq")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 visible = false

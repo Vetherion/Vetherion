@@ -6,6 +6,8 @@ extends WeaponClass
 @export var recoilcurve_y : Curve
 @export var recoilcurve_x : Curve
 @export var weapon_recoil_show : Curve
+@export var corespread_y: Curve
+@export var corespread_x: Curve
 
 @onready var player : CharacterBody3D = get_parent().get_parent().get_parent().get_parent()
 @onready var camerapivot : Node3D = get_parent().get_parent().get_parent()
@@ -18,8 +20,6 @@ extends WeaponClass
 var ammocount : int = 0
 var tempcount = 0
 var rotation_tween: Tween = null
-var core_spread : float = 0.01
-var spread 
 
 func _ready() -> void:
 	animation_player.play("load_animation") 
@@ -33,8 +33,6 @@ func _physics_process(delta: float) -> void:
 		level1.magazine_rifle > 0 and 
 		StateMachine.currentState == StateMachine.STATES.Move
 ):
-
-		#fire_particle.position = rifle.position + Vector3(1.0 , 1.0, 1.0)
 		fire_particle.emitting = true
 		%particle.start()
 		
@@ -54,6 +52,12 @@ func _physics_process(delta: float) -> void:
 			AmmocountVariable.ammocount = ammocount
 		%recoil_reset.start()
 		
+		var spread_y = (corespread_y.sample_baked(ammocount/30.0) * 3 * ((player.velocity.x + 4.0) * 0.25) * ((player.velocity.y + 4.0) * 0.25) * ((player.velocity.z + 4.0) * 0.25))
+		var spread_x = (corespread_x.sample_baked(ammocount/30.0) * 2 * ((player.velocity.x + 4.0) * 0.25) * ((player.velocity.y + 4.0) * 0.25) * ((player.velocity.z + 4.0) * 0.25))
+		spread_y = randf_range(spread_y * 0.8, spread_y * 1.3)
+		spread_x = randf_range(spread_x * 0.8, spread_x * 1.3)
+		weapon_ray.rotation_degrees = Vector3(90 + spread_y, -spread_x, 0) 
+		
 		if weapon_ray.is_colliding():
 			var collider = weapon_ray.get_collider()
 			if collider and collider.is_in_group("Enemy"):
@@ -65,20 +69,9 @@ func _physics_process(delta: float) -> void:
 			collider.add_child(new_scene)
 			new_scene.global_transform.origin = collision_point
 			
-		if ammocount == 1:
-			weapon_ray.rotation_degrees = Vector3(90, 0, 0)
-		
 		camerapivot.rotation.x += (recoilcurve_y.sample_baked(ammocount/30.0))/75
 		camerapivot.rotation.y += (recoilcurve_x.sample_baked(ammocount/30.0))/75
-		
-		var spread = clamp((core_spread * (ammocount + 29) * ((player.velocity.x + 4.0) * 0.25) * ((player.velocity.y + 4.0) * 0.25) * ((player.velocity.z + 4.0) * 0.25)) / 150.0, 0.0, 0.03)
-		weapon_ray.rotation.x += randf_range(-spread , spread * 2)
-		if camerapivot.rotation.y < 0:
-			weapon_ray.rotation.y -= randf_range(-spread, spread * 2)
-		if camerapivot.rotation.y > 0:
-			weapon_ray.rotation.y -= randf_range(spread, -spread * 2)
-		#weapon_ray.rotation(core bir spread seması olacak ve her vurus sonrası ray sıfırlanıp tekrar spread eklenecek)
-		
+
 func _on_rifle_fire_rate_timeout() -> void:
 	canshoot = true
 	
@@ -108,6 +101,7 @@ func _input(event: InputEvent) -> void:
 		
 func _on_recoil_reset_timeout() -> void:
 	rifle.position = Vector3(0.5, -0.3, -0.5)
+	weapon_ray.rotation_degrees = Vector3(90, 0, 0)
 	tempcount = ammocount
 	ammocount = 0
 	AmmocountVariable.ammocount = ammocount
