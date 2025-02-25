@@ -84,6 +84,7 @@ func _on_rifle_fire_rate_timeout() -> void:
 	
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("Reload"):
+		get_node("../../../../HUD/Cnt/Panel/Cnt/Ammo").text = "Reloading"
 		animation_player.play("Reload")
 		if level1.ammo_rifle >= level1.max_magazine_rifle:
 			level1.ammo_rifle = level1.ammo_rifle - level1.max_magazine_rifle + level1.magazine_rifle
@@ -95,8 +96,8 @@ func _input(event: InputEvent) -> void:
 				level1.ammo_rifle = level1.magazine_rifle - level1.max_magazine_rifle
 				level1.magazine_rifle = level1.max_magazine_rifle
 				
-		get_node("../../../../HUD/Cnt/Panel/Cnt/Ammo").text = str(level1.magazine_rifle)
-		get_node("../../../../HUD/Cnt/Panel/Cnt/Ammo_total").text = str(level1.ammo_rifle)
+		#get_node("../../../../HUD/Cnt/Panel/Cnt/Ammo").text = str(level1.magazine_rifle)
+		#get_node("../../../../HUD/Cnt/Panel/Cnt/Ammo_total").text = str(level1.ammo_rifle)
 		AmmoVariables.rifle_ammo = level1.magazine_rifle
 		AmmoVariables.rifle_total_ammo = level1.ammo_rifle
 		

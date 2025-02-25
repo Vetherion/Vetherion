@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://bdw2t4mgvcg0c"]
+[gd_scene load_steps=8 format=3 uid="uid://bdw2t4mgvcg0c"]
 
 [ext_resource type="Script" path="res://weapons/sniper/sniper.gd" id="1_vq1d3"]
 [ext_resource type="PackedScene" uid="uid://rdylqbotbii3" path="res://external/sniper_2.glb" id="2_ko2oj"]
+[ext_resource type="Script" path="res://Scripts/reload_text.gd" id="3_v4xwk"]
 
 [sub_resource type="Curve" id="Curve_kyy6y"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.262376, 1), 0.0, 0.0, 0, 0, Vector2(0.519802, 0.538462), 0.0, 0.0, 0, 0, Vector2(1, 0.516483), 0.0, 0.0, 0, 0]
@@ -37,4 +38,9 @@ libraries = {
 "": SubResource("AnimationLibrary_4kblx")
 }
 
+[node name="Reload_text" type="Node" parent="."]
+script = ExtResource("3_v4xwk")
+
 [connection signal="timeout" from="sniper_fire_rate" to="." method="_on_sniper_fire_rate_timeout"]
+[connection signal="animation_finished" from="AnimationPlayer" to="Reload_text" method="_on_animation_player_animation_finished"]
+[connection signal="animation_started" from="AnimationPlayer" to="Reload_text" method="_on_animation_player_animation_started"]

@@ -1,9 +1,10 @@
-[gd_scene load_steps=18 format=3 uid="uid://bb6lbab00x0me"]
+[gd_scene load_steps=19 format=3 uid="uid://bb6lbab00x0me"]
 
 [ext_resource type="Script" path="res://weapons/rifle/rifle.gd" id="1_4ckwo"]
 [ext_resource type="Shader" path="res://Shader/Weapon.gdshader" id="1_21b3a"]
 [ext_resource type="PackedScene" uid="uid://dnq8dkjoh7tut" path="res://external/rifle0_mat.glb" id="3_ypu3o"]
 [ext_resource type="Shader" path="res://weapons/rifle/Rifle.gdshader" id="4_8hc2t"]
+[ext_resource type="Script" path="res://Scripts/reload_text.gd" id="5_422ec"]
 
 [sub_resource type="Curve" id="Curve_cu53u"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.237624, 1), 0.0, 0.0, 0, 0, Vector2(0.490099, 0.472527), 0.0, 0.0, 0, 0, Vector2(1, 0.43956), 0.0, 0.0, 0, 0]
@@ -124,6 +125,11 @@ libraries = {
 "": SubResource("AnimationLibrary_4kblx")
 }
 
+[node name="Reload_text" type="Node" parent="."]
+script = ExtResource("5_422ec")
+
 [connection signal="timeout" from="rifle_fire_rate" to="." method="_on_rifle_fire_rate_timeout"]
 [connection signal="timeout" from="recoil_reset" to="." method="_on_recoil_reset_timeout"]
 [connection signal="timeout" from="rifle0_mat/Node3D/GPUParticles3D/particle" to="." method="_on_particle_timeout"]
+[connection signal="animation_finished" from="AnimationPlayer" to="Reload_text" method="_on_animation_player_animation_finished"]
+[connection signal="animation_started" from="AnimationPlayer" to="Reload_text" method="_on_animation_player_animation_started"]
