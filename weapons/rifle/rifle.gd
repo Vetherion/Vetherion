@@ -84,7 +84,6 @@ func _on_rifle_fire_rate_timeout() -> void:
 	
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("Reload"):
-		get_node("../../../../HUD/Cnt/Panel/Cnt/Ammo").text = "Reloading"
 		animation_player.play("Reload")
 		if level1.ammo_rifle >= level1.max_magazine_rifle:
 			level1.ammo_rifle = level1.ammo_rifle - level1.max_magazine_rifle + level1.magazine_rifle
