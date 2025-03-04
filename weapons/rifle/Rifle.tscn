@@ -77,8 +77,8 @@ curve_z = SubResource("Curve_rje7a")
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_f5mkc"]
 particle_flag_align_y = true
 spread = 180.0
-initial_velocity_min = 8.0
-initial_velocity_max = 10.0
+initial_velocity_min = 2.0
+initial_velocity_max = 5.0
 gravity = Vector3(0, -20, 0)
 scale_min = 0.15
 scale_max = 0.5
