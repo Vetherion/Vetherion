@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://bbq0ni3ohwhby"]
 
-[ext_resource type="Script" path="res://Scripts/credits.gd" id="1_gnj08"]
+[ext_resource type="Script" uid="uid://dx3d8u8d10c3x" path="res://Scripts/credits.gd" id="1_gnj08"]
 [ext_resource type="FontFile" uid="uid://b6wqk1o0r3j7s" path="res://external/Orbitron Bold.otf" id="2_lajpb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rtqx1"]

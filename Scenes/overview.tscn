@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://m8jbt25qi0j3"]
 
-[ext_resource type="Script" path="res://Scripts/overview.gd" id="1_rscwp"]
+[ext_resource type="Script" uid="uid://doe2a2upaciwx" path="res://Scripts/overview.gd" id="1_rscwp"]
 [ext_resource type="PackedScene" uid="uid://dnq8dkjoh7tut" path="res://external/rifle0_mat.glb" id="2_864ws"]
 [ext_resource type="PackedScene" uid="uid://rdylqbotbii3" path="res://external/sniper_2.glb" id="3_d0cy3"]
 

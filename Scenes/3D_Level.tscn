@@ -1,12 +1,12 @@
 [gd_scene load_steps=35 format=3 uid="uid://beqn6i68wci2n"]
 
-[ext_resource type="Script" path="res://Scripts/3D_Level.gd" id="1_1ufpl"]
+[ext_resource type="Script" uid="uid://fhirrayyo5qn" path="res://Scripts/3D_Level.gd" id="1_1ufpl"]
 [ext_resource type="PackedScene" uid="uid://bb34e6irwt0ia" path="res://car/car.tscn" id="1_lvekw"]
 [ext_resource type="PackedScene" uid="uid://dhjrc28o432pk" path="res://player/player.tscn" id="1_m4hl5"]
-[ext_resource type="Script" path="res://Scripts/item.gd" id="3_bmjj1"]
-[ext_resource type="Script" path="res://enemy/enemy.gd" id="4_qhv1j"]
+[ext_resource type="Script" uid="uid://c88hjlamis7or" path="res://Scripts/item.gd" id="3_bmjj1"]
+[ext_resource type="Script" uid="uid://ceohc5wa4mt7a" path="res://enemy/enemy.gd" id="4_qhv1j"]
 [ext_resource type="PackedScene" uid="uid://dnq8dkjoh7tut" path="res://external/rifle0_mat.glb" id="4_tc50s"]
-[ext_resource type="Shader" path="res://Shader/grid.gdshader" id="7_l6v2y"]
+[ext_resource type="Shader" uid="uid://es8jxv1x2d1n" path="res://Shader/grid.gdshader" id="7_l6v2y"]
 [ext_resource type="PackedScene" uid="uid://5w744otwipe6" path="res://Scenes/item_rifle0.tscn" id="8_8nm2w"]
 [ext_resource type="PackedScene" uid="uid://vxgux5f407k8" path="res://Scenes/item_sniper0.tscn" id="8_57qg2"]
 
@@ -57,8 +57,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ha32y"]
 _data = {
-"RESET": SubResource("Animation_vakq5"),
-"spin": SubResource("Animation_feimw")
+&"RESET": SubResource("Animation_vakq5"),
+&"spin": SubResource("Animation_feimw")
 }
 
 [sub_resource type="Animation" id="Animation_var5w"]
@@ -95,8 +95,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nt64g"]
 _data = {
-"RESET": SubResource("Animation_var5w"),
-"spin": SubResource("Animation_ibs83")
+&"RESET": SubResource("Animation_var5w"),
+&"spin": SubResource("Animation_ibs83")
 }
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_hqwfi"]
@@ -142,7 +142,6 @@ shader = ExtResource("7_l6v2y")
 points = PackedVector3Array(-0.579365, -5.07837, -5.07738, 0.5, 4.78914, 4.78724, 0.5, 4.78914, -4.78724, -0.579365, 5.07837, 5.07738, 0.5, -4.78815, 4.78724, -0.579365, -5.07837, 5.07738, -0.579365, 5.07837, -5.07738, 0.5, -4.78815, -4.78724, 0.366754, 5, -4.99804, 0.366754, 5, 4.99804)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8wtjh"]
-shading_mode = 2
 disable_ambient_light = true
 vertex_color_is_srgb = true
 albedo_color = Color(7.70092e-07, 0.722496, 0.655341, 1)
@@ -156,7 +155,6 @@ material = SubResource("StandardMaterial3D_8wtjh")
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qesxt"]
 
 [node name="3D_Level" type="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.453897, 0)
 script = ExtResource("1_1ufpl")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -182,7 +180,7 @@ transform = Transform3D(-3.61999e-06, 1, -3.61999e-06, 0, -3.61999e-06, -1, -1, 
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Items/MeshInstance3D3"]
 libraries = {
-"": SubResource("AnimationLibrary_ha32y")
+&"": SubResource("AnimationLibrary_ha32y")
 }
 
 [node name="MeshInstance3D" parent="Items" instance=ExtResource("8_57qg2")]
@@ -190,7 +188,7 @@ transform = Transform3D(1, 0, 2.89599e-05, 0, 1, 0, -2.89599e-05, 0, 1, 5.05914,
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Items/MeshInstance3D"]
 libraries = {
-"": SubResource("AnimationLibrary_nt64g")
+&"": SubResource("AnimationLibrary_nt64g")
 }
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]

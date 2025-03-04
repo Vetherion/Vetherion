@@ -35,8 +35,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ruifv"]
 _data = {
-"RESET": SubResource("Animation_dwh0q"),
-"fade_out": SubResource("Animation_ul2ji")
+&"RESET": SubResource("Animation_dwh0q"),
+&"fade_out": SubResource("Animation_ul2ji")
 }
 
 [node name="Label" type="Label" groups=["label"]]

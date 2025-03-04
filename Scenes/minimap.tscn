@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://727xpupr0l63"]
 
-[ext_resource type="Script" path="res://Scripts/minimap.gd" id="1_ktdkf"]
+[ext_resource type="Script" uid="uid://dgstu2pcfh0h0" path="res://Scripts/minimap.gd" id="1_ktdkf"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_xo2gf"]
 

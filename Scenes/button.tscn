@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://dmthcbtlrqmvk"]
 
-[ext_resource type="Script" path="res://Scripts/button.gd" id="1_eidpk"]
+[ext_resource type="Script" uid="uid://ch7i4ocf2bb2" path="res://Scripts/button.gd" id="1_eidpk"]
 [ext_resource type="FontFile" uid="uid://cik5oxwblyave" path="res://external/Orbitron Medium.otf" id="1_mtelf"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qbx3j"]
@@ -72,9 +72,9 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ip058"]
 _data = {
-"RESET": SubResource("Animation_0pyw2"),
-"fade_out": SubResource("Animation_27y4d"),
-"select_in": SubResource("Animation_6d7er")
+&"RESET": SubResource("Animation_0pyw2"),
+&"fade_out": SubResource("Animation_27y4d"),
+&"select_in": SubResource("Animation_6d7er")
 }
 
 [node name="ProgressBar" type="ProgressBar" groups=["button"]]
