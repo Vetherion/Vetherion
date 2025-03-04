@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://5848fxw6gkxb"]
+
+[ext_resource type="Texture2D" uid="uid://biwimp1xa0f8f" path="res://GAP_EasyExplosions_Textures/Flare00.PNG" id="1_5pqlq"]
+
+[resource]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_5pqlq")

@@ -17,6 +17,7 @@ extends WeaponClass
 @onready var recoil : Node3D = get_parent().get_parent()
 @onready var fire_particle: GPUParticles3D = $rifle0_mat/Node3D/GPUParticles3D
 
+
 var ammocount : int = 0
 var tempcount = 0
 var rotation_tween: Tween = null
@@ -114,6 +115,6 @@ func _process(delta):
 	if  Input.is_action_pressed("left_click") and canshoot and level1.magazine_rifle > 0 and rotation_tween:
 		rotation_tween.kill()
 		rotation_tween = null
-
+		
 func _on_particle_timeout() -> void:
 	fire_particle.emitting = false

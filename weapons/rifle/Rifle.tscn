@@ -1,9 +1,9 @@
-[gd_scene load_steps=21 format=3 uid="uid://bb6lbab00x0me"]
+[gd_scene load_steps=24 format=3 uid="uid://bb6lbab00x0me"]
 
 [ext_resource type="Script" uid="uid://b6xckb4xbcdnx" path="res://weapons/rifle/rifle.gd" id="1_4ckwo"]
 [ext_resource type="Shader" uid="uid://dt7w3xpmwu5b5" path="res://Shader/Weapon.gdshader" id="1_21b3a"]
 [ext_resource type="PackedScene" uid="uid://dnq8dkjoh7tut" path="res://external/rifle0_mat.glb" id="3_ypu3o"]
-[ext_resource type="Shader" uid="uid://dpao7socelem2" path="res://weapons/rifle/Rifle.gdshader" id="4_8hc2t"]
+[ext_resource type="Material" uid="uid://5848fxw6gkxb" path="res://weapons/rifle/Rifle.tres" id="4_128bh"]
 [ext_resource type="Script" uid="uid://rvpsnyt45nxl" path="res://Scripts/reload_text.gd" id="5_422ec"]
 
 [sub_resource type="Curve" id="Curve_cu53u"]
@@ -56,15 +56,34 @@ size = Vector3(0.1, 0.1, 0.6)
 [sub_resource type="BoxMesh" id="BoxMesh_7fbbn"]
 size = Vector3(0.1, 0.1, 0.6)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_kk570"]
-render_priority = 0
-shader = ExtResource("4_8hc2t")
-shader_parameter/time = 0.0
-shader_parameter/explosion_center = Vector3(0, 0, 0)
-shader_parameter/explosion_strength = 0.0
+[sub_resource type="Curve" id="Curve_2602m"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_128bh"]
+_limits = [0.0, 5.0, 0.0, 1.0]
+_data = [Vector2(0, 5), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_rje7a"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_021j4"]
+curve_x = SubResource("Curve_2602m")
+curve_y = SubResource("Curve_128bh")
+curve_z = SubResource("Curve_rje7a")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_f5mkc"]
-gravity = Vector3(0, 0, 0)
+particle_flag_align_y = true
+spread = 180.0
+initial_velocity_min = 8.0
+initial_velocity_max = 10.0
+gravity = Vector3(0, -20, 0)
+scale_min = 0.15
+scale_max = 0.5
+scale_curve = SubResource("CurveXYZTexture_021j4")
+color = Color(5, 2, 1, 1)
 
 [sub_resource type="QuadMesh" id="QuadMesh_frigt"]
 size = Vector2(0.1, 0.1)
@@ -83,7 +102,6 @@ _data = {
 }
 
 [node name="Rifle" type="Node3D" groups=["inv_item", "inv_rifle0"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.628777, 0)
 script = ExtResource("1_4ckwo")
 damagedistance = SubResource("Curve_cu53u")
 recoilcurve_y = SubResource("Curve_6lwua")
@@ -121,9 +139,11 @@ transform = Transform3D(-2.49779e-08, -1.02731e-21, -0.571429, 0.571429, -2.4977
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="rifle0_mat/Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0133133, 0, -1.11445)
-material_override = SubResource("ShaderMaterial_kk570")
+material_override = ExtResource("4_128bh")
 emitting = false
-lifetime = 0.4
+lifetime = 0.06
+explosiveness = 1.0
+fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_f5mkc")
 draw_pass_1 = SubResource("QuadMesh_frigt")
 
@@ -133,7 +153,7 @@ wait_time = 0.1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_4kblx")
+&"": SubResource("AnimationLibrary_4kblx")
 }
 
 [node name="Reload_text" type="Node" parent="."]
