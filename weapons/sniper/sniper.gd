@@ -26,12 +26,6 @@ func _input(event: InputEvent) -> void:
 		canshoot = false
 		%sniper_fire_rate.start()
 		
-		var spread_y = (((player.velocity.x + 4.0) * 0.25) * ((player.velocity.y + 4.0) * 0.25) * ((player.velocity.z + 4.0) * 0.25))
-		var spread_x = (((player.velocity.x + 4.0) * 0.25) * ((player.velocity.y + 4.0) * 0.25) * ((player.velocity.z + 4.0) * 0.25))
-		spread_y = randf_range(spread_y * 0.9, spread_y * 1.1)
-		spread_x = randf_range(spread_x * 0.9, spread_x * 1.1)
-		weapon_ray.rotation_degrees = Vector3(90 + spread_y, -spread_x, 0) 
-		
 		if weapon_ray.is_colliding():
 			var collider = weapon_ray.get_collider()
 			if collider and collider.is_in_group("Enemy"):
