@@ -17,7 +17,6 @@ extends WeaponClass
 @onready var recoil : Node3D = get_parent().get_parent()
 @onready var fire_particle: GPUParticles3D = $rifle0_mat/Node3D/GPUParticles3D
 
-
 var ammocount : int = 0
 var tempcount = 0
 var rotation_tween: Tween = null

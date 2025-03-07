@@ -75,8 +75,8 @@ func _process(delta: float) -> void:
 	if not player1.is_on_floor():
 		player1.velocity += player1.get_gravity() * delta * 5
 	# Head char 
-	t_char += delta * player1.velocity.length() * float(player1.is_on_floor())
-	camera3d.transform.origin = _headchar(t_char)
+	#t_char += delta * player1.velocity.length() * float(player1.is_on_floor())
+	#camera3d.transform.origin = _headchar(t_char)
 	
 	player1.move_and_slide()
 	

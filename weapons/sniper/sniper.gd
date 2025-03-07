@@ -12,6 +12,10 @@ extends WeaponClass
 @onready var weapon_ray = get_parent().get_parent().get_node("Weapon_Ray")
 @onready var recoil : Node3D = get_parent().get_parent()
 @onready var fire_particle: GPUParticles3D = $sniper_2/Node3D/GPUParticles3D
+@onready var sniper_2: Node3D = $sniper_2
+@onready var scope: MeshInstance3D = camera.find_child("scope")
+@onready var reticle_sniper: CenterContainer = player.find_child("UserInterface").find_child("ReticleSniper")
+@onready var reticle: CenterContainer = player.find_child("UserInterface").find_child("Reticle")
 
 func _ready() -> void:
 	animation_player.play("load_animation") 
@@ -64,19 +68,26 @@ func _input(event: InputEvent) -> void:
 func _process(delta: float)-> void:
 	if Input.is_action_just_pressed("Right_Click"):
 		camera.fov = 10
-		sniper.find_child("sniper_2").visible = false
-		camera.find_child("scope").visible = true
-		player.find_child("UserInterface").find_child("ReticleSniper").visible = true
-		player.find_child("UserInterface").find_child("Reticle").visible = false
+		sniper_2.visible = false
+		scope.visible = true
+		reticle_sniper.visible = true
+		reticle.visible = false
 	if Input.is_action_just_released("Right_Click"):
-		sniper.find_child("sniper_2").visible = true
 		camera.fov = 75
-		camera.find_child("scope").visible = false
-		player.find_child("UserInterface").find_child("ReticleSniper").visible = false
-		player.find_child("UserInterface").find_child("Reticle").visible = true
+		sniper_2.visible = true
+		scope.visible = false
+		reticle_sniper.visible = false
+		reticle.visible = true
 		
 func _on_sniper_fire_rate_timeout() -> void:
 	canshoot = true
 
 func _on_particle_timeout() -> void:
 	fire_particle.emitting = false
+
+func _exit_tree():
+	camera.fov = 75
+	sniper_2.visible = true
+	scope.visible = false
+	reticle_sniper.visible = false
+	reticle.visible = true
