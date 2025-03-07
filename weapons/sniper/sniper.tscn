@@ -1,12 +1,45 @@
-[gd_scene load_steps=8 format=3 uid="uid://bdw2t4mgvcg0c"]
+[gd_scene load_steps=15 format=3 uid="uid://bdw2t4mgvcg0c"]
 
 [ext_resource type="Script" uid="uid://b0a08r4ef6nx" path="res://weapons/sniper/sniper.gd" id="1_vq1d3"]
 [ext_resource type="PackedScene" uid="uid://rdylqbotbii3" path="res://external/sniper_2.glb" id="2_ko2oj"]
+[ext_resource type="Material" uid="uid://5848fxw6gkxb" path="res://weapons/rifle/Rifle.tres" id="3_8hg84"]
 [ext_resource type="Script" uid="uid://rvpsnyt45nxl" path="res://Scripts/reload_text.gd" id="3_v4xwk"]
 
 [sub_resource type="Curve" id="Curve_kyy6y"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.262376, 1), 0.0, 0.0, 0, 0, Vector2(0.519802, 0.538462), 0.0, 0.0, 0, 0, Vector2(1, 0.516483), 0.0, 0.0, 0, 0]
 point_count = 4
+
+[sub_resource type="Curve" id="Curve_q6wqe"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_tnj5y"]
+_limits = [0.0, 5.0, 0.0, 1.0]
+_data = [Vector2(0, 5), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_lksbi"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_021j4"]
+curve_x = SubResource("Curve_q6wqe")
+curve_y = SubResource("Curve_tnj5y")
+curve_z = SubResource("Curve_lksbi")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_uain3"]
+particle_flag_align_y = true
+spread = 180.0
+initial_velocity_min = 2.0
+initial_velocity_max = 5.0
+gravity = Vector3(0, -20, 0)
+scale_min = 0.15
+scale_max = 0.5
+scale_curve = SubResource("CurveXYZTexture_021j4")
+color = Color(5, 2, 1, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_fiskm"]
+size = Vector2(0.1, 0.1)
 
 [sub_resource type="Animation" id="Animation_tppwc"]
 resource_name = "Reload"
@@ -33,6 +66,23 @@ one_shot = true
 [node name="sniper_2" parent="." instance=ExtResource("2_ko2oj")]
 transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, 0.374389, -0.0485085, -0.252398)
 
+[node name="Node3D" type="Node3D" parent="sniper_2"]
+transform = Transform3D(-2.49779e-08, -1.09719e-21, -0.571429, 0.571429, -2.49779e-08, -2.49779e-08, -2.49779e-08, -0.571429, 1.09182e-15, 1.60815, -0.553575, -0.123966)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="sniper_2/Node3D"]
+transform = Transform3D(1, 6.65846e-34, 0, -5.87499e-35, 1, 0, 0, 8.07794e-28, 1, -0.0133134, -0.0240247, -0.0937936)
+material_override = ExtResource("3_8hg84")
+emitting = false
+lifetime = 0.06
+explosiveness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_uain3")
+draw_pass_1 = SubResource("QuadMesh_fiskm")
+
+[node name="particle" type="Timer" parent="sniper_2/Node3D/GPUParticles3D"]
+unique_name_in_owner = true
+wait_time = 0.1
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_4kblx")
@@ -42,5 +92,6 @@ libraries = {
 script = ExtResource("3_v4xwk")
 
 [connection signal="timeout" from="sniper_fire_rate" to="." method="_on_sniper_fire_rate_timeout"]
+[connection signal="timeout" from="sniper_2/Node3D/GPUParticles3D/particle" to="." method="_on_particle_timeout"]
 [connection signal="animation_finished" from="AnimationPlayer" to="Reload_text" method="_on_animation_player_animation_finished"]
 [connection signal="animation_started" from="AnimationPlayer" to="Reload_text" method="_on_animation_player_animation_started"]

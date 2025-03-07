@@ -1,7 +1,6 @@
-[gd_scene load_steps=24 format=3 uid="uid://bb6lbab00x0me"]
+[gd_scene load_steps=20 format=3 uid="uid://bb6lbab00x0me"]
 
 [ext_resource type="Script" uid="uid://b6xckb4xbcdnx" path="res://weapons/rifle/rifle.gd" id="1_4ckwo"]
-[ext_resource type="Shader" uid="uid://dt7w3xpmwu5b5" path="res://Shader/Weapon.gdshader" id="1_21b3a"]
 [ext_resource type="PackedScene" uid="uid://dnq8dkjoh7tut" path="res://external/rifle0_mat.glb" id="3_ypu3o"]
 [ext_resource type="Material" uid="uid://5848fxw6gkxb" path="res://weapons/rifle/Rifle.tres" id="4_128bh"]
 [ext_resource type="Script" uid="uid://rvpsnyt45nxl" path="res://Scripts/reload_text.gd" id="5_422ec"]
@@ -34,28 +33,6 @@ _limits = [-1.0, 1.0, 0.0, 1.0]
 _data = [Vector2(0, -0.17033), 0.0, 0.0, 0, 0, Vector2(0.0526316, 0.258242), 0.0, 0.0, 0, 0, Vector2(0.121053, -0.203297), 0.0, 0.0, 0, 0, Vector2(0.163158, 0.208791), 0.0, 0.0, 0, 0, Vector2(0.205263, -0.252747), 0.0, 0.0, 0, 0, Vector2(0.257895, 0), 0.0, 0.0, 0, 0, Vector2(0.505263, 0.758242), 0.0, 0.0, 0, 0, Vector2(0.684211, 0.296703), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 9
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_nws5j"]
-render_priority = 0
-shader = ExtResource("1_21b3a")
-shader_parameter/albedo = Color(1, 1, 1, 1)
-shader_parameter/point_size = 1.0
-shader_parameter/roughness = 1.0
-shader_parameter/metallic_texture_channel = Vector4(0, 0, 0, 0)
-shader_parameter/specular = 0.5
-shader_parameter/metallic = 0.0
-shader_parameter/uv1_scale = Vector3(1, 1, 1)
-shader_parameter/uv1_offset = Vector3(0, 0, 0)
-shader_parameter/uv2_scale = Vector3(1, 1, 1)
-shader_parameter/uv2_offset = Vector3(0, 0, 0)
-shader_parameter/fov = 77.0
-
-[sub_resource type="BoxMesh" id="BoxMesh_dr22j"]
-material = SubResource("ShaderMaterial_nws5j")
-size = Vector3(0.1, 0.1, 0.6)
-
-[sub_resource type="BoxMesh" id="BoxMesh_7fbbn"]
-size = Vector3(0.1, 0.1, 0.6)
-
 [sub_resource type="Curve" id="Curve_2602m"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
@@ -69,7 +46,7 @@ point_count = 2
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_021j4"]
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_2s1hd"]
 curve_x = SubResource("Curve_2602m")
 curve_y = SubResource("Curve_128bh")
 curve_z = SubResource("Curve_rje7a")
@@ -82,7 +59,7 @@ initial_velocity_max = 5.0
 gravity = Vector3(0, -20, 0)
 scale_min = 0.15
 scale_max = 0.5
-scale_curve = SubResource("CurveXYZTexture_021j4")
+scale_curve = SubResource("CurveXYZTexture_2s1hd")
 color = Color(5, 2, 1, 1)
 
 [sub_resource type="QuadMesh" id="QuadMesh_frigt"]
@@ -109,17 +86,6 @@ recoilcurve_x = SubResource("Curve_2ym7a")
 weapon_recoil_show = SubResource("Curve_o7yhg")
 corespread_y = SubResource("Curve_c8ga6")
 corespread_x = SubResource("Curve_xkubq")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-visible = false
-cast_shadow = 0
-mesh = SubResource("BoxMesh_dr22j")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
-visible = false
-cast_shadow = 3
-mesh = SubResource("BoxMesh_7fbbn")
-skeleton = NodePath("../MeshInstance3D")
 
 [node name="rifle_fire_rate" type="Timer" parent="."]
 unique_name_in_owner = true

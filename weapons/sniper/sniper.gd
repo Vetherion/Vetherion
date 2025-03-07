@@ -11,6 +11,7 @@ extends WeaponClass
 @onready var StateMachine = player.get_node("StateMachine") 
 @onready var weapon_ray = get_parent().get_parent().get_node("Weapon_Ray")
 @onready var recoil : Node3D = get_parent().get_parent()
+@onready var fire_particle: GPUParticles3D = $sniper_2/Node3D/GPUParticles3D
 
 func _ready() -> void:
 	animation_player.play("load_animation") 
@@ -18,6 +19,8 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	#Handle Fire
 	if  not (animation_player.current_animation in ["Reload", "load_animation"]) and Input.is_action_just_pressed("left_click") and canshoot and level1.magazine_sniper > 0 and StateMachine.currentState == StateMachine.STATES.Move:
+		fire_particle.emitting = true
+		%particle.start()
 		level1.magazine_sniper -= 1
 		get_node("../../../../HUD/Cnt/Panel/Cnt/Ammo").text = str(level1.magazine_sniper)
 		get_node("../../../../HUD/Cnt/Panel/Cnt/Ammo_total").text = str(level1.ammo_sniper)
@@ -72,3 +75,6 @@ func _process(delta: float)-> void:
 		
 func _on_sniper_fire_rate_timeout() -> void:
 	canshoot = true
+
+func _on_particle_timeout() -> void:
+	fire_particle.emitting = false
