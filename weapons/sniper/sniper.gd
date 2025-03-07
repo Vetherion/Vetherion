@@ -67,11 +67,13 @@ func _process(delta: float)-> void:
 		sniper.find_child("sniper_2").visible = false
 		camera.find_child("scope").visible = true
 		player.find_child("UserInterface").find_child("ReticleSniper").visible = true
+		player.find_child("UserInterface").find_child("Reticle").visible = false
 	if Input.is_action_just_released("Right_Click"):
 		sniper.find_child("sniper_2").visible = true
 		camera.fov = 75
 		camera.find_child("scope").visible = false
 		player.find_child("UserInterface").find_child("ReticleSniper").visible = false
+		player.find_child("UserInterface").find_child("Reticle").visible = true
 		
 func _on_sniper_fire_rate_timeout() -> void:
 	canshoot = true
