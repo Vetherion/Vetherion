@@ -55,7 +55,7 @@ func _physics_process(delta: float) -> void:
 		var spread_y = (corespread_y.sample_baked(ammocount/30.0) * 3 * ((player.velocity.x + 4.0) * 0.25) * ((player.velocity.y + 4.0) * 0.25) * ((player.velocity.z + 4.0) * 0.25))
 		var spread_x = (corespread_x.sample_baked(ammocount/30.0) * 2 * ((player.velocity.x + 4.0) * 0.25) * ((player.velocity.y + 4.0) * 0.25) * ((player.velocity.z + 4.0) * 0.25))
 		spread_y = randf_range(spread_y * 0.9, spread_y * 1.1)
-		spread_x = randf_range(spread_x * 0.9, spread_x * 1.1)
+		spread_x = randf_range(spread_x * 0.7, spread_x * 1.5)
 		weapon_ray.rotation_degrees = Vector3(90 + spread_y, -spread_x, 0) 
 		
 		if weapon_ray.is_colliding():
@@ -69,8 +69,8 @@ func _physics_process(delta: float) -> void:
 			collider.add_child(new_scene)
 			new_scene.global_transform.origin = collision_point
 			
-		camerapivot.rotation.x += (recoilcurve_y.sample_baked(ammocount/30.0))/75
-		camerapivot.rotation.y += (recoilcurve_x.sample_baked(ammocount/30.0))/75
+		camerapivot.rotation.x += (recoilcurve_y.sample_baked(ammocount/30.0))/150
+		camerapivot.rotation.y += (recoilcurve_x.sample_baked(ammocount/30.0))/80
 
 func _on_rifle_fire_rate_timeout() -> void:
 	canshoot = true
@@ -106,7 +106,13 @@ func _on_recoil_reset_timeout() -> void:
 	ammocount = 0
 	AmmocountVariable.ammocount = ammocount
 	rotation_tween = get_tree().create_tween()
-	rotation_tween.tween_property(camerapivot, "rotation:x", camerapivot.rotation.x - deg_to_rad(tempcount * 0.45), 0.5) \
+	
+	var que = 0
+	var kue = 0
+	for i in range(tempcount + 1):
+		que += (recoilcurve_y.sample_baked(i/30.0))/150
+		kue += (recoilcurve_x.sample_baked(i/30.0))/80
+	rotation_tween.tween_property(camerapivot, "rotation", Vector3(camerapivot.rotation.x - que, camerapivot.rotation.y - kue, camerapivot.rotation.z), 0.5) \
 		.set_trans(Tween.TRANS_QUAD) \
 		.set_ease(Tween.EASE_OUT)
 
