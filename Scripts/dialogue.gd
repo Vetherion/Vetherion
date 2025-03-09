@@ -43,11 +43,9 @@ func start_partial_dialogue(lookat, dialogue_path) -> void:
 	%Dialogue.visible = 1
 	$"../HUD".visible = 0
 	%UserInterface.visible = 0
-	%CameraPivot.look_at(lookat.position + Vector3(.0, .75, .0))
+	%CameraPivot.look_at(lookat.position + Vector3(.0, .4, .0))
 	in_dialogue = true
-	match state_machine.currentState:
-		state_machine.STATES.Move:
-			state_machine.change_state(state_machine.STATES.Dialogue)
+	state_machine.change_state(state_machine.STATES.Dialogue)
 	for i in %VBoxContainer.get_children():
 		if i.is_in_group("button") and i != null:
 			i.queue_free()
@@ -111,7 +109,7 @@ func load_partial_dialogue(dialogue, index):
 				i = null
 				
 		# !bad architecture
-		await get_tree().create_timer(0.01).timeout
+		await get_tree().create_timer(0.02).timeout
 		# label update
 		var words = current["start_text"].split(" ")
 		$VBoxContainer/Responder.text = responder
@@ -120,7 +118,7 @@ func load_partial_dialogue(dialogue, index):
 			%HBoxContainer.add_child(label)
 			label.text = words[i]
 			label.modulate = 0
-		
+			
 		for i in %HBoxContainer.get_children():
 			i.get_node("anim").play("fade_out")
 			await get_tree().create_timer(0.3).timeout
@@ -142,7 +140,26 @@ func load_partial_dialogue(dialogue, index):
 			if current.right(3) == "END":
 				$"../../..".visible = 0
 				interaction.in_dialogue = 0
-				%Dialogue.visible = 0
+				for i in %VBoxContainer.get_children():
+					if i.is_in_group("button") and i != null:
+						i.queue_free()
+						i = null
+				for i in %HBoxContainer.get_children():
+					if i.is_in_group("label") and i != null:
+						i.queue_free()
+						i = null
+				# !bad architecture
+				await get_tree().create_timer(0.02).timeout
+				
+				var words = current.split(" ")
+				for i in range(len(words)):
+					var label = label_scene.instantiate()
+					%HBoxContainer.add_child(label)
+					label.text = words[i]
+					label.modulate = 0
+				for i in %HBoxContainer.get_children():
+					i.get_node("anim").play("fade_out")
+					await get_tree().create_timer(0.3).timeout
 				current_dialogue = ""
 				is_done = false
 				buttons = []
@@ -151,9 +168,9 @@ func load_partial_dialogue(dialogue, index):
 				in_dialogue = false
 				$"../HUD".visible = 1
 				%UserInterface.visible = 1
-				match state_machine.currentState:
-					state_machine.STATES.Dialogue:
-						state_machine.change_state(state_machine.STATES.Move)
+				state_machine.change_state(state_machine.STATES.Move)
+				await get_tree().create_timer(7.5).timeout
+				%Dialogue.visible = 0
 			else:
 				for i in %VBoxContainer.get_children():
 					if i.is_in_group("button") and i != null:

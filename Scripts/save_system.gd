@@ -4,7 +4,7 @@ extends Node
 @export var player: CharacterBody3D
 @export var SaveResource: Resource
 
-const SAVE_PATH = "user://save_test.tres"
+const SAVE_PATH = "user://save_test2.tres"
 
 	
 func SaveGame() -> void:

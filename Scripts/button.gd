@@ -5,6 +5,8 @@ var dialogue_node
 
 func _ready() -> void:
 	dialogue_node = get_node("../../../../Dialogue")
+	if get_parent().visible:
+		self.grab_focus();
 func _on_focus_entered() -> void:
 	$"../anim".play("select_in")
 
