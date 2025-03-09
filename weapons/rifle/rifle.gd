@@ -112,7 +112,7 @@ func _on_recoil_reset_timeout() -> void:
 	for i in range(tempcount + 1):
 		que += (recoilcurve_y.sample_baked(i/30.0))/150
 		kue += (recoilcurve_x.sample_baked(i/30.0))/80
-	rotation_tween.tween_property(camerapivot, "rotation", Vector3(camerapivot.rotation.x - que, camerapivot.rotation.y - kue, camerapivot.rotation.z), 0.5) \
+	rotation_tween.tween_property(camerapivot, "rotation", Vector3(camerapivot.rotation.x - que + 0.008, camerapivot.rotation.y - kue, camerapivot.rotation.z), 0.5) \
 		.set_trans(Tween.TRANS_QUAD) \
 		.set_ease(Tween.EASE_OUT)
 
