@@ -89,7 +89,7 @@ func _headchar(time : float) -> Vector3:
 func enter() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	camera_input_direction = Vector2.ZERO
-	t_char = 0.0  # Reset head bob
+	camera3d.transform.origin = Vector3.ZERO
 
 func exit() -> void:
 	# Reset movement variables

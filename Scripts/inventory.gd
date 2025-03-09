@@ -1,4 +1,6 @@
 extends Node 
+@onready var player: CharacterBody3D = $".."
+@onready var StateMachine = player.get_node("StateMachine")
 
 @onready var columns = {
 	1: get_node("VBoxContainer/1"),

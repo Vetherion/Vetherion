@@ -3,7 +3,7 @@ extends Node
 @export var body : CharacterBody3D
 @export var initialState : STATES
 
-enum STATES {Move, Dialogue, Inventory}
+enum STATES {Move, Dialogue, Inventory, Jump}
 
 var currentState : STATES
 var string_cur_state: String
@@ -17,11 +17,10 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("TAB"):
-		match currentState:
-			STATES.Move:
-				change_state(STATES.Inventory)
-			STATES.Inventory:
-				change_state(STATES.Move)
+		if currentState == STATES.Move:
+			change_state(STATES.Inventory)
+		elif currentState == STATES.Inventory:
+			change_state(STATES.Move)
 		
 func change_state(newState):
 	if newState == currentState: return
@@ -40,3 +39,5 @@ func change_state(newState):
 		string_cur_state = "dialogue"
 	elif currentState == 2:
 		string_cur_state = "inventory"
+	elif currentState == 3:
+		string_cur_state = "jump"
