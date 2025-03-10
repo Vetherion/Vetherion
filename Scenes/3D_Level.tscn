@@ -9,7 +9,7 @@
 [ext_resource type="Shader" uid="uid://es8jxv1x2d1n" path="res://Shader/grid.gdshader" id="7_l6v2y"]
 [ext_resource type="PackedScene" uid="uid://5w744otwipe6" path="res://Scenes/item_rifle0.tscn" id="8_8nm2w"]
 [ext_resource type="PackedScene" uid="uid://vxgux5f407k8" path="res://Scenes/item_sniper0.tscn" id="8_57qg2"]
-[ext_resource type="Shader" uid="uid://cnf26i57v8dcx" path="res://Scenes/mesh.gdshader" id="10_4oray"]
+[ext_resource type="Shader" uid="uid://cnf26i57v8dcx" path="res://Shader/signal.gdshader" id="10_4oray"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vp2qy"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
