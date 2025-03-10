@@ -1,4 +1,5 @@
 extends State
+class_name MoveState
 
 @onready var player1: CharacterBody3D = $"../.."
 @onready var camera_pivot: Node3D = %CameraPivot

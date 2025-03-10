@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://beqn6i68wci2n"]
+[gd_scene load_steps=38 format=3 uid="uid://beqn6i68wci2n"]
 
 [ext_resource type="Script" uid="uid://fhirrayyo5qn" path="res://Scripts/3D_Level.gd" id="1_1ufpl"]
 [ext_resource type="PackedScene" uid="uid://bb34e6irwt0ia" path="res://car/car.tscn" id="1_lvekw"]
@@ -9,6 +9,7 @@
 [ext_resource type="Shader" uid="uid://es8jxv1x2d1n" path="res://Shader/grid.gdshader" id="7_l6v2y"]
 [ext_resource type="PackedScene" uid="uid://5w744otwipe6" path="res://Scenes/item_rifle0.tscn" id="8_8nm2w"]
 [ext_resource type="PackedScene" uid="uid://vxgux5f407k8" path="res://Scenes/item_sniper0.tscn" id="8_57qg2"]
+[ext_resource type="Shader" uid="uid://cnf26i57v8dcx" path="res://Scenes/mesh.gdshader" id="10_4oray"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vp2qy"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -154,6 +155,13 @@ material = SubResource("StandardMaterial3D_8wtjh")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qesxt"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4oray"]
+render_priority = 0
+shader = ExtResource("10_4oray")
+
+[sub_resource type="BoxMesh" id="BoxMesh_235es"]
+material = SubResource("ShaderMaterial_4oray")
+
 [node name="3D_Level" type="Node3D"]
 script = ExtResource("1_1ufpl")
 
@@ -290,6 +298,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.91228, 1.97586, 0)
 light_color = Color(0.415686, 1, 1, 1)
 light_energy = 7.795
 omni_range = 5.33
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.88566, 1.89383, -15.2943)
+mesh = SubResource("BoxMesh_235es")
 
 [connection signal="body_entered" from="NavigationRegion3D/Car/CarArea" to="player" method="_on_CarArea_body_entered"]
 [connection signal="body_exited" from="NavigationRegion3D/Car/CarArea" to="player" method="_on_CarArea_body_exited"]
