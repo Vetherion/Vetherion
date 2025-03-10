@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 SettingVariables="*res://Scenes/setting_variables.gd"
 AmmoVariables="*res://Scenes/ammo_variables.gd"
 AmmocountVariable="*res://weapons/ammocount_variable.gd"
+Global="*res://Global.gd"
 
 [debug]
 

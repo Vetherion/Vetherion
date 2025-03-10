@@ -3,7 +3,7 @@ extends Node
 @export var body : CharacterBody3D
 @export var initialState : STATES
 
-enum STATES {Move, Dialogue, Inventory, Jump}
+enum STATES {Move, Dialogue, Inventory}
 
 var currentState : STATES
 var string_cur_state: String
@@ -39,5 +39,3 @@ func change_state(newState):
 		string_cur_state = "dialogue"
 	elif currentState == 2:
 		string_cur_state = "inventory"
-	elif currentState == 3:
-		string_cur_state = "jump"

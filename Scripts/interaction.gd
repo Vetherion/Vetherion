@@ -67,7 +67,7 @@ func _process(delta: float) -> void:
 				%anim.play("select_in")
 				anim_played = true
 			%interaction.get_node("Action").text = "interact"
-			if Input.is_action_just_pressed("E"):
+			if Input.is_action_just_pressed("E") and Global.CurrentMoveState != "Jump":
 				if !in_dialogue:
 					dialogue.start_partial_dialogue(collider.get_parent(), "res://dialogues/example_dialogue.json")
 				in_dialogue = true

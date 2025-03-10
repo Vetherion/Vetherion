@@ -25,6 +25,7 @@ const char_FREQ : float = 2.0
 const char_AMP : float = 0.08
 var t_char : float = 0.0
 
+
 func _ready() -> void: #Start the game by capturing the mouse
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED 
 	
@@ -40,14 +41,15 @@ func _unhandled_input(event: InputEvent) -> void:
 		camera_input_direction = event.screen_relative * mouse_sensitivity
 		
 func _physics_process(delta: float) -> void:
-	# Handle sprint 
-	if Input.is_action_pressed("sprint") and stamina >= 75:
-		move_speed = SPRINT_SPEED
-		stamina -= 10.0 * delta
-	else:
-		move_speed = WALK_SPEED 
-		stamina += 2.0 * delta
-		stamina = clamp(stamina, 0, initial_stamina)
+	if Global.CurrentMoveState != "Jump":
+		if Input.is_action_pressed("sprint") and stamina >= 75:
+			move_speed = SPRINT_SPEED
+			stamina -= 10.0 * delta
+		else:
+			move_speed = WALK_SPEED 
+			stamina += 2.0 * delta
+			stamina = clamp(stamina, 0, initial_stamina)
+		
 	# Set camera angle by using camera_input_direction
 	camera_pivot.rotation.x -= camera_input_direction.y * delta
 	camera_pivot.rotation.x = clamp(camera_pivot.rotation.x, -PI / 3.0, PI / 1.5) #Limit for Vision Rotate
@@ -60,16 +62,10 @@ func _physics_process(delta: float) -> void:
 	var forward : Vector3 = camera3d.global_basis.z
 	var right : Vector3 = camera3d.global_basis.x
 	
-	if not player1.is_on_floor():
-		var move_direction : Vector3 = forward * raw_input.y * 0.1 + right * raw_input.x * 0.1
-		move_direction.y = 0.0
-		move_direction = move_direction.normalized()
-		player1.velocity = player1.velocity.move_toward(move_direction * move_speed, acceleration * delta)
-	elif player1.is_on_floor():
-		var move_direction : Vector3 = forward * raw_input.y + right * raw_input.x
-		move_direction.y = 0.0
-		move_direction = move_direction.normalized()
-		player1.velocity = player1.velocity.move_toward(move_direction * move_speed, acceleration * delta)
+	var move_direction : Vector3 = forward * raw_input.y + right * raw_input.x
+	move_direction.y = 0.0
+	move_direction = move_direction.normalized()
+	player1.velocity = player1.velocity.move_toward(move_direction * move_speed, acceleration * delta)
 	
 func _process(delta: float) -> void:
 	# Gravity
@@ -81,6 +77,12 @@ func _process(delta: float) -> void:
 	
 	player1.move_and_slide()
 	
+	if player1.velocity.y == 0:
+		Global.CurrentMoveState = "Move"
+		
+	if player1.velocity.y != 0:
+		Global.CurrentMoveState = "Jump"
+		
 func _headchar(time : float) -> Vector3:
 	var pos : Vector3 = Vector3.ZERO
 	pos.y = sin(time * char_FREQ) * char_AMP

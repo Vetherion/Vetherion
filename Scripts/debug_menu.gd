@@ -13,8 +13,15 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	$Label.text = "FPS: " + str(Engine.get_frames_per_second()) + "\nstamina: "  + str(move_state_machine.stamina) + "\nHP: " + str(player.health) + "\npos: " + str(player.position) + "\ncam rotation: " + str(%CameraPivot.rotation) + "\nwep rotation: " + str($"../CameraPivot/Recoil/Weapon_Ray".rotation) + "\nvel: " + str(player.velocity) + "\nspd: " + str(player.velocity.length()) + "\ncurrent_state: " + real_state_machine.string_cur_state
-
+	$Label.text = "FPS: " + str(Engine.get_frames_per_second()) + "\n" + \
+			  "stamina: " + str(move_state_machine.stamina) + "\n" + \
+			  "HP: " + str(player.health) + "\n" + \
+			  "pos: " + str(player.position) + "\n" + \
+			  "cam rotation: " + str(%CameraPivot.rotation) + "\n" + \
+			  "wep rotation: " + str($"../CameraPivot/Recoil/Weapon_Ray".rotation) + "\n" + \
+			  "vel: " + str(player.velocity) + "\n" + \
+			  "spd: " + str(player.velocity.length()) + "\n" + \
+			  "current_state: " + (real_state_machine.string_cur_state if real_state_machine.string_cur_state != "move" else ("Move" if Global.CurrentMoveState == "Move" else "Jump"))
 
 #infinite ammo
 func _on_check_button_2_toggled(toggled_on: bool) -> void:
