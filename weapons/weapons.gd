@@ -3,6 +3,7 @@ class_name WeaponClass
 
 @onready var rifle: Node3D = $"."
 @onready var sniper: Node3D = $"."
+@onready var punch: Node3D = $"."
 
 var canshoot : bool = true
 var current_weapon: Node3D = null
@@ -26,6 +27,9 @@ func _input(event: InputEvent) -> void:
 		get_node("../../../HUD/Cnt/Panel/Cnt/Ammo_total").text = str(AmmoVariables.sniper_total_ammo)
 		$"../../../HUD/Cnt/Selected_gun/rifle0".visible = 0
 		$"../../../HUD/Cnt/Selected_gun/sniper0".visible = 1
+	if Input.is_action_just_pressed("Punch"):
+		var punch_scene : PackedScene = preload("res://weapons/punch/punch.tscn")
+		spawn_weapon(punch_scene)
 		
 func spawn_weapon(weapon_scene: PackedScene) -> void:
 	if current_weapon:
