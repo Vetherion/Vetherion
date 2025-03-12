@@ -1,6 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bjx1jx8dq422x"]
+[gd_scene load_steps=5 format=3 uid="uid://bjx1jx8dq422x"]
 
 [ext_resource type="Script" uid="uid://cnx4v67um6pd8" path="res://weapons/punch/punch.gd" id="1_x2rcu"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_x2rcu"]
+size = Vector3(1, 1, 5)
 
 [sub_resource type="Animation" id="Animation_n54gr"]
 resource_name = "fire"
@@ -12,6 +15,10 @@ _data = {
 
 [node name="Punch" type="Node3D"]
 script = ExtResource("1_x2rcu")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.464689, -0.289227, -1.72254)
+mesh = SubResource("BoxMesh_x2rcu")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
