@@ -30,4 +30,6 @@ func _on_drop_pressed() -> void:
 	#item.position = Vector3(0.5,0.5,0.5)
 	#print(player.get_node("CameraPivot").rotation)
 	#item.position = Vector3(player.position.x + 2, player.position.y, player.position.z)
-	item.position = Vector3(player.position.x + 0.05*A, player.position.y, player.position.z + sqrt(2*(A^2) - 2*(A^2)*cos(player.get_node("CameraPivot").rotation.y)))
+	#print(player.get_node("CameraPivot/Recoil/Drop_Pos").global_position)
+	item.position = player.get_node("CameraPivot/Recoil/Drop_Pos").global_position
+	#item.position = Vector3(player.position.x + 0.05*A, player.position.y, player.position.z + sqrt(2*(A^2) - 2*(A^2)*cos(player.get_node("CameraPivot").rotation.y)))
