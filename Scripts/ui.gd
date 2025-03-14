@@ -5,6 +5,8 @@ var selected_item: String
 @onready var camera = %Camera3D
 var level: Node3D
 @export var sniper0_scene: PackedScene
+@export var rifle0_scene: PackedScene
+@export var selected = ""
 const A = 30
 
 func _ready() -> void:
@@ -25,11 +27,17 @@ func _on_inequip_pressed() -> void:
 
 # Drop button
 func _on_drop_pressed() -> void:
-	var item = sniper0_scene.instantiate()
+	print(selected)
+	var item = null
+	if selected == "inv_rifle0":
+		item = rifle0_scene.instantiate()
+	elif selected == "inv_sniper0":
+		item = sniper0_scene.instantiate()
 	level.add_child(item)
 	#item.position = Vector3(0.5,0.5,0.5)
 	#print(player.get_node("CameraPivot").rotation)
 	#item.position = Vector3(player.position.x + 2, player.position.y, player.position.z)
 	#print(player.get_node("CameraPivot/Recoil/Drop_Pos").global_position)
-	item.position = player.get_node("CameraPivot/Recoil/Drop_Pos").global_position
+	if item:
+		item.position = player.get_node("CameraPivot/Recoil/Drop_Pos").global_position
 	#item.position = Vector3(player.position.x + 0.05*A, player.position.y, player.position.z + sqrt(2*(A^2) - 2*(A^2)*cos(player.get_node("CameraPivot").rotation.y)))

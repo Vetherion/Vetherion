@@ -1,6 +1,7 @@
 extends Button
 
 @export var overview: Node3D
+@export var ui: Node
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -14,6 +15,7 @@ func _process(delta: float) -> void:
 
 func _on_pressed() -> void:
 	if self.is_in_group("inv_sniper0"):
+		ui.selected = "inv_sniper0"
 		self.get_parent().get_parent().get_node("UI").selected_item = "inv_sniper0"
 		self.get_parent().get_parent().get_node("UI/item_inactive_button").text = "Sniper0"
 		print("Sniper select")
@@ -21,6 +23,7 @@ func _on_pressed() -> void:
 		overview.get_node("item/sniper_2").visible = 1
 		overview.get_node("item").mesh = load("")
 	elif self.is_in_group("inv_rifle0"):
+		ui.selected = "inv_rifle0"
 		self.get_parent().get_parent().get_node("UI").selected_item = "inv_rifle0"
 		self.get_parent().get_parent().get_node("UI/item_inactive_button").text = "Rifle0"
 		print("Rifle select")

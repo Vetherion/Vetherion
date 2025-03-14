@@ -1,13 +1,12 @@
 [gd_scene load_steps=3 format=3 uid="uid://5w744otwipe6"]
 
-[ext_resource type="BoxMesh" uid="uid://utiq3tvj2e62" path="res://overview_meshes/item_rifle0.tres" id="1_ugnsr"]
+[ext_resource type="PackedScene" uid="uid://dnq8dkjoh7tut" path="res://external/rifle0_mat.glb" id="1_ox7d0"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_u60yv"]
 
 [node name="MeshInstance3D" type="MeshInstance3D" groups=["inv_item", "inv_rifle0"]]
 transform = Transform3D(1.00267, 0, 0, 0, 1.00267, 0, 0, 0, 1.00267, 0, 0, 0)
 layers = 8
-mesh = ExtResource("1_ugnsr")
 
 [node name="Area3D" type="Area3D" parent="."]
 collision_layer = 8
@@ -15,3 +14,6 @@ collision_layer = 8
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1.41272, 0, 0, 0, 1.36189, 0, 0, 0, 1.61772, 0, 0, 0)
 shape = SubResource("SphereShape3D_u60yv")
+
+[node name="rifle0_mat" parent="." instance=ExtResource("1_ox7d0")]
+transform = Transform3D(-4.3595e-08, 0.997337, -4.3595e-08, 0, -4.3595e-08, -0.997337, -0.997337, -4.3595e-08, 1.9056e-15, 0.231935, 0.27649, 0.329318)
