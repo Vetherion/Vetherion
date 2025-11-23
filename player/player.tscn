@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=4 uid="uid://dhjrc28o432pk"]
+[gd_scene load_steps=56 format=4 uid="uid://dhjrc28o432pk"]
 
 [ext_resource type="Script" uid="uid://ccfhc77upyl2f" path="res://player/player.gd" id="1_cbo13"]
 [ext_resource type="Script" uid="uid://bm4jmriu70dxh" path="res://weapons/reticle.gd" id="2_77glr"]
@@ -11,7 +11,7 @@
 [ext_resource type="Script" uid="uid://ciluisofvyx1t" path="res://player/StateMachine/move_state.gd" id="9_uiyeq"]
 [ext_resource type="Script" uid="uid://c0h2ttxg5fnbh" path="res://player/StateMachine/diyalogue_state.gd" id="10_jw2nf"]
 [ext_resource type="Script" uid="uid://cqrxtu4ywgqpo" path="res://player/StateMachine/inventory_state.gd" id="11_pdbfm"]
-[ext_resource type="Texture2D" uid="uid://bnv8t5ps00d7j" path="res://external/bitmap.png" id="12_01h06"]
+[ext_resource type="Texture2D" uid="uid://dmwm5o7hrso7l" path="res://external/bitmap.png" id="12_01h06"]
 [ext_resource type="FontFile" uid="uid://cik5oxwblyave" path="res://external/Orbitron Medium.otf" id="12_iklaq"]
 [ext_resource type="PackedScene" uid="uid://didfhp7chm7e" path="res://Scenes/inventory_button.tscn" id="13_e4sah"]
 [ext_resource type="Script" uid="uid://cwxskqp2va434" path="res://Scripts/ui.gd" id="14_saej1"]
@@ -26,7 +26,6 @@
 [ext_resource type="Texture2D" uid="uid://b0mc5r5eaulim" path="res://external/sniper0_union.png" id="20_fxgqg"]
 [ext_resource type="PackedScene" uid="uid://727xpupr0l63" path="res://Scenes/minimap.tscn" id="20_qqwxw"]
 [ext_resource type="Texture2D" uid="uid://djh65hpfc7hq2" path="res://external/rifle0.png" id="20_v80qs"]
-[ext_resource type="Texture2D" uid="uid://cekhvaeqj5ixb" path="res://external/exclamation.png" id="24_7xa47"]
 [ext_resource type="Script" uid="uid://cwrwc0k73tiba" path="res://Scripts/save_system.gd" id="25_oqby4"]
 [ext_resource type="Resource" uid="uid://d06ob58h2uden" path="res://save_resource2.tres" id="26_ibqfu"]
 [ext_resource type="Script" uid="uid://ikfs05vdnpl6" path="res://Scripts/debug_menu.gd" id="27_kgo1m"]
@@ -495,7 +494,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.601927, 0)
 
 [node name="Camera3D" type="Camera3D" parent="CameraPivot/Recoil"]
 unique_name_in_owner = true
-current = true
 script = ExtResource("6_qdqrk")
 
 [node name="scope" type="MeshInstance3D" parent="CameraPivot/Recoil/Camera3D"]
@@ -616,7 +614,7 @@ mouse_filter = 2
 [node name="Panel" type="Panel" parent="UserInterface/interaction"]
 visible = false
 modulate = Color(0.521569, 0.478431, 1, 0.686275)
-layout_mode = 2
+layout_mode = 0
 offset_left = 960.0
 offset_top = 540.0
 offset_right = 960.0
@@ -626,7 +624,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_sdq1w")
 
 [node name="ProgressBar" type="ProgressBar" parent="UserInterface/interaction"]
 custom_minimum_size = Vector2(65, 80)
-layout_mode = 2
+layout_mode = 0
 offset_left = 761.0
 offset_top = 699.0
 offset_right = 831.0
@@ -1104,7 +1102,6 @@ show_percentage = false
 layout_mode = 0
 offset_right = 37.0
 offset_bottom = 43.0
-texture = ExtResource("24_7xa47")
 expand_mode = 1
 
 [node name="save" type="Button" parent="HUD"]

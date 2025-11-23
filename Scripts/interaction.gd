@@ -10,6 +10,13 @@ var anim_played = false
 var in_car = false
 var in_dialogue = false
 
+@onready var character_mesh: MeshInstance3D = $"../../../sniperscope"
+@onready var character_collision: CollisionShape3D = $"../../../CollisionShape3D"
+@onready var character_camera: WeaponClass = $"../../../CameraPivot/Recoil/Camera3D"
+@onready var car: VehicleBody3D = $"../../../../NavigationRegion3D/Car"
+
+const EXIT_OFFSET: Vector3 = Vector3(-1.5, 0.5, 0.0)
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -17,6 +24,10 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if in_car:
+		if Input.is_action_just_pressed("E"):
+			exit_car()
+			in_car = false
 	if is_colliding():
 		var collider = get_collider()
 		if collider and collider.get_parent() and collider.get_parent().is_in_group("inv_item"):
@@ -51,7 +62,7 @@ func _process(delta: float) -> void:
 			%interaction.get_node("Action").text = "enter car"
 			if !in_car:
 				if Input.is_action_just_pressed("E"):
-					player.queue_free()
+					enter_car()
 					in_car = true
 			else:
 				pass
@@ -81,3 +92,18 @@ func _process(delta: float) -> void:
 		%interaction.visible = 0
 		%anim.play("RESET")
 		anim_played = false
+
+func enter_car():
+	character_mesh.visible = false
+	character_collision.disabled = true
+	character_camera.current = false
+	
+func exit_car():
+	var car_rotation_basis: Basis = car.global_transform.basis
+	var car_position: Vector3 = car.global_position
+	var offset_global: Vector3 = car_rotation_basis * EXIT_OFFSET
+	var spawn_position: Vector3 = car_position + offset_global
+	player.global_position = spawn_position
+	character_mesh.visible = true
+	character_collision.disabled = false
+	character_camera.current = true
