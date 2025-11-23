@@ -6,7 +6,7 @@ class_name MoveState
 @onready var camera3d: WeaponClass = %Camera3D
 
 @export_group("Camera")
-@export_range(0.0, 1.0) var mouse_sensitivity : float = 0.1
+var mouse_sensitivity : float = 1
 
 @export_group("Movement")
 @export var move_speed : float = 5.0
@@ -28,7 +28,7 @@ var t_char : float = 0.0
 
 func _ready() -> void: #Start the game by capturing the mouse
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED 
-	
+	AmmoVariables.sniper_mouse_sens = 1
 func _input(event: InputEvent) -> void:
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and player1.is_on_floor():
@@ -68,6 +68,7 @@ func _physics_process(delta: float) -> void:
 	player1.velocity = player1.velocity.move_toward(move_direction * move_speed, acceleration * delta)
 	
 func _process(delta: float) -> void:
+	mouse_sensitivity = AmmoVariables.sniper_mouse_sens
 	# Gravity
 	if not player1.is_on_floor():
 		player1.velocity += player1.get_gravity() * delta * 5

@@ -67,6 +67,7 @@ func _input(event: InputEvent) -> void:
 		
 func _process(delta: float)-> void:
 	if Input.is_action_just_pressed("Right_Click"):
+		AmmoVariables.sniper_mouse_sens = 1
 		camera.fov = 10
 		sniper_2.visible = false
 		scope.visible = true
@@ -78,6 +79,7 @@ func _process(delta: float)-> void:
 		scope.visible = false
 		reticle_sniper.visible = false
 		reticle.visible = true
+		AmmoVariables.sniper_mouse_sens = 1
 		
 func _on_sniper_fire_rate_timeout() -> void:
 	canshoot = true

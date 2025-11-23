@@ -28,10 +28,6 @@ func _init(p_health = 0, p_rifle0_bullet_loaded = 0, p_rifle0_bullet_has = 0, p_
 [resource]
 script = SubResource("GDScript_7c1ld")
 health = 100.0
-rifle0_bullet_loaded = 0
-rifle0_bullet_has = 0
-sniper0_bullet_loaded = 0
-sniper0_bullet_has = 0
 inventory = {
 0: "void",
 1: "inv_sniper0",
@@ -56,4 +52,3 @@ inventory_gui = {
 [4, 4]: "void"
 }
 position = Vector3(1.56156, 1.00185, -3.26474)
-camera_rotation = Vector3(0, 0, 0)
