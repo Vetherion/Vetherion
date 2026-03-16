@@ -1,5 +1,5 @@
 ## Version
-Godot 4.4.stable
+Godot 4.6.stable
 ## License
 This project is licensed under the GNU General Public License v3.0. 
 ### Screenshots
