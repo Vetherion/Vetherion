@@ -15,7 +15,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	$Label.text = "FPS: " + str(Engine.get_frames_per_second()) + "\n" + \
 			  "stamina: " + str(move_state_machine.stamina) + "\n" + \
-			  "HP: " + str(player.health) + "\n" + \
+			  "HP: " + str(player.get_health()) + "\n" + \
 			  "pos: " + str(player.position) + "\n" + \
 			  "cam rotation: " + str(%CameraPivot.rotation) + "\n" + \
 			  "wep rotation: " + str($"../CameraPivot/Recoil/Weapon_Ray".rotation) + "\n" + \
@@ -39,9 +39,9 @@ func _on_check_button_2_toggled(toggled_on: bool) -> void:
 #full hp
 func _on_check_button_toggled(toggled_on: bool) -> void:
 	if toggled_on:
-		player.health = 99999.99 
+		player.set_health(99999.99) 
 	else:
-		player.health = 100.00
+		player.set_health(100.00)
 
 
 func _on_infinite_stamina_toggled(toggled_on: bool) -> void:

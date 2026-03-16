@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://lc37n36ypg1h"]
+[gd_scene format=3 uid="uid://lc37n36ypg1h"]
 
 [ext_resource type="Script" uid="uid://4ahb4iuesm4e" path="res://Scripts/main_menu.gd" id="1_r2xpf"]
 [ext_resource type="FontFile" uid="uid://b6wqk1o0r3j7s" path="res://external/Orbitron Bold.otf" id="2_tw778"]
@@ -14,7 +14,7 @@ bg_color = Color(0.6, 0.6, 0.6, 0.627451)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o8yp8"]
 bg_color = Color(0.6, 0.6, 0.6, 0.168627)
 
-[node name="Control" type="Control"]
+[node name="Control" type="Control" unique_id=1448071342]
 layout_mode = 3
 anchor_top = 0.125
 anchor_right = 1.0
@@ -25,7 +25,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_r2xpf")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Panel" type="Panel" parent="." unique_id=547821469]
 custom_minimum_size = Vector2(1920, 1080)
 layout_mode = 0
 offset_top = -136.0
@@ -33,7 +33,7 @@ offset_right = 1920.0
 offset_bottom = 944.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_js3ka")
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=463331251]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -46,7 +46,7 @@ theme_override_fonts/font = ExtResource("2_tw778")
 theme_override_font_sizes/font_size = 120
 text = "VETHERION"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=480011135]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -60,7 +60,7 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/separation = 13
 
-[node name="RESUME" type="Button" parent="VBoxContainer"]
+[node name="RESUME" type="Button" parent="VBoxContainer" unique_id=1163105645]
 custom_minimum_size = Vector2(600, 80)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -79,7 +79,7 @@ theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_yjipj")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_lrs48")
 text = "RESUME"
 
-[node name="NEW_GAME" type="Button" parent="VBoxContainer"]
+[node name="NEW_GAME" type="Button" parent="VBoxContainer" unique_id=828876480]
 custom_minimum_size = Vector2(600, 80)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -98,7 +98,7 @@ theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_yjipj")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_lrs48")
 text = "NEW GAME"
 
-[node name="LOAD SAVE" type="Button" parent="VBoxContainer"]
+[node name="LOAD SAVE" type="Button" parent="VBoxContainer" unique_id=2029100493]
 custom_minimum_size = Vector2(600, 80)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -117,7 +117,7 @@ theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_lrs48")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_lrs48")
 text = "LOAD SAVE"
 
-[node name="SETTINGS" type="Button" parent="VBoxContainer"]
+[node name="SETTINGS" type="Button" parent="VBoxContainer" unique_id=881862830]
 custom_minimum_size = Vector2(600, 80)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -136,7 +136,7 @@ theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_lrs48")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_lrs48")
 text = "SETTINGS"
 
-[node name="CREDITS" type="Button" parent="VBoxContainer"]
+[node name="CREDITS" type="Button" parent="VBoxContainer" unique_id=221549787]
 custom_minimum_size = Vector2(600, 80)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -155,7 +155,7 @@ theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_lrs48")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_lrs48")
 text = "CREDITS"
 
-[node name="EXIT" type="Button" parent="VBoxContainer"]
+[node name="EXIT" type="Button" parent="VBoxContainer" unique_id=449751401]
 custom_minimum_size = Vector2(600, 80)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -174,13 +174,13 @@ theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_lrs48")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_lrs48")
 text = "EXIT"
 
-[node name="version" type="Label" parent="VBoxContainer"]
+[node name="version" type="Label" parent="VBoxContainer" unique_id=70051540]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 20
 text = "v0.1"
 
-[node name="Godot_label" type="Label" parent="VBoxContainer"]
+[node name="Godot_label" type="Label" parent="VBoxContainer" unique_id=1449893396]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 15
